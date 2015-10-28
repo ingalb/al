@@ -1,0 +1,25 @@
+<ion-view title="{{lajmi.title}}">
+  <ion-nav-buttons side="left">
+    <button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
+  </ion-nav-buttons>
+  <ion-content class="has-header">
+  <img class="full-image lajmi-img" src="http://www.fkvllaznia.net/main/vllaznia/_files/newspublish/{{lajmi.image}}">
+  <div class="item item-body">
+
+    <h2 class="lajmi-titulli assertive">{{lajmi.title}}</h2>
+    <p data-ng-bind-html="lajmi.content"></p>
+  </div>
+
+  <div class="item tabs tabs-secondary tabs-icon-left klasifikimi-header">
+    <a class="tab-item">
+      <i class="icon ion-ios-calendar-outline"></i>
+      {{lajmi.data}}
+    </a>
+    <a class="tab-item" ng-click="shareL('Lexo lajmin per Vllaznine', '{{lajmi.title}}', 'http://www.fkvllaznia.net/main/vllaznia/_files/newspublish/{{lajmi.image}}', 'http://www.fkvllaznia.net/lajme/{{lajmi.id}}-mobile.html')">
+      <i class="icon ion-share"></i>
+      Share
+    </a>
+  </div>
+
+  </ion-content>
+</ion-view>

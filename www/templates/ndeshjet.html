@@ -1,0 +1,30 @@
+<ion-view title="Ndeshjet e Vllaznise">
+  <ion-nav-buttons side="left">
+    <button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
+  </ion-nav-buttons>
+  <ion-nav-buttons side="right">
+    <button class="button button-icon ion-more" ng-click="popover.show($event)"></button>
+  </ion-nav-buttons>
+<div class="bar bar-subheader bar-assertive">
+  <h2 class="title" ng-click="popover.show($event)">{{sezoni_text}}</h2>
+</div>
+
+<ion-content class="has-subheader">
+ <div class="item bg-transparent item-text-wrap pad5">
+  <div class="row rnk" ng-repeat="item in items">
+    <div class="col {{item.team1}}"><img class="rank" ng-src="{{item.flag1}}">{{item.team1}}</div>
+    <div class="col col-20 col-center"><a ng-if="item.over>0" class="rez assertive" href="#app/ndeshja/{{item.id}}">{{item.gol1_over}} - {{item.gol2_over}} </a><a class="rez over{{item.over}}" href="#app/ndeshja/{{item.id}}">{{item.gol1}} - {{item.gol2}}</a></div>
+    <div class="col col-right {{item.team2}}">{{item.team2}} <img class="rank" ng-src="{{item.flag2}}"></div>
+  </div>
+ </div>
+</ion-content>
+</ion-view>
+
+
+<script id="popover-template.html" type="text/ng-template">
+   <ion-popover-view>
+      <ion-content>
+         <ion-radio ng-repeat="item in SezoneList" ng-value="item.value" ng-model="sezoni_id" ng-change="changeSezoni(item)" ng-click="changeSezoni(item)">{{ item.text }}</ion-radio>
+      </ion-content>
+   </ion-popover-view>
+</script>

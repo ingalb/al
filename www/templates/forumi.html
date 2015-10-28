@@ -1,0 +1,22 @@
+<ion-view title="Forumi i Fkvllaznia">
+  <ion-nav-buttons side="left">
+    <button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
+  </ion-nav-buttons>
+
+  <div class="bar bar-subheader bar-assertive">
+    <h2 class="title">Postimet e fundit</h2>
+  </div>
+  <ion-content class="has-subheader">
+
+     <div class="list">
+        <a ng-repeat="post in posts"
+           ng-click="browse(post.link)"
+           class="item">
+          <h2>{{post.tema}}</h2>
+          <p>{{post.teksti}}</p>
+        </a>
+
+      </div>
+
+  </ion-content>
+</ion-view>

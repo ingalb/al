@@ -1,0 +1,40 @@
+<ion-view title="{{ item.emri }} {{ item.mbiemri}}" animation="slide-in-right">
+  <ion-nav-buttons side="left">
+    <button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
+  </ion-nav-buttons>
+  <ion-content class="has-header">
+  <div ng-class="anim" on-swipe-left="lojtariP({{item.pid - 1}})" on-swipe-right="lojtariN({{item.pid + 1}})">
+    <div>
+       <img class="full-image lojtari-img lajmi-img" ng-src="http://www.albaniasoccer.com/{{ item.foto }}">
+       <span class="bluza">{{ item.nr }}</span>
+       <div class="lojtari-emri button-bar">
+          <button ng-click="lojtariP({{item.pid - 1}})" class="button icon-left ion-chevron-left button-clear button-light width-10"></button>
+          <span style="color:#FFF;" class="button button-clear button-light lojtari-titull">{{ item.emri }} {{ item.mbiemri}}</span>
+          <button ng-click="lojtariN({{item.pid + 1}})" class="button icon-right ion-chevron-right button-clear button-light width-10"></button>
+       </div>
+    </div>
+    
+    <div ng-if="item.pozicioni != 'Tranjer'" class="row item item-divider bar bar-positive statistika">
+    	<div class="col col-20 col-center"><span class="ikona ndeshje2x"></span> {{ (item.ndeshje != NULL) ? item.ndeshje : 0}}</div>
+    	<div class="col col-20 col-center"><span class="ikona gol2x"></span> {{item.gola}}</div>
+    	<div class="col col-20 col-center"><span class="ikona verdhe2x"></span> {{item.kv}}</div>
+    	<div class="col col-20 col-center"><span class="ikona vk2x"></span> {{item.k2v}}</div>
+        <div class="col col-20 col-center"><span class="ikona kuq2x"></span> {{item.kk}}</div>
+    </div>
+    <div>
+      <div class="row rnk">
+    	<div class="col col-50">Pozicioni</div>
+    	<div class="col col-right">{{item.pozicioni}}</div>
+      </div>
+      <div class="row rnk">
+    	<div class="col col-50">Dit&euml;lindja</div>
+    	<div class="col col-right">{{item.ditelindja}}</div>
+      </div>
+      <div class="row rnk">
+    	<div class="col col-50">N&euml;nshtet&euml;sia</div>
+    	<div class="col col-right">{{item.nenshtetsia}}</div>
+      </div>
+    </div>
+  </div>    
+  </ion-content>
+</ion-view>

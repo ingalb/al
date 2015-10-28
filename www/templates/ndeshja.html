@@ -1,0 +1,107 @@
+<ion-view cache-view="false" title="{{item.java}}">
+  <ion-nav-buttons side="left">
+    <button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
+  </ion-nav-buttons>
+  <ion-nav-buttons side="right">
+    <button class="button button-icon icon ion-ios-refresh-empty" ng-click="doRefresh()"></button>
+  </ion-nav-buttons>
+
+<!--
+  <div class="bar bar-subheader bar-assertive">
+     <h2 class="title">{{item.java}}</h2>
+  </div>
+-->
+<ion-content class="has-header">
+ <ion-refresher pulling-text="Pull to refresh..." class="spinner-assertive" on-refresh="doRefresh()">
+ </ion-refresher>
+ <div class="item item-text-wrap pad0 bg-transparent">
+  <div class="row bg-white">
+    <div class="col col-center"><span>{{data | date:'dd/MM/yyyy - HH:mm'}}</span></div>
+  </div>
+  <div class="row row-top bg-white">
+    <div class="col col-center Vllaznia"><img class="rank" ng-src="http://www.albaniasoccer.com/{{item.logo1}}"><br>{{item.team1}}</div>
+    <div class="col col-25 col-center">
+        <div ng-if="item.over==0"><a class="rezultati">{{item.gol1}} - {{item.gol2}}</a></div>
+        <div ng-if="item.over>0" class="assertive"><a class="rezultati assertive">{{item.gol1_over}} - {{item.gol2_over}}</a></div>
+        <div class="live">
+            <div class="timer">
+               <!-- <div class="percent">{{timer}}</div>
+                <div id="slice" class="{{gt50}}">
+                    <div class="pie" style="-webkit-transform: rotate({{360*timer/90}}deg);"></div>
+                    <div ng-if="timer>45" class="pie fill" style="-webkit-transform: rotate({{360*timer/90}}deg);"></div>
+                </div>-->
+                <div easypiechart options="options" percent="percent"></div>
+                <span class="percent">{{minuta}}</span>
+            </div>
+        </div>
+    </div>
+    <div class="col col-center Vllaznia"><img class="rank" ng-src="http://www.albaniasoccer.com/{{item.logo2}}"><br>{{item.team2}}</div>
+  </div>
+  <div ng-if="item.over>0" class="assertive col col-center bg-white">{{item.over_text}}</div>
+
+  <ion-slide-box show-pager="false">
+    <ion-slide>
+     <div class="item bg-transparent">
+       <div id="ev0"></div>
+       <div class="row" id="minuta" ng-repeat="eventet in item.eventi">
+           <div class="col">
+              <div ng-if="eventet.ekipi==item.team1" class="eventi"><span class="icon {{eventet.tipo_evento}}">{{eventet.emri}}</span>
+                 <p ng-if="eventet.tipo_evento=='Zevendesim' && eventet.ekipi==item.team1" id="font" class="zv-left {{eventet.tipo_evento}}">{{eventet.in}}<br>{{eventet.out}}</p>
+              </div>
+           </div>
+           <div class="col col-20 col-center" id="minuta"><span class="minuta">{{eventet.minuta}}'</span></div>
+           <div class="col col-right">
+              <div ng-if="eventet.ekipi==item.team2" class="eventi">{{eventet.emri}}<span class="icon {{eventet.tipo_evento}}"></span>
+                 <p ng-if="eventet.tipo_evento=='Zevendesim' && eventet.ekipi==item.team2" id="font" class="zv-right {{eventet.tipo_evento}}">{{eventet.in}}<br>{{eventet.out}}</p>
+              </div>
+           </div>
+       </div>
+     </div>
+    </ion-slide>
+
+    <ion-slide>
+       <div class="item item-divider item-assertive col-center">Lojtaret</div>
+       <div class="row">
+           <div class="col col-50 col-right">
+              <div ng-repeat="lojtaret in item.formacionet | orderObjectBy:'item.formacionet.pozicioni':reverse" ng-if="lojtaret.ekipi==item.team1" class="list">
+                 <p class="eventi" id="font"><b>{{lojtaret.lojtari}}</b><br><span class="font10">{{lojtaret.pozicioni}}</span></p>
+              </div>
+           </div>
+           <div class="col col-50">
+              <div ng-repeat="lojtaret in item.formacionet | orderObjectBy:'lojtaret.pozicioni':reverse" ng-if="lojtaret.ekipi==item.team2" class="list">
+                 <p class="eventi" id="font"><b>{{lojtaret.lojtari}}</b><br><span class="font10">{{lojtaret.pozicioni}}</span></p>
+              </div>
+           </div>
+       </div>
+       <div class="item item-divider item-assertive col-center">Stafi</div>
+       <div class="row">
+           <div class="col col-50 col-right">
+              <div ng-repeat="stafi in item.stafet" ng-if="stafi.ekipi==item.team1" class="list">
+                 <p class="eventi" id="font"><b>{{stafi.emri}}</b><br><span class="font10">{{stafi.pozicioni}}</span></p>
+              </div>
+           </div>
+           <div class="col col-50">
+              <div ng-repeat="stafi in item.stafet" ng-if="stafi.ekipi==item.team2" class="list">
+                 <p class="eventi" id="font"><b>{{stafi.emri}}</b><br><span class="font10">{{stafi.pozicioni}}</span></p>
+              </div>
+           </div>
+       </div>
+    </ion-slide>
+
+    <ion-slide>
+       <div class="row">
+           <div class="col bg-white"><p class="kronika" data-ng-bind-html="content"></p></div>
+       </div>
+    </ion-slide>
+  </ion-slide-box>
+ </div>
+
+</ion-content>
+<ion-footer-bar class="bar-assertive col-center pad0">
+   <div class="tabs tabs-icon-left tabs-assertive">
+    	<a class="tab-item" ng-click="slideTo(0)"><i class="icon ion-ios-bell"></i>Eventet</a>
+    	<a class="tab-item" ng-click="slideTo(1)"><i class="icon ion-person"></i>Formacionet</a>
+    	<a class="tab-item" ng-click="slideTo(2)"><i class="icon ion-ios-chatbubble"></i>Kronika</a>
+   </div>
+</ion-footer-bar>
+</ion-view>

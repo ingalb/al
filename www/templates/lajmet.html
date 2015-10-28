@@ -1,0 +1,24 @@
+<ion-view title="Lajmet e fundit">
+  <ion-nav-buttons side="left">
+    <button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
+  </ion-nav-buttons>
+  <ion-content class="has-header">
+  <ion-refresher
+    pulling-text="Pull to refresh..." spinner="android" class="assertive" on-refresh="doRefresh()">
+  </ion-refresher>
+  <div class="list list-inset">
+    <label class="item item-input">
+       <i class="icon ion-search placeholder-icon"></i>
+       <input type="text" ng-model="query" placeholder="Kerko">
+    </label>
+  </div>
+  <div class="list">
+    <a collection-repeat="lajmi in lajme | filter:query" href="#/app/lajmi/{{$index + 1}}" class="item item-thumbnail-left">
+        <img ng-src="http://www.fkvllaznia.net/main/vllaznia/_files/newspublish/{{lajmi.image}}">
+        <h2 class="lajmi-titulli assertive">{{lajmi.title}}</h2>
+        <p data-ng-bind-html="lajmi.summary"></p>
+    </a>
+  </div>
+
+  </ion-content>
+</ion-view>

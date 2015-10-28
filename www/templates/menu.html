@@ -1,0 +1,69 @@
+<ion-side-menus>
+
+  <ion-pane ion-side-menu-content>
+    <ion-nav-bar class="bar-assertive nav-title-slide-ios7">
+      <ion-nav-back-button class="button-clear"><i class="icon ion-chevron-left"></i> Pas</ion-nav-back-button>
+    </ion-nav-bar>
+    <ion-nav-view name="menuContent" animation="slide-left-right"></ion-nav-view>
+  </ion-pane>
+
+  <ion-side-menu side="left" id="menu" class="bg-transparent sfondim">
+    <ion-content>
+      <ion-list class="sidebar list-no-border">
+	    <div class="side-menu-logo">
+           <a class="logo logo-m" menu-close href="#/app/index"><img class="logo-fshf" src="img/logo.svg">Albania</a>
+        </div>
+        <ion-item nav-clear menu-close href="#/app/index">
+          <i class="icon ion-home"></i> Fillimi
+        </ion-item>
+        <ion-item nav-clear menu-close href="#/app/lajmet">
+          <i class="ion-document-text"></i> Lajmet
+        </ion-item>
+        <ion-item nav-clear menu-close href="#/app/ekipi">
+          <i class="ion-ios-people"></i> Ekipi
+        </ion-item>
+        <ion-item nav-clear menu-close href="#/app/grA/0">
+          <i class="ion-arrow-graph-up-right"></i> Grupi A
+        </ion-item>
+        <ion-item nav-clear menu-close href="#/app/gr/1">
+          <i class="ion-arrow-graph-up-right"></i> Grupi B
+        </ion-item>
+        <ion-item nav-clear menu-close href="#/app/gr/2">
+          <i class="ion-arrow-graph-up-right"></i> Grupi C
+        </ion-item>
+        <ion-item nav-clear menu-close href="#/app/gr/3">
+          <i class="ion-arrow-graph-up-right"></i> Grupi D
+        </ion-item>
+        <ion-item nav-clear menu-close href="#/app/gr/4">
+          <i class="ion-arrow-graph-up-right"></i> Grupi E
+        </ion-item>
+        <ion-item nav-clear menu-close href="#/app/gr/5">
+          <i class="ion-arrow-graph-up-right"></i> Grupi F
+        </ion-item>
+
+        <ion-item ng-show="menu" nav-clear menu-close href="#/app/gr/5">
+          <i class="ion-arrow-graph-up-right"></i> 1/16
+        </ion-item>
+        <ion-item ng-show="menu" nav-clear menu-close href="#/app/gr/5">
+          <i class="ion-arrow-graph-up-right"></i> 1/8
+        </ion-item>
+        <ion-item ng-show="menu" nav-clear menu-close href="#/app/gr/5">
+          <i class="ion-arrow-graph-up-right"></i> &Ccedil;erekfinalet
+        </ion-item>
+        <ion-item ng-show="menu" nav-clear menu-close href="#/app/gr/5">
+          <i class="ion-arrow-graph-up-right"></i> Gjys&euml;mfinalja
+        </ion-item>
+        <ion-item ng-show="menu" nav-clear menu-close href="#/app/gr/5">
+          <i class="ion-arrow-graph-up-right"></i> Finalja
+        </ion-item>
+
+		    <ion-item nav-clear menu-close href="#/app/settings">
+          <i class="ion-gear-a"></i> Settings
+        </ion-item>
+        <ion-item nav-clear menu-close href="#/app/credits">
+         <i class="ion-ios-heart"></i> Credits
+        </ion-item>
+      </ion-list>
+    </ion-content>
+  </ion-side-menu>
+</ion-side-menus>
