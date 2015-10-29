@@ -1,6 +1,20 @@
 /* Empty. Add your own CSS if you like */
 @import url(https://fonts.googleapis.com/css?family=Indie+Flower);
 @import url(https://fonts.googleapis.com/css?family=Montserrat);
+
+@font-face {
+    font-family: 'arciformregular';
+    src: url('../lib/ionic/fonts/arciform-webfont.eot');
+    src: url('../lib/ionic/fonts/arciform-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../lib/ionic/fonts/arciform-webfont.woff2') format('woff2'),
+         url('../lib/ionic/fonts/arciform-webfont.woff') format('woff'),
+         url('../lib/ionic/fonts/arciform-webfont.ttf') format('truetype'),
+         url('../lib/ionic/fonts/arciform-webfont.svg#arciformregular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
 body{
  /**font-family: 'Montserrat';**/
 }
@@ -129,7 +143,7 @@ body{
 
 .side-menu-logo {
   margin: 30px 0;
-  text-align: center; 
+  text-align: center;
 }
 .side-menu-logo .logo {
     font-family: 'Montserrat';
@@ -179,7 +193,7 @@ body{
 	background-image: -moz-linear-gradient(top, rgb(76, 0, 0, 0.59) 28%, rgb(17, 17, 17, 0.70) 100%);
 	background-image: -webkit-linear-gradient(top, rgb(76, 0, 0, 0.59) 28%, rgb(17, 17, 17, 0.70) 100%);
 	background-image: -o-linear-gradient(top, rgb(76, 0, 0, 0.59) 28%, rgb(17, 17, 17, 0.70) 100%);
-	background-image: -ms-linear-gradient(top, rgb(76, 0, 0, 0.59) 28%, rgb(17, 17, 17, 0.70) 100%);	
+	background-image: -ms-linear-gradient(top, rgb(76, 0, 0, 0.59) 28%, rgb(17, 17, 17, 0.70) 100%);
 }
 .slider-img {
   height: 180px;
