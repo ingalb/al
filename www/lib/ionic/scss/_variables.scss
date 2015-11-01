@@ -4,21 +4,20 @@
 
 $light:                           #fff !default;
 $stable:                          #f8f8f8 !default;
-$positive:                        #387ef5 !default;
+$positive:                        #387ef5 !default; //#387ef5
 $calm:                            #11c1f3 !default;
 $balanced:                        #33cd5f !default;
 $energized:                       #ffc900 !default;
-$assertive:                       #EE1C24 !default; //#EE1C24
+$assertive:                       #c21111 !default; //#EE1C24
 $royal:                           #886aea !default;
 $dark:                            #281818 !default;
 
 
 // Base
 // -------------------------------
-@import url(https://fonts.googleapis.com/css?family=Indie+Flower);
 
-$font-family-sans-serif:          "Indie Flower","Helvetica Neue", "Roboto", "Segoe UI", sans-serif !default;
-$font-family-light-sans-serif:    "Indie Flower", "HelveticaNeue-Light", "Roboto-Light", "Segoe UI-Light", sans-serif-light !default;
+$font-family-sans-serif:          "aller-regular","Helvetica Neue", "Roboto", "Segoe UI", sans-serif !default;
+$font-family-light-sans-serif:    "ikaros-light", "HelveticaNeue-Light", "Roboto-Light", "Segoe UI-Light", sans-serif-light !default;
 $font-family-serif:               serif !default;
 $font-family-monospace:           monospace !default;
 

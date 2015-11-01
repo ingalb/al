@@ -82,8 +82,8 @@ angular.module('albania.services', [])
                 }
               });
             },
-			getTodayNdeshje: function(callback) {
-                $http.get(URL_APP+'ndeshjet.php?id=1&ekipi=13').success(
+            getGrupetNdeshje: function(divId, callback) {
+                $http.get(URL_APP+'euro2016-results.php?id='+P_ID+'&type=3&division='+divId).success(
                     function(data) {
                         ndeshjet = data;
                         window.localStorage["TodayNdeshjet"] = JSON.stringify(data);
@@ -98,8 +98,24 @@ angular.module('albania.services', [])
                 }
               });
             },
-			getAlbaniaNdeshje: function(callback) {
-                $http.get(URL_APP+'ndeshjet.php?id=superliga1&ekipi=13').success(
+			      getTodayNdeshje: function(callback) {
+                $http.get(URL_APP+'euro2016-results.php?id='+P_ID+'type=2').success(
+                    function(data) {
+                        ndeshjet = data;
+                        window.localStorage["TodayNdeshjet"] = JSON.stringify(data);
+                        callback(data);
+                    }
+                )
+                .error(function(data) {
+                   console.log("ERROR: last ndeshje" + data);
+                if(window.localStorage["TodayNdeshjet"] !== undefined) {
+                    lastndeshjet = JSON.parse(window.localStorage["TodayNdeshjet"]);
+                    callback(lastndeshjet);
+                }
+              });
+            },
+			     getAlbaniaNdeshje: function(callback) {
+                $http.get(URL_APP+'ndeshjet.php?id='+P_ID+'&ekipi='+EKIPI_ID).success(
                     function(data) {
                         ndeshjet = data;
                         window.localStorage["AlbaniaNdeshjet"] = JSON.stringify(data);
@@ -186,7 +202,30 @@ angular.module('albania.services', [])
         }
     })
 
-   .factory('KlasifikimiService', function($http) {
+    .factory('KlasifikimiGrupetService', function($http) {
+         var klasifikimi = [];
+
+         return {
+             getAllKlasifikimi: function(sezoniId, grId, callback) {
+                 $http.get(URL_APP+'euro2016-klasifikimi.php',{params:{id: sezoniId, division: grId}}).success(
+                     function(data) {
+                         ndeshja = data;
+                         window.localStorage["klasifikimi"] = JSON.stringify(data);
+                         callback(data);
+                     }
+                 )
+                 .error(function(data) {
+                    console.log("ERROR: " + data);
+                 if(window.localStorage["klasifikimi"] !== undefined) {
+                     klasifikimi = JSON.parse(window.localStorage["klasifikimi"]);
+                     callback(klasifikimi);
+                 }
+               });
+             }
+         }
+     })
+
+   .factory('KlasifikimiService1', function($http) {
         var klasifikimi = [];
 
         return {

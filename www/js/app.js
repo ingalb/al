@@ -1,3 +1,7 @@
+var P_ID = 1;
+var EKIPI_ID = 76;
+
+
 // Ionic Starter App
 // angular.module is a global place for creating, registering and retrieving Angular modules
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
@@ -149,7 +153,7 @@ window.plugins.OneSignal.getIds(function(ids) {
       url: "/ndeshja/:ndeshjaId",
       views: {
         'menuContent' :{
-          templateUrl: "templates/ndeshja.html",
+          templateUrl: "templates/ndeshja1.html",
           controller: 'NdeshjetDetCtrl'
         }
       }
@@ -204,16 +208,6 @@ window.plugins.OneSignal.getIds(function(ids) {
       views: {
         'menuContent' :{
           templateUrl: "templates/gr.html",
-          controller: 'GrupetCtrl'
-        }
-      }
-    })
-	
-	.state('app.grA', {
-      url: "/grA/:grId",
-      views: {
-        'menuContent' :{
-          templateUrl: "templates/grupet.html",
           controller: 'GrupetCtrl'
         }
       }

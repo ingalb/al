@@ -82,9 +82,19 @@ angular.module('albania.controllers', [])
 
         NdeshjetService.getAlbaniaNdeshje(function(data) {
             //alert(tani);
-            //$scope.items = data;
-            $scope.items = data.slice(0,3);
-			console.log($scope.items);
+            $scope.items = data;
+            //$scope.items = data.slice(0,3);
+		  	    //console.log($scope.items);
+            $ionicLoading.hide();
+            $scope.loadNdeshje = true;
+            $ionicSlideBoxDelegate.update();
+        });
+
+        NdeshjetService.getTodayNdeshje(function(data) {
+            //alert(tani);
+            //$scope.itemsT = data;
+            $scope.itemsT = data.slice(0,1);
+            console.log(data);
             $ionicLoading.hide();
             $scope.loadNdeshje = true;
             $ionicSlideBoxDelegate.update();
@@ -100,18 +110,6 @@ angular.module('albania.controllers', [])
          //$scope.data = d1;
          return ( d1>d2);
        };
-
-
-     (function update() {
-        $timeout(update, 60000);
-        NdeshjetService.getAlbaniaNdeshje(function(data) {
-            //console.log(tani);
-            //$scope.items = data;
-            $scope.items = data.slice(0,3);
-			$ionicLoading.hide();
-            $ionicSlideBoxDelegate.update();
-        });
-       }());
 
       $timeout(function(){
         $ionicLoading.hide();
@@ -224,6 +222,8 @@ angular.module('albania.controllers', [])
        var tani = new Date();
        var time = 1;
        var d1, minuti, percenti;
+       $scope.selected = 0;
+
        //$scope.minuta = "minuta";
        //admob.showBannerAd(false);
        $scope.loadingIndicator = $ionicLoading.show({
@@ -270,6 +270,7 @@ angular.module('albania.controllers', [])
        }());
        $scope.slideTo = function(index) {
           $ionicSlideBoxDelegate.slide(index);
+          $scope.selected = index;
           $ionicSlideBoxDelegate.update();
           $ionicScrollDelegate.resize();
           $ionicScrollDelegate.scrollTop(true);
@@ -379,20 +380,19 @@ angular.module('albania.controllers', [])
 
     })
 
-	  .controller('GrupetCtrl', function($scope, $stateParams, $timeout, $ionicLoading, $ionicBackdrop, KlasifikimiService, NdeshjetService, $ionicPopover) {
+	  .controller('GrupetCtrl', function($scope, $stateParams, $timeout, $ionicLoading, $ionicBackdrop, KlasifikimiGrupetService, NdeshjetService, $ionicPopover) {
      ga_storage._trackPageview('#/app/grupet', 'Euro2016 App Klasifikimi');
      var titulliPop = "Zgjidh Grupin";
-	 var valActive = 0;
+	   var valActive = 0;
      $scope.SezoneList = [
-       { text: "Grupi A", value: 0 },
-       { text: "Grupi B", value: 1 },
-       { text: "Grupi C", value: 2 },
-       { text: "Grupi D", value: 3 },
-       { text: "Grupi E", value: 4 },
-       { text: "Grupi F", value: 5 },
+       { text: "Grupi A", value: 1 },
+       { text: "Grupi B", value: 2 },
+       { text: "Grupi C", value: 3 },
+       { text: "Grupi D", value: 4 },
+       { text: "Grupi E", value: 5 },
+       { text: "Grupi F", value: 6 },
       ];
-
-       $scope.loadingIndicator = $ionicLoading.show({
+      $scope.loadingIndicator = $ionicLoading.show({
 	         content: 'Loading Data',
 	         animation: 'fade-in',
 	         showBackdrop: true,
@@ -409,16 +409,16 @@ angular.module('albania.controllers', [])
        // $scope.sezoni = "2014-15";
        // $scope.sezoni_id = 100;
        // $scope.sezoni_id = $scope.SezoneList[0].value;
-	   $scope.sezoni_id = $stateParams.grId;
-       $scope.sezoni_text = $scope.SezoneList[$stateParams.grId].text;
+	     $scope.gr_id = $stateParams.grId;
+       $scope.sezoni_text = $scope.SezoneList[($stateParams.grId-1)].text;
 
 
-        KlasifikimiService.getAllKlasifikimi($scope.sezoni_id,function(data) {
+        KlasifikimiGrupetService.getAllKlasifikimi(P_ID, $scope.gr_id,function(data) {
             $scope.items = data;
             $ionicLoading.hide();
         });
-
-		NdeshjetService.getAllNdeshjet($scope.sezoni_id, $scope.clubId, function(data) {
+        console.log($scope.gr_id);
+		    NdeshjetService.getGrupetNdeshje($scope.gr_id, function(data) {
             $scope.itemsN = data;
             $ionicLoading.hide();
         });
@@ -426,13 +426,13 @@ angular.module('albania.controllers', [])
 	    $scope.activeVew = function(valActive){
 			if(!valActive)
 			{
-				KlasifikimiService.getAllKlasifikimi($scope.sezoni_id,function(data) {
+				KlasifikimiGrupetService.getAllKlasifikimi(P_ID, $scope.gr_id,function(data) {
                 $scope.items = data;
                 $ionicLoading.hide();
                 });
 			}
 			else{
-				NdeshjetService.getAllNdeshjet($scope.sezoni_id, $scope.clubId, function(data) {
+				NdeshjetService.getGrupetNdeshje($scope.gr_id, function(data) {
                 $scope.itemsN = data;
                 $ionicLoading.hide();
                });
@@ -442,29 +442,28 @@ angular.module('albania.controllers', [])
 
       $scope.changeSezoni = function(item) {
         $scope.sezoni_text = item.text;
-        $scope.sezoni_id = item.value;
+        $scope.gr_id = item.value;
+        console.log(item.value);
         $scope.popover.hide();
         $ionicBackdrop.retain();
-        KlasifikimiService.getAllKlasifikimi($scope.sezoni_id,function(data) {
+        KlasifikimiGrupetService.getAllKlasifikimi(P_ID, $scope.gr_id,function(data) {
             $scope.items = data;
             //selectPopup.close();
           //$scope.popover.hide();
             //$ionicBackdrop.release();
         });
-		NdeshjetService.getAllNdeshjet($scope.sezoni_id, $scope.clubId, function(data) {
+		    NdeshjetService.getGrupetNdeshje($scope.gr_id, function(data) {
                 $scope.itemsN = data;
                 //$ionicLoading.hide();
         });
-		$ionicBackdrop.release();
+		    $ionicBackdrop.release();
       };
-
-
         $timeout(function(){
           $ionicLoading.hide();
           //selectPopup.close();
           $scope.popover.hide();
         //  $ionicBackdrop.release();
-        },6000);
+      },60000);
 
     })
 

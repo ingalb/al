@@ -23,7 +23,7 @@
  </div>
  <div class="item item-text-wrap bg-transparent pad5">
   <div class="row {{item.name}} rnk" ng-repeat="item in items">
-    <div class="col col-center"><span class="rank rank-{{item.rank}}">{{item.rank}}</span></div>
+    <div class="col col-center"><span class="rank rank-{{$index + 1}}">{{item.rank}}</span></div>
     <div class="col col-33">{{item.name}}</div>
     <div class="col col-center"><b>{{item.pike}}</b></div>
     <div class="col col-center">{{item.ndeshje}}</div>

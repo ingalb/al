@@ -21,11 +21,11 @@
     <div class="col col-center">Glv</div>
   </div>
  </div>
- 
+
  <div id="grupet" class="item item-text-wrap bg-transparent pad5">
 
   <div class="row {{item.name}} ranking" ng-repeat="item in items">
-    <div class="col col-center"><span class="rank rank-{{item.rank}}">{{item.rank}}</span></div>
+    <div class="col col-center"><span class="rank rank-{{$index + 1}}">{{$index + 1}}</span></div>
     <div class="col col-33">{{item.name}}</div>
     <div class="col col-center"><b>{{item.pike}}</b></div>
     <div class="col col-center">{{item.ndeshje}}</div>
@@ -54,7 +54,7 @@
 <script id="popover-template.html" type="text/ng-template">
    <ion-popover-view>
       <ion-content>
-         <ion-radio ng-repeat="item in SezoneList" ng-value="item.value" ng-model="sezoni_id" ng-change="changeSezoni(item)" ng-click="changeSezoni(item)">{{ item.text }}</ion-radio>
+         <ion-radio ng-repeat="item in SezoneList" ng-value="item.value" ng-model="gr_id" ng-change="changeSezoni(item)" ng-click="changeSezoni(item)">{{ item.text }}</ion-radio>
       </ion-content>
    </ion-popover-view>
 </script>

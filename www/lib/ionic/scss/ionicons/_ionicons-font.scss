@@ -1,6 +1,9 @@
 // Ionicons Font Path
 // --------------------------
 
+$ionicons-font-path: "./fonts";
+
+
 @font-face {
  font-family: $ionicons-font-family;
  src:url("#{$ionicons-font-path}/ionicons.eot?v=#{$ionicons-version}");
