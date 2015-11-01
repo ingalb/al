@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<widget xmlns = "http://www.w3.org/ns/widgets"
+        xmlns:gap = "http://phonegap.com/ns/1.0"
+        id = "com.ingalb.albania"
+        versionCode = "1"
+        version = "1.0">
+    <name>Albania Euro 2016</name>
+
+    <description>
+       Aplikacioni realizuar per ekipin e Shqiperise ne Europianin France 2016. Ndeshjet live, Historia, lajme, informacione dhe statistika nga ekipi kuq e zi Shqiperia.
+    </description>
+
+    <author href="http://www.ingalb.info" email="contact@ingalb.info">
+        Ingalb Company
+    </author>
+
+    <gap:plugin name="cordova-admob" source="npm" />
+    <gap:plugin name="nl.x-services.plugins.socialsharing" />
+    <gap:plugin name="onesignal-cordova-plugin-pgb-compat" source="npm" />
+
+
+    <preference name="permissions"  value="none"/>
+
+    <preference name="phonegap-version"/>
+    <preference name="orientation" value="default" />
+    <preference name="target-device" value="universal" />
+    <preference name="fullscreen" value="false" />
+    <preference name="android-minSdkVersion"      value="7" />              <!-- android: MIN SDK version supported on the target device. MAX version is blank by default. -->
+    <preference name="android-installLocation"    value="auto" />           <!-- android: app install location. 'auto' will choose. 'internalOnly' is device memory. 'preferExternal' is SDCard. -->
+
+    <preference name="webviewbounce" value="false" />
+    <preference name="UIWebViewBounce" value="false" />
+    <preference name="DisallowOverscroll" value="true" />
+    <preference name="auto-hide-splash-screen" value="true" />
+
+
+    <icon src="icon.png" />
+    <icon src="res/icon/android/icon-48-mdpi.png" gap:platform="android" gap:density="mdpi" />
+    <icon src="res/icon/android/icon-72-hdpi.png" gap:platform="android" gap:density="hdpi" />
+    <icon src="res/icon/android/icon-96-xhdpi.png" gap:platform="android" gap:density="xhdpi" />
+    <icon src="res/icon/android/icon-144-xxhdpi.png" gap:platform="android" gap:density="xxhdpi" />
+
+    <gap:splash src="res/screen/android/screen-ldpi-portrait.png" gap:platform="android" gap:density="ldpi" />
+    <gap:splash src="res/screen/android/screen-mdpi-portrait.png" gap:platform="android" gap:density="mdpi" />
+    <gap:splash src="res/screen/android/screen-hdpi-portrait.png" gap:platform="android" gap:density="hdpi" />
+    <gap:splash src="res/screen/android/screen-xhdpi-portrait.png" gap:platform="android" gap:density="xhdpi" />
+
+
+    <gap:plugin name="org.apache.cordova.device" />
+    <gap:plugin name="org.apache.cordova.device-orientation" />
+    <gap:plugin name="cordova-plugin-inappbrowser" source="npm" />
+    <gap:plugin name="org.apache.cordova.network-information" />
+    <gap:plugin name="org.apache.cordova.statusbar" />
+
+<!-- <gap:plugin name="com.pushwoosh.plugins.pushwoosh" version="3.4.5" source="plugins.cordova.io" -->
+<!-- <gap:plugin name="com.admob.google" source="plugins.cordova.io" />-->
+<!-- <gap:plugin name="com.adobe.plugins.gaplugin" />
+    <gap:plugin name="com.pushwoosh.plugins.pushwoosh"/>
+-->
+
+
+    <access origin="*"/>
+    <gap:plugin name="cordova-plugin-whitelist" source="npm" />
+    <access origin="ingalb.info" subdomains="true"/>
+    <access origin="ingalb.com" subdomains="true"/>
+    <access origin="albaniasoccer.com" subdomains="true"/>
+    <access origin="cloudcontrolled.com" subdomains="true"/>
+    <access origin="fkvllaznia.net" subdomains="true"/>
+    <access origin="vllaznia.cloudcontrolled.com/" subdomains="true"/>
+    <access origin="googleapis.com" subdomains="true"/>
+    <plugin name="cordova-plugin-whitelist" version="1" />
+    <allow-intent href="http://*/*" />
+    <allow-intent href="https://*/*" />
+    <allow-intent href="tel:*" />
+    <allow-intent href="sms:*" />
+    <allow-intent href="mailto:*" />
+    <allow-intent href="geo:*" />
+    <platform name="android">
+        <allow-intent href="market:*" />
+    </platform>
+    <platform name="ios">
+        <allow-intent href="itms:*" />
+        <allow-intent href="itms-apps:*" />
+    </platform>
+
+
+ </widget>
