@@ -13,13 +13,13 @@
           <button ng-click="lojtariN({{item.pid + 1}})" class="button icon-right ion-chevron-right button-clear button-light width-10"></button>
        </div>
     </div>
-    
-    <div ng-if="item.pozicioni != 'Tranjer'" class="row item item-divider bar bar-positive statistika">
+
+    <div ng-if="item.type == 'player'" class="row item item-divider bar bar-dark statistika">
     	<div class="col col-20 col-center"><span class="ikona ndeshje2x"></span> {{ (item.ndeshje != NULL) ? item.ndeshje : 0}}</div>
     	<div class="col col-20 col-center"><span class="ikona gol2x"></span> {{item.gola}}</div>
     	<div class="col col-20 col-center"><span class="ikona verdhe2x"></span> {{item.kv}}</div>
     	<div class="col col-20 col-center"><span class="ikona vk2x"></span> {{item.k2v}}</div>
-        <div class="col col-20 col-center"><span class="ikona kuq2x"></span> {{item.kk}}</div>
+      <div class="col col-20 col-center"><span class="ikona kuq2x"></span> {{item.kk}}</div>
     </div>
     <div>
       <div class="row rnk">
@@ -35,6 +35,6 @@
     	<div class="col col-right">{{item.nenshtetsia}}</div>
       </div>
     </div>
-  </div>    
+  </div>
   </ion-content>
 </ion-view>

@@ -166,7 +166,7 @@ body{
 }
 .logo-fshf{
 	width:70%;
-	height: 120px;
+	height:120px;
 }
 .scroll-content {
     background-attachment: scroll;
@@ -197,6 +197,14 @@ body{
 	padding: 6px 5px 5px 5px;
 }
 
+#match .tabs{
+	top:inherit;
+	bottom: inherit;
+}
+
+#match .list{
+	margin-bottom:2px;
+}
 
 .slide-bg{
 	background-image: linear-gradient(180deg, rgb(76, 0, 0, 0.59) 28%, rgb(17, 17, 17, 0.70) 100%);
@@ -270,7 +278,7 @@ body{
      background-color:#cc3333;
      color: #FFF;
      font-weight:bold;
-     padding:2px;
+     padding:4px;
      z-index: 601;
      border-radius:3px;
 }
@@ -319,7 +327,7 @@ body{
 			-o-transform:rotate(180deg) !important;
 			transform:rotate(180deg) !important;
 		}
-#ev0{  z-index: -1; width: 5px; height: 100%; border-color: #000000; background-color: #145fd7; position: absolute; left: 50%; }
+#ev0{  z-index: -1; width: 5px; height: 100%; border-color: #000000; background-color: #000; position: absolute; left: 50%; }
 #minuta{z-index: 333;}
 .eventi{
 	border-radius:3px;
@@ -400,20 +408,20 @@ body{
 .trofe{border-bottom: 1px solid #ededed; padding:5px;font-size:14px;}
 div#klubi div.trofe:last-child {border-bottom: none;}
 .bluza {
-    background-image: url("../img/bluza.png");
-    background-position: center center;
-    background-repeat: no-repeat;
-    color: #fff;
-    font-family: arial;
-    font-size: 14px;
+	  color: #EE1C24;
+    font-size: 28px;
     font-weight: bold;
     text-align: center;
-    width:40px;
-    height: 40px;
-    padding-top: 14px;
+    width:50px;
+    height: 50px;
+    padding-top: 7px;
     right: 20px;
     top: 16px;
     position: absolute;
+		border: 7px solid #000;
+		border-radius: 30px;
+		-webkit-border-radius: 30px;
+    -moz-border-radius: 30px;
 }
 .lojtari-img{
   width:100%;
@@ -433,8 +441,10 @@ position: absolute;
 top: 180px;
 text-align: center;
 width: 100%;
-background-color: #EC1919;
-box-shadow: 0px -20px 47px #EC1919;
+border-color:#930d0d;
+background-color:#c21111;
+background-image:linear-gradient(0deg,#930d0d,#930d0d 50%,transparent 50%);
+background-size: 0;
 }
 .lojtari-titull{
 color:#FFF;
@@ -442,6 +452,7 @@ font-weight: bold;
 }
 .statistika{
 font-size:24px;
+margin: 0px;
 }
 .width-10{max-width:32px;}
 .ikona{

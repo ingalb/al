@@ -484,6 +484,7 @@ angular.module('albania.controllers', [])
 	      });
         EkipiService.getAllEkipi($scope.sezoni_id,$scope.ekipiId, function(data) {
             $scope.items = data;
+            //console.log(data);
             $ionicLoading.hide();
         });
         $timeout(function(){
