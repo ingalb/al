@@ -1,50 +1,30 @@
-<ion-view cache-view="false" title="{{item.java}}">
+<ion-view on-swipe-right="slidePrevious()" on-swipe-left="slideNext()" cache-view="false" title="{{item.java}}">
   <ion-nav-buttons side="left">
     <button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
   </ion-nav-buttons>
   <ion-nav-buttons side="right">
     <button class="button button-icon icon ion-ios-refresh-empty" ng-click="doRefresh()"></button>
   </ion-nav-buttons>
-
-<!--
-  <div class="bar bar-subheader bar-assertive">
-     <h2 class="title">{{item.java}}</h2>
-  </div>
--->
-<!--
-<div id="grupet" class="tabs-striped tabs-top tabs-icon-left tabs-background-dark tabs-color-assertive">
-  <div class="tabs">
-    <a class="tab-item" ng-class="{active: 0 == selected}" ng-click="slideTo(0)"><i class="icon ion-ios-bell"></i>Eventet</a>
-    <a class="tab-item" ng-class="{active: 1 == selected}" ng-click="slideTo(1)"><i class="icon ion-person"></i>Formacionet</a>
-    <a class="tab-item" ng-class="{active: 2 == selected}" ng-click="slideTo(2)"><i class="icon ion-ios-chatbubble"></i>Kronika</a>
-  </div>
-</div>
--->
 <ion-content class="has-header">
  <ion-refresher pulling-text="Pull to refresh..." class="spinner-assertive" on-refresh="doRefresh()">
  </ion-refresher>
  <div class="item item-text-wrap pad0 bg-transparent">
   <div class="row bg-white">
-    <div class="col col-center"><span>{{data | date:'dd/MM/yyyy - HH:mm'}}</span></div>
+    <div class="col col-center"><span>{{item.orari | indexData}}</span></div>
   </div>
   <div class="row row-top bg-white">
-    <div class="col col-center Vllaznia"><img class="rank" ng-src="http://www.albaniasoccer.com/{{item.logo1}}"><br>{{item.team1}}</div>
+    <div class="col col-center Vllaznia"><img class="match-logo" ng-src="http://www.albaniasoccer.com/{{item.logo1_l}}"><br>{{item.team1}}</div>
     <div class="col col-25 col-center">
         <div ng-if="item.over==0"><a class="rezultati">{{item.gol1}} - {{item.gol2}}</a></div>
         <div ng-if="item.over>0" class="assertive"><a class="rezultati assertive">{{item.gol1_over}} - {{item.gol2_over}}</a></div>
         <div class="live">
             <div class="timer">
-               <!-- <div class="percent">{{timer}}</div>
-                <div id="slice" class="{{gt50}}">
-                    <div class="pie" style="-webkit-transform: rotate({{360*timer/90}}deg);"></div>
-                    <div ng-if="timer>45" class="pie fill" style="-webkit-transform: rotate({{360*timer/90}}deg);"></div>
-                </div>-->
                 <div easypiechart options="options" percent="percent"></div>
-                <span class="percent">{{minuta}}</span>
+                <span class="percent">{{item.minuta}}</span>
             </div>
         </div>
     </div>
-    <div class="col col-center Vllaznia"><img class="rank" ng-src="http://www.albaniasoccer.com/{{item.logo2}}"><br>{{item.team2}}</div>
+    <div class="col col-center Vllaznia"><img class="match-logo" ng-src="http://www.albaniasoccer.com/{{item.logo2_l}}"><br>{{item.team2}}</div>
   </div>
   <div ng-if="item.over>0" class="assertive col col-center bg-white">{{item.over_text}}</div>
   <div id="match" class="tabs-striped tabs-top tabs-icon-left tabs-background-dark tabs-color-assertive">

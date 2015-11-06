@@ -6,31 +6,35 @@
 
      <ion-slide-box show-pager="true" does-continue="true" slide-interval="5000" disable-scroll="false">
         <ion-slide ng-repeat="ndeshje in items">
-            <div id="index" ng-click="go('{{ndeshje.id}}')">
+            <div id="index" ui-sref="app.ndeshja({ndeshjaId: '{{ndeshje.id}}'})">
                <div class="row slide-bg">
                	   <div class="col col-center"><span>{{ndeshje.data | indexData}}<br>{{ndeshje.stadiumi.emri}}</span></div>
                </div>
                <div class="row">
-                   <div class="col col-center Vllaznia"><img class="rank" ng-src="http://www.albaniasoccer.com/{{ndeshje.logo1_l}}"><br>{{ndeshje.team1}}</div>
-                   <div class="col col-33 col-center">
+                   <div class="col col-center Vllaznia"><img class="slider-logo" ng-src="http://www.albaniasoccer.com/{{ndeshje.logo1_l}}"><br>{{ndeshje.team1}}</div>
+                   <div ui-sref="app.ndeshja({ndeshjaId: '{{ndeshje.id}}'})" class="col col-33 col-center">
                        <div ng-if="ndeshje.over==0"><a class="rezultati"><span class="badge badge-assertive rezultati padding">{{ndeshje.gol1}}</span>-<span class="badge badge-assertive rezultati padding">{{ndeshje.gol2}}</span></a></div>
                        <div ng-if="ndeshje.over>0" class="assertive"><a class="rezultati assertive">{{ndeshje.gol1_over}} - {{ndeshje.gol2_over}}</a></div>
                    </div>
-                   <div class="col col-center Vllaznia"><img class="rank" ng-src="http://www.albaniasoccer.com/{{ndeshje.logo2_l}}"><br>{{ndeshje.team2}}</div>
+                   <div class="col col-center Vllaznia"><img class="slider-logo" ng-src="http://www.albaniasoccer.com/{{ndeshje.logo2_l}}"><br>{{ndeshje.team2}}</div>
                </div>
            </div>
         </ion-slide>
      </ion-slide-box>
-
+	 <news-home></news-home>	 
      <div class="row item item-divider bar bar-assertive statistika">
         <h1 class="title">Ndeshjet</h1>
      </div>
-	 <div class="row rnk" ng-repeat="item in itemsT">
-		<div class="col {{item.team1}}"><img class="rank" ng-src="{{item.flag1}}">{{item.team1}}</div>
-		<div class="col col-20 col-center"><a ng-if="item.over>0" class="rez assertive" href="#app/ndeshja/{{item.id}}">{{item.gol1_over}} - {{item.gol2_over}} </a><a class="rez over{{item.over}}" href="#app/ndeshja/{{item.id}}">{{item.gol1}} - {{item.gol2}}</a></div>
-		<div class="col col-right {{item.team2}}">{{item.team2}} <img class="rank" ng-src="{{item.flag2}}"></div>
+	 <div ng-repeat="(key, val) in itemsT">
+	    <h4 class="title padding-left">{{key}}</h4>
+	    <div class="card">
+		   <div class="row item" ng-repeat="item in val">
+				<div ui-sref="app.ndeshja({ndeshjaId: '{{item.id}}'})" class="col {{item.team1}} text-right">{{item.team1}}<img class="rank" ng-src="{{item.flag1}}"></div>
+				<div ui-sref="app.ndeshja({ndeshjaId: '{{item.id}}'})" class="col col-20 col-center"><a ng-if="item.over>0" class="rez assertive" href="#app/ndeshja/{{item.id}}">{{item.gol1_over}} - {{item.gol2_over}} </a><a ng-if="!item.gol1" class="rez assertive" href="#app/ndeshja/{{item.id}}">{{item.data | indexOrari}}</a><a ng-if="item.gol1" class="rez over{{item.over}}" href="#app/ndeshja/{{item.id}}">{{item.gol1}} - {{item.gol2}}</a></div>
+				<div ui-sref="app.ndeshja({ndeshjaId: '{{item.id}}'})" class="col text-left {{item.team2}}"><img class="rank" ng-src="{{item.flag2}}">{{item.team2}}</div>
+           </div>
+        </div>
 	 </div>
-
   </ion-content>
 </ion-view>
 

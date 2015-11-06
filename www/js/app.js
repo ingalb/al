@@ -7,7 +7,7 @@ var EKIPI_ID = 76;
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
 // 'starter.controllers' is found in controllers.js
-angular.module('albania', ['ionic', 'albania.services', 'albania.controllers', 'easypiechart', 'ngSanitize', 'admobModule'])
+var albania = angular.module('albania', ['ionic', 'albania.services', 'albania.controllers', 'easypiechart', 'ngSanitize', 'admobModule'])
 //angular.module('starter', ['angular-carousel'])
 
 .run(function($ionicPlatform, $rootScope) {
@@ -243,3 +243,16 @@ window.plugins.OneSignal.getIds(function(ids) {
   // if none of the above states are matched, use this as the fallback
   $urlRouterProvider.otherwise('/app/index');
 });
+
+
+albania.directive('newsHome', ['$compile', 'LajmeService', function($compile, LajmeService){
+    return {
+        restrict: 'CAE',
+		templateUrl: 'templates/lajme-home.html',
+        link: function (scope, element, attrs) {
+			LajmeService.getSlider(function(data) {
+            scope.lajme = data;
+            }); 
+        }
+    }
+ }]);

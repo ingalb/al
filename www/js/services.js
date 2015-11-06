@@ -99,7 +99,7 @@ angular.module('albania.services', [])
               });
             },
 			      getTodayNdeshje: function(callback) {
-                $http.get(URL_APP+'euro2016-results.php?id='+P_ID+'type=2').success(
+                $http.get(URL_APP+'euro2016-results.php?id='+P_ID+'&type=2').success(
                     function(data) {
                         ndeshjet = data;
                         window.localStorage["TodayNdeshjet"] = JSON.stringify(data);
@@ -136,8 +136,8 @@ angular.module('albania.services', [])
             getReport: function(ndeshjaId, callback) {
                 $http.get(URL_APP+'ndeshja.php',{params:{id: 'superliga', ndeshja: ndeshjaId}}).success(
                     function(data) {
-                        console.log(ndeshjaId);
-                        console.log(data);
+                        //console.log(ndeshjaId);
+                        //console.log(data);
                         ndeshja = data;
                         callback(data);
                     }
@@ -180,7 +180,7 @@ angular.module('albania.services', [])
               });
             },
            getSlider: function(callback) {
-                $http.get('http://www.fkvllaznia.net/main/app/lajme.php?nr=3').success(
+                $http.get('http://www.fkvllaznia.net/main/app/lajme.php?nr=4').success(
                     function(data) {
                         lajmet = data;
                         window.localStorage["lajmetSlider"] = JSON.stringify(data);
