@@ -12,7 +12,7 @@ angular.module('albania.controllers', [])
         return $sce.trustAsHtml(input);
       }
     })
-	
+
 	.filter('indexOrari', function($filter){
      return function(input)
      {
@@ -297,7 +297,7 @@ angular.module('albania.controllers', [])
          NdeshjaService.getReport($stateParams.ndeshjaId, function(data) {
             tani = new Date();
             $scope.item = data;
-            $scope.content = data.kronika;			
+            $scope.content = data.kronika;
             $scope.percent = data.percent;
             $scope.$broadcast('scroll.refreshComplete');
             $ionicScrollDelegate.resize();
@@ -442,7 +442,7 @@ angular.module('albania.controllers', [])
 
 			}
 		};
-		
+
 	    $scope.slideNext = function() {
             $ionicTabsDelegate.select(1);
        }
@@ -519,10 +519,10 @@ angular.module('albania.controllers', [])
         $ionicLoading.hide();
         //console.log($scope.item.pid);
         $scope.lojtariN = function(numri){
-          if($scope.anim === "tinUpIn")
-             $scope.anim = "tinDownIn";
+          if($scope.anim === "zoomInRight")
+             $scope.anim = "zoomInLeft";
          else
-            $scope.anim = "tinUpIn";
+            $scope.anim = "zoomInRight";
           // $scope.anim="slideLeft";
            numri = $scope.item.pid +1;
            if(numri>25){numri=1;
@@ -534,10 +534,10 @@ angular.module('albania.controllers', [])
           // $scope.playerID = index+1;
          }
          $scope.lojtariP = function(numri){
-           if($scope.anim === "tinUpIn")
-             $scope.anim = "tinDownIn";
+           if($scope.anim === "zoomInRight")
+             $scope.anim = "zoomInLeft";
            else
-            $scope.anim = "tinUpIn";
+            $scope.anim = "zoomInRight";
            numri = $scope.item.pid - 1;
            if(numri<1){numri=25;
            $scope.item.pid=25;}
