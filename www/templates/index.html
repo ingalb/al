@@ -13,7 +13,7 @@
                <div class="row">
                    <div class="col col-center Vllaznia"><img class="slider-logo" ng-src="http://www.albaniasoccer.com/{{ndeshje.logo1_l}}"><br>{{ndeshje.team1}}</div>
                    <div ui-sref="app.ndeshja({ndeshjaId: '{{ndeshje.id}}'})" class="col col-33 col-center">
-                       <div ng-if="ndeshje.over==0"><a class="rezultati"><span class="badge badge-assertive rezultati padding">{{ndeshje.gol1}}</span>-<span class="badge badge-assertive rezultati padding">{{ndeshje.gol2}}</span></a></div>
+                       <div ng-if="ndeshje.over==0"><a class="rezultati"><span ng-if="!ndeshje.gol1" class="rez">{{ndeshje.data | indexOrari}}</span><span class="badge rezultati padding sliderlive{{ndeshje.live.live}}">{{ndeshje.gol1}}</span><span ng-if="ndeshje.gol1">-</span><span class="badge rezultati padding sliderlive{{ndeshje.live.live}}">{{ndeshje.gol2}}</span></a></div>
                        <div ng-if="ndeshje.over>0" class="assertive"><a class="rezultati assertive">{{ndeshje.gol1_over}} - {{ndeshje.gol2_over}}</a></div>
                    </div>
                    <div class="col col-center Vllaznia"><img class="slider-logo" ng-src="http://www.albaniasoccer.com/{{ndeshje.logo2_l}}"><br>{{ndeshje.team2}}</div>
@@ -30,7 +30,7 @@
 	    <div class="card">
 		   <div class="row item" ng-repeat="item in val">
 				<div ui-sref="app.ndeshja({ndeshjaId: '{{item.id}}'})" class="col {{item.team1}} text-right">{{item.team1}}<img class="rank" ng-src="{{item.flag1}}"></div>
-				<div ui-sref="app.ndeshja({ndeshjaId: '{{item.id}}'})" class="col col-20 col-center"><a ng-if="item.over>0" class="rez assertive" href="#app/ndeshja/{{item.id}}">{{item.gol1_over}} - {{item.gol2_over}} </a><a ng-if="!item.gol1" class="rez assertive" href="#app/ndeshja/{{item.id}}">{{item.data | indexOrari}}</a><a ng-if="item.gol1" class="rez over{{item.over}}" href="#app/ndeshja/{{item.id}}">{{item.gol1}} - {{item.gol2}}</a></div>
+				<div ui-sref="app.ndeshja({ndeshjaId: '{{item.id}}'})" class="col col-20 col-center"><a ng-if="item.over>0" class="rez assertive" href="#app/ndeshja/{{item.id}}">{{item.gol1_over}} - {{item.gol2_over}} </a><a ng-if="!item.gol1" class="rez assertive" href="#app/ndeshja/{{item.id}}">{{item.data | indexOrari}}</a><a ng-if="item.gol1" class="rez over{{item.over}} live{{item.live.live}}" href="#app/ndeshja/{{item.id}}">{{item.gol1}} - {{item.gol2}}</a></div>
 				<div ui-sref="app.ndeshja({ndeshjaId: '{{item.id}}'})" class="col text-left {{item.team2}}"><img class="rank" ng-src="{{item.flag2}}">{{item.team2}}</div>
            </div>
         </div>

@@ -1,5 +1,3 @@
-var URL_APP = "http://vllaznia.cloudcontrolled.com/";
-
 angular.module('albania.services', [])
 
 
@@ -66,18 +64,18 @@ angular.module('albania.services', [])
                 }
               });
             },
-            getSuperligaLastNdeshje: function(callback) {
-                $http.get(URL_APP+'ndeshjet.php?id=superliga1&ekipi=13').success(
+            getGrNdeshje: function(grId, callback) {
+                $http.get('http://www.albaniasoccer.com/statistika/kosova/results/1.html?r='+grId+'&format=raw&type=1').success(
                     function(data) {
                         ndeshjet = data;
-                        window.localStorage["lastNdeshjet"] = JSON.stringify(data);
+                        window.localStorage["GrNdeshje"] = JSON.stringify(data);
                         callback(data);
                     }
                 )
                 .error(function(data) {
                    console.log("ERROR: last ndeshje" + data);
-                if(window.localStorage["lastNdeshjet"] !== undefined) {
-                    lastndeshjet = JSON.parse(window.localStorage["lastNdeshjet"]);
+                if(window.localStorage["GrNdeshje"] !== undefined) {
+                    lastndeshjet = JSON.parse(window.localStorage["GrNdeshje"]);
                     callback(lastndeshjet);
                 }
               });
@@ -92,13 +90,13 @@ angular.module('albania.services', [])
                 )
                 .error(function(data) {
                    console.log("ERROR: last ndeshje" + data);
-                if(window.localStorage["TodayNdeshjet"] !== undefined) {
-                    lastndeshjet = JSON.parse(window.localStorage["TodayNdeshjet"]);
+                if(window.localStorage["GrupetNdeshjet"] !== undefined) {
+                    lastndeshjet = JSON.parse(window.localStorage["GrupetNdeshjet"]);
                     callback(lastndeshjet);
                 }
               });
             },
-			      getTodayNdeshje: function(callback) {
+			getTodayNdeshje: function(callback) {
                 $http.get(URL_APP+'euro2016-results.php?id='+P_ID+'&type=2').success(
                     function(data) {
                         ndeshjet = data;
@@ -114,7 +112,7 @@ angular.module('albania.services', [])
                 }
               });
             },
-			     getAlbaniaNdeshje: function(callback) {
+			getAlbaniaNdeshje: function(callback) {
                 $http.get(URL_APP+'ndeshjet.php?id='+P_ID+'&ekipi='+EKIPI_ID).success(
                     function(data) {
                         ndeshjet = data;
@@ -129,9 +127,6 @@ angular.module('albania.services', [])
                     callback(albaniadeshjet);
                 }
               });
-            },
-            getSuperligaVllazniaId: function(ndeshjaId) {
-                return ndeshjet[ndeshjaId - 1];
             },
             getReport: function(ndeshjaId, callback) {
                 $http.get(URL_APP+'ndeshja.php',{params:{id: 'superliga', ndeshja: ndeshjaId}}).success(
@@ -164,7 +159,7 @@ angular.module('albania.services', [])
         var lajmet = [];
         return {
             getAll: function(callback) {
-                $http.get('http://www.fkvllaznia.net/main/app/lajme.php').success(
+                $http.get(URL_APP+'/as-news.php',{params:{id: 'euro2016', limit: '100'}}).success(
                     function(data) {
                         lajmet = data;
                         window.localStorage["lajmet"] = JSON.stringify(data);
@@ -180,7 +175,7 @@ angular.module('albania.services', [])
               });
             },
            getSlider: function(callback) {
-                $http.get('http://www.fkvllaznia.net/main/app/lajme.php?nr=4').success(
+                $http.get(URL_APP+'/as-news.php',{params:{id: 'euro2016', limit: '4'}}).success(
                     function(data) {
                         lajmet = data;
                         window.localStorage["lajmetSlider"] = JSON.stringify(data);
@@ -210,14 +205,14 @@ angular.module('albania.services', [])
                  $http.get(URL_APP+'euro2016-klasifikimi.php',{params:{id: sezoniId, division: grId}}).success(
                      function(data) {
                          ndeshja = data;
-                         window.localStorage["klasifikimi"] = JSON.stringify(data);
+                         window.localStorage["klasifikimigr"] = JSON.stringify(data);
                          callback(data);
                      }
                  )
                  .error(function(data) {
                     console.log("ERROR: " + data);
-                 if(window.localStorage["klasifikimi"] !== undefined) {
-                     klasifikimi = JSON.parse(window.localStorage["klasifikimi"]);
+                 if(window.localStorage["klasifikimigr"] !== undefined) {
+                     klasifikimi = JSON.parse(window.localStorage["klasifikimigr"]);
                      callback(klasifikimi);
                  }
                });
@@ -246,20 +241,6 @@ angular.module('albania.services', [])
               });
             }
         }
-
-       /** return {
-            getAllKlasifikimi: function(callback) {
-                $http.get('http://www.ingalb.com/as/klasifikimi.php?id=superliga').success(
-                    function(data) {
-                        klasifikimi = data;
-                        callback(data);
-                    }
-                );
-            },
-            get: function(klasifikimiId) {
-              return klasifikimi[klasifikimiId - 1];
-            }
-        } **/
     })
 
    .factory('EkipiService', function($http) {
