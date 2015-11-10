@@ -9,17 +9,15 @@
     <h2 class="lajmi-titulli assertive">{{lajmi.title}}</h2>
     <p data-ng-bind-html="lajmi.content"></p>
   </div>
-
-  <div class="item tabs tabs-secondary tabs-icon-left klasifikimi-header">
-    <a class="tab-item">
+  <div class="item tabs tabs-secondary tabs-icon-left item-dark">
+    <a class="tab-item tab-color-light">
       <i class="icon ion-ios-calendar-outline"></i>
-      {{lajmi.data}}
+      {{lajmi.data | lajmeData}}
     </a>
-    <a class="tab-item" ng-click="shareL('Lexo lajmin', '{{lajmi.title}}', 'http://www.albaniasoccer.com/{{lajmi.image}}', '{{lajmi.link}}')">
+    <a class="tab-item" ng-click="shareL('Lexo lajmin', '{{lajmi.title}}', 'http://www.albaniasoccer.com/{{lajmi.image}}', 'http://www.albaniasoccer.com/{{lajmi.link}}')">
       <i class="icon ion-share"></i>
       Share
     </a>
   </div>
-
   </ion-content>
 </ion-view>

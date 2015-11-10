@@ -7,43 +7,6 @@
   </ion-nav-buttons>
 
 <ion-tabs id="grupet" animation="slide-left-right" class="tabs-striped has-header tabs-top tabs-background-dark tabs-color-light">
-
-<<<<<<< HEAD
-<ion-tab animation="slide-left-right" class="bg-transparent"  animation="slide-left-right" title="Klasifikimi">
-<ion-content class="has-subheader">
-<div class="bg-transparent">
-
- <div class="item item-divider pad5">
-  <div class="row">
-    <div class="col col-15 col-center">N°</div>
-    <div class="col col-33">Ekipi</div>
-    <div class="col col-center">Pike</div>
-    <div class="col col-center">Nd</div>
-    <div class="col col-center">Glv</div>
-  </div>
- </div>
-
- <div id="grupet" class="item item-text-wrap bg-transparent pad5">
-
-  <div class="row {{item.name}} ranking" ng-repeat="item in items">
-    <div class="col col-center"><span class="rank rank-{{$index + 1}}">{{$index + 1}}</span></div>
-    <div class="col col-33">{{item.name}}</div>
-    <div class="col col-center"><b>{{item.pike}}</b></div>
-    <div class="col col-center">{{item.ndeshje}}</div>
-    <div class="col col-center">{{item.golash - item.golap}}</div>
-  </div>
- </div>
-</div>
-  </ion-content>
-  </ion-tab>
-    <ion-tab animation="slide-left-right" class="bg-transparent" title="Ndeshjet">
-	  <ion-content class="has-subheader">
-      <div class="item bg-transparent item-text-wrap pad5">
-        <div class="row rnk" ng-repeat="item in itemsN">
-			<div class="col {{item.team1}}"><img class="rank" ng-src="{{item.flag1}}">{{item.team1}}</div>
-			<div class="col col-20 col-center"><a ng-if="item.over>0" class="rez assertive" href="#app/ndeshja/{{item.id}}">{{item.gol1_over}} - {{item.gol2_over}} </a><a class="rez over{{item.over}}" href="#app/ndeshja/{{item.id}}">{{item.gol1}} - {{item.gol2}}</a></div>
-			<div class="col col-right {{item.team2}}">{{item.team2}} <img class="rank" ng-src="{{item.flag2}}"></div>
-=======
   <ion-tab class="bg-transparent"  title="Klasifikimi">
 	<ion-content scroll="true" class="has-subheader">
 		<div class="bg-transparent gr-scroll">
@@ -77,7 +40,6 @@
 				<div ui-sref="app.ndeshja({ndeshjaId: '{{item.id}}'})" class="col col-20 col-center"><a ng-if="item.over>0" class="rez assertive" href="#app/ndeshja/{{item.id}}">{{item.gol1_over}} - {{item.gol2_over}} </a><a class="rez over{{item.over}}" href="#app/ndeshja/{{item.id}}">{{item.gol1}} - {{item.gol2}}</a></div>
 				<div ui-sref="app.ndeshja({ndeshjaId: '{{item.id}}'})" class="col col-right {{item.team2}}">{{item.team2}} <img class="rank" ng-src="{{item.flag2}}"></div>
 			</div>
->>>>>>> b726d9863d3ff051be7b69c89201e909a6e54d43
 		</div>
 	</ion-content>
   </ion-tab>

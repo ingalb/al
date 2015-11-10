@@ -528,10 +528,10 @@ margin: 0px;
 	-webkit-animation : blinker 1s linear infinite;
 }
 
-@-webkit-keyframes blinker {  
+@-webkit-keyframes blinker {
    50% {border-bottom: 5px solid rgba(0, 0, 0, 0.0) }
 }
-@keyframes blinker {  
+@keyframes blinker {
   50% {border-bottom: 5px solid rgba(0, 0, 0, 0.0) }
 }
 .sliderlive2{
@@ -546,10 +546,10 @@ margin: 0px;
 	-webkit-animation : blinkerS 1s linear infinite;
 }
 
-@-webkit-keyframes blinkerS {  
+@-webkit-keyframes blinkerS {
    40% {background-color: rgba(0, 0, 0, 0.0) }
 }
-@keyframes blinkerS {  
+@keyframes blinkerS {
   40% {background-color: rgba(0, 0, 0, 0.0) }
 }
 

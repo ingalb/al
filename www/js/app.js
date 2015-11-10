@@ -216,7 +216,7 @@ albania.directive('newsHome', ['$compile', 'LajmeService', function($compile, La
         link: function (scope, element, attrs) {
 			LajmeService.getSlider(function(data) {
             scope.lajme = data;
-            }); 
+            });
         }
     }
  }]);

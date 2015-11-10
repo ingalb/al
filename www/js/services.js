@@ -65,7 +65,7 @@ angular.module('albania.services', [])
               });
             },
             getGrNdeshje: function(grId, callback) {
-                $http.get('http://www.albaniasoccer.com/statistika/kosova/results/1.html?r='+grId+'&format=raw&type=1').success(
+                $http.get(URL_APP+'euro2016-results.php?id='+P_ID+'&type=1&java='+grId).success(
                     function(data) {
                         ndeshjet = data;
                         window.localStorage["GrNdeshje"] = JSON.stringify(data);
@@ -112,7 +112,7 @@ angular.module('albania.services', [])
                 }
               });
             },
-			getAlbaniaNdeshje: function(callback) {
+			     getAlbaniaNdeshje: function(callback) {
                 $http.get(URL_APP+'ndeshjet.php?id='+P_ID+'&ekipi='+EKIPI_ID).success(
                     function(data) {
                         ndeshjet = data;

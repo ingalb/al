@@ -1,4 +1,4 @@
-<ion-view drag-content="false" on-swipe-right="slidePrevious()" on-swipe-left="slideNext()" title="{{sezoni_text}} {{gr_id}}">
+<ion-view drag-content="false" on-swipe-right="slidePrevious()" on-swipe-left="slideNext()" title="{{sezoni_text}}">
   <ion-nav-buttons side="left">
     <button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
   </ion-nav-buttons>
@@ -39,7 +39,7 @@
 		</div>
 	</ion-content>
  </ion-tab>
- 
+
  <ion-tab class="bg-transparent"  on-select="selectedTab('2')" title="Gr. B">
 	<ion-content scroll="true" class="has-subheader">
 		<div class="bg-transparent gr-scroll">
@@ -71,7 +71,7 @@
 		</div>
 	</ion-content>
  </ion-tab>
- 
+
  <ion-tab class="bg-transparent"  on-select="selectedTab(3)" ng-click="selectedTab(3)"  title="Gr. C">
 	<ion-content scroll="true" class="has-subheader">
 		<div class="bg-transparent gr-scroll">
@@ -103,7 +103,7 @@
 		</div>
 	</ion-content>
  </ion-tab>
- 
+
  <ion-tab class="bg-transparent"  on-select="selectedTab(4)" title="Gr. D">
 	<ion-content scroll="true" class="has-subheader">
 		<div class="bg-transparent gr-scroll">
@@ -135,7 +135,7 @@
 		</div>
 	</ion-content>
  </ion-tab>
- 
+
  <ion-tab class="bg-transparent"  on-select="selectedTab(5)" title="Gr. E">
 	<ion-content scroll="true" class="has-subheader">
 		<div class="bg-transparent gr-scroll">
@@ -167,7 +167,7 @@
 		</div>
 	</ion-content>
  </ion-tab>
- 
+
  <ion-tab class="bg-transparent"  on-select="selectedTab(6)" title="Gr. F">
 	<ion-content scroll="true" class="has-subheader">
 		<div class="bg-transparent gr-scroll">
@@ -199,12 +199,12 @@
 		</div>
 	</ion-content>
  </ion-tab>
- 
+
 
 </ion-tabs>
 </ion-view>
 
-<script id="popover-template.html" type="text/ng-template">
+<script id="popover1-template.html" type="text/ng-template">
    <ion-popover-view>
       <ion-content>
          <ion-radio ng-repeat="item in SezoneList" ng-value="item.value" ng-model="gr_id" ng-change="changeSezoni(item)" ng-click="changeSezoni(item)">{{ item.text }}</ion-radio>
