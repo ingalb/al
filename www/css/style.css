@@ -165,7 +165,7 @@ body{
 	font-weight: bold;
 }
 .logo-fshf{
-	width:70%;
+	width:120px;
 	height:120px;
 }
 .scroll-content {
@@ -314,6 +314,10 @@ body{
 white-space:normal;
 }
 }
+
+#match .slider-slide{
+	height:100%;
+}
 .minuta{
      width:0;
      height:0;
@@ -459,9 +463,9 @@ div#klubi div.trofe:last-child {border-bottom: none;}
     right: 20px;
     top: 16px;
     position: absolute;
-		border: 7px solid #000;
-		border-radius: 30px;
-		-webkit-border-radius: 30px;
+	border: 7px solid #000;
+	border-radius: 30px;
+	-webkit-border-radius: 30px;
     -moz-border-radius: 30px;
 }
 .lojtari-img{
@@ -518,6 +522,41 @@ margin: 0px;
    padding-left: 30px;
 }
 .scroll-refresher{height:50px;}
+.live1{
+	border-bottom: 5px #33cd5f solid;
+	animation: blinker 1s linear infinite;
+	-webkit-animation : blinker 1s linear infinite;
+}
+
+@-webkit-keyframes blinker {  
+   50% {border-bottom: 5px solid rgba(0, 0, 0, 0.0) }
+}
+@keyframes blinker {  
+  50% {border-bottom: 5px solid rgba(0, 0, 0, 0.0) }
+}
+.sliderlive2{
+	background-color: #EE1C24;
+	color: #fff;
+}
+
+.sliderlive1{
+	background-color: #33cd5f;
+	color: #fff;
+	animation: blinkerS 1s linear infinite;
+	-webkit-animation : blinkerS 1s linear infinite;
+}
+
+@-webkit-keyframes blinkerS {  
+   40% {background-color: rgba(0, 0, 0, 0.0) }
+}
+@keyframes blinkerS {  
+  40% {background-color: rgba(0, 0, 0, 0.0) }
+}
+
+.gr-scroll{
+	margin-bottom:100px;
+}
+
 .slideDown{
 	animation-name: slideDown;
 	-webkit-animation-name: slideDown;

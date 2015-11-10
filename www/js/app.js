@@ -1,6 +1,6 @@
 var P_ID = 1;
-var EKIPI_ID = 76;
-
+var EKIPI_ID = 87;
+var URL_APP = "http://vllaznia.cloudcontrolled.com/";
 
 // Ionic Starter App
 // angular.module is a global place for creating, registering and retrieving Angular modules
@@ -141,7 +141,7 @@ window.plugins.OneSignal.getIds(function(ids) {
       }
     })
     .state('app.ndeshjet', {
-      url: "/ndeshjet",
+      url: "/ndeshjet/:grId",
       views: {
         'menuContent' :{
           templateUrl: "templates/ndeshjet.html",
@@ -158,48 +158,12 @@ window.plugins.OneSignal.getIds(function(ids) {
         }
       }
     })
-
-    .state('app.klubi', {
-      url: "/klubi",
+    .state('app.grupet', {
+      url: "/grupet",
       views: {
         'menuContent' :{
-          templateUrl: "templates/klubi.html",
-          controller: 'KlubiCtrl'
-        }
-      }
-    })
-    .state('app.tv', {
-      url: "/tv",
-      views: {
-        'menuContent' :{
-          templateUrl: "templates/tv.html",
-          controller: 'TvCtrl'
-        }
-      }
-    })
-    .state('app.forumi', {
-      url: "/forumi",
-      views: {
-        'menuContent' :{
-          templateUrl: "templates/forumi.html",
-          controller: 'ForumiCtrl'
-        }
-      }
-    })
-    .state('app.multimedia', {
-      url: "/multimedia",
-      views: {
-        'menuContent' :{
-          templateUrl: "templates/multimedia.html"
-        }
-      }
-    })
-    .state('app.klasifikimi', {
-      url: "/klasifikimi",
-      views: {
-        'menuContent' :{
-          templateUrl: "templates/klasifikimi.html",
-          controller: 'KlasifikimiCtrl'
+          templateUrl: "templates/grupet.html",
+          controller: 'AllGrupetCtrl'
         }
       }
     })

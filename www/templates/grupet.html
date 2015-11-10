@@ -1,4 +1,4 @@
-<ion-view title="{{sezoni_text}}">
+<ion-view drag-content="false" on-swipe-right="slidePrevious()" on-swipe-left="slideNext()" title="{{sezoni_text}} {{gr_id}}">
   <ion-nav-buttons side="left">
     <button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
   </ion-nav-buttons>
@@ -6,46 +6,208 @@
     <button class="button button-icon ion-more" ng-click="popover.show($event)"></button>
   </ion-nav-buttons>
 
-  <div id="grupet" class="tabs-striped tabs-top tabs-background-dark tabs-color-light">
-    <div class="tabs">
-      <a class="tab-item active" href="#">
-        Klasifikimi
-      </a>
-      <a class="tab-item" href="#">
-        Ndeshjet
-      </a>
-    </div>
-  </div>
+<ion-tabs id="grupet" class="tabs-striped has-header tabs-top scroll-x tabs-background-dark tabs-color-light">
 
-<ion-content class="has-subheader">
-<div class="bg-transparent">
+<ion-tab class="bg-transparent"  on-select="selectedTab(1)" ng-click="selectedTab(1)" title="Gr. A">
+	<ion-content scroll="true" class="has-subheader">
+		<div class="bg-transparent gr-scroll">
+			<div class="item item-divider pad5">
+				<div class="row">
+					<div class="col col-15 col-center">N°</div>
+					<div class="col col-33">Ekipi</div>
+					<div class="col col-center">Pike</div>
+					<div class="col col-center">Nd</div>
+					<div class="col col-center">Glv</div>
+				</div>
+			</div>
+			<div id="grupet" class="item item-text-wrap bg-transparent pad5">
+				<div class="row {{item.name}} ranking" ng-repeat="item in items">
+					<div class="col col-center"><span class="rank rank-{{$index + 1}}">{{$index + 1}}</span></div>
+					<div class="col col-33">{{item.name}}</div>
+					<div class="col col-center"><b>{{item.pike}}</b></div>
+					<div class="col col-center">{{item.ndeshje}}</div>
+					<div class="col col-center">{{item.golash - item.golap}}</div>
+				</div>
+			</div>
+			<div class="card">
+				<div class="row item" ng-repeat="item in itemsN">
+					<div ui-sref="app.ndeshja({ndeshjaId: '{{item.id}}'})" class="col {{item.team1}}"><img class="rank" ng-src="{{item.flag1}}">{{item.team1}}</div>
+					<div ui-sref="app.ndeshja({ndeshjaId: '{{item.id}}'})" class="col col-20 col-center"><a ng-if="item.over>0" class="rez assertive" href="#app/ndeshja/{{item.id}}">{{item.gol1_over}} - {{item.gol2_over}} </a><a class="rez over{{item.over}}" href="#app/ndeshja/{{item.id}}">{{item.gol1}} - {{item.gol2}}</a></div>
+					<div ui-sref="app.ndeshja({ndeshjaId: '{{item.id}}'})" class="col col-right {{item.team2}}">{{item.team2}} <img class="rank" ng-src="{{item.flag2}}"></div>
+				</div>
+			</div>
+		</div>
+	</ion-content>
+ </ion-tab>
+ 
+ <ion-tab class="bg-transparent"  on-select="selectedTab('2')" title="Gr. B">
+	<ion-content scroll="true" class="has-subheader">
+		<div class="bg-transparent gr-scroll">
+			<div class="item item-divider pad5">
+				<div class="row">
+					<div class="col col-15 col-center">N°</div>
+					<div class="col col-33">Ekipi</div>
+					<div class="col col-center">Pike</div>
+					<div class="col col-center">Nd</div>
+					<div class="col col-center">Glv</div>
+				</div>
+			</div>
+			<div id="grupet" class="item item-text-wrap bg-transparent pad5">
+				<div class="row {{item.name}} ranking" ng-repeat="item in items">
+					<div class="col col-center"><span class="rank rank-{{$index + 1}}">{{$index + 1}}</span></div>
+					<div class="col col-33">{{item.name}}</div>
+					<div class="col col-center"><b>{{item.pike}}</b></div>
+					<div class="col col-center">{{item.ndeshje}}</div>
+					<div class="col col-center">{{item.golash - item.golap}}</div>
+				</div>
+			</div>
+			<div class="card">
+				<div class="row item" ng-repeat="item in itemsN">
+					<div ui-sref="app.ndeshja({ndeshjaId: '{{item.id}}'})" class="col {{item.team1}}"><img class="rank" ng-src="{{item.flag1}}">{{item.team1}}</div>
+					<div ui-sref="app.ndeshja({ndeshjaId: '{{item.id}}'})" class="col col-20 col-center"><a ng-if="item.over>0" class="rez assertive" href="#app/ndeshja/{{item.id}}">{{item.gol1_over}} - {{item.gol2_over}} </a><a class="rez over{{item.over}}" href="#app/ndeshja/{{item.id}}">{{item.gol1}} - {{item.gol2}}</a></div>
+					<div ui-sref="app.ndeshja({ndeshjaId: '{{item.id}}'})" class="col col-right {{item.team2}}">{{item.team2}} <img class="rank" ng-src="{{item.flag2}}"></div>
+				</div>
+			</div>
+		</div>
+	</ion-content>
+ </ion-tab>
+ 
+ <ion-tab class="bg-transparent"  on-select="selectedTab(3)" ng-click="selectedTab(3)"  title="Gr. C">
+	<ion-content scroll="true" class="has-subheader">
+		<div class="bg-transparent gr-scroll">
+			<div class="item item-divider pad5">
+				<div class="row">
+					<div class="col col-15 col-center">N°</div>
+					<div class="col col-33">Ekipi</div>
+					<div class="col col-center">Pike</div>
+					<div class="col col-center">Nd</div>
+					<div class="col col-center">Glv</div>
+				</div>
+			</div>
+			<div id="grupet" class="item item-text-wrap bg-transparent pad5">
+				<div class="row {{item.name}} ranking" ng-repeat="item in items">
+					<div class="col col-center"><span class="rank rank-{{$index + 1}}">{{$index + 1}}</span></div>
+					<div class="col col-33">{{item.name}}</div>
+					<div class="col col-center"><b>{{item.pike}}</b></div>
+					<div class="col col-center">{{item.ndeshje}}</div>
+					<div class="col col-center">{{item.golash - item.golap}}</div>
+				</div>
+			</div>
+			<div class="card">
+				<div class="row item" ng-repeat="item in itemsN">
+					<div ui-sref="app.ndeshja({ndeshjaId: '{{item.id}}'})" class="col {{item.team1}}"><img class="rank" ng-src="{{item.flag1}}">{{item.team1}}</div>
+					<div ui-sref="app.ndeshja({ndeshjaId: '{{item.id}}'})" class="col col-20 col-center"><a ng-if="item.over>0" class="rez assertive" href="#app/ndeshja/{{item.id}}">{{item.gol1_over}} - {{item.gol2_over}} </a><a class="rez over{{item.over}}" href="#app/ndeshja/{{item.id}}">{{item.gol1}} - {{item.gol2}}</a></div>
+					<div ui-sref="app.ndeshja({ndeshjaId: '{{item.id}}'})" class="col col-right {{item.team2}}">{{item.team2}} <img class="rank" ng-src="{{item.flag2}}"></div>
+				</div>
+			</div>
+		</div>
+	</ion-content>
+ </ion-tab>
+ 
+ <ion-tab class="bg-transparent"  on-select="selectedTab(4)" title="Gr. D">
+	<ion-content scroll="true" class="has-subheader">
+		<div class="bg-transparent gr-scroll">
+			<div class="item item-divider pad5">
+				<div class="row">
+					<div class="col col-15 col-center">N°</div>
+					<div class="col col-33">Ekipi</div>
+					<div class="col col-center">Pike</div>
+					<div class="col col-center">Nd</div>
+					<div class="col col-center">Glv</div>
+				</div>
+			</div>
+			<div id="grupet" class="item item-text-wrap bg-transparent pad5">
+				<div class="row {{item.name}} ranking" ng-repeat="item in items">
+					<div class="col col-center"><span class="rank rank-{{$index + 1}}">{{$index + 1}}</span></div>
+					<div class="col col-33">{{item.name}}</div>
+					<div class="col col-center"><b>{{item.pike}}</b></div>
+					<div class="col col-center">{{item.ndeshje}}</div>
+					<div class="col col-center">{{item.golash - item.golap}}</div>
+				</div>
+			</div>
+			<div class="card">
+				<div class="row item" ng-repeat="item in itemsN">
+					<div ui-sref="app.ndeshja({ndeshjaId: '{{item.id}}'})" class="col {{item.team1}}"><img class="rank" ng-src="{{item.flag1}}">{{item.team1}}</div>
+					<div ui-sref="app.ndeshja({ndeshjaId: '{{item.id}}'})" class="col col-20 col-center"><a ng-if="item.over>0" class="rez assertive" href="#app/ndeshja/{{item.id}}">{{item.gol1_over}} - {{item.gol2_over}} </a><a class="rez over{{item.over}}" href="#app/ndeshja/{{item.id}}">{{item.gol1}} - {{item.gol2}}</a></div>
+					<div ui-sref="app.ndeshja({ndeshjaId: '{{item.id}}'})" class="col col-right {{item.team2}}">{{item.team2}} <img class="rank" ng-src="{{item.flag2}}"></div>
+				</div>
+			</div>
+		</div>
+	</ion-content>
+ </ion-tab>
+ 
+ <ion-tab class="bg-transparent"  on-select="selectedTab(5)" title="Gr. E">
+	<ion-content scroll="true" class="has-subheader">
+		<div class="bg-transparent gr-scroll">
+			<div class="item item-divider pad5">
+				<div class="row">
+					<div class="col col-15 col-center">N°</div>
+					<div class="col col-33">Ekipi</div>
+					<div class="col col-center">Pike</div>
+					<div class="col col-center">Nd</div>
+					<div class="col col-center">Glv</div>
+				</div>
+			</div>
+			<div id="grupet" class="item item-text-wrap bg-transparent pad5">
+				<div class="row {{item.name}} ranking" ng-repeat="item in items">
+					<div class="col col-center"><span class="rank rank-{{$index + 1}}">{{$index + 1}}</span></div>
+					<div class="col col-33">{{item.name}}</div>
+					<div class="col col-center"><b>{{item.pike}}</b></div>
+					<div class="col col-center">{{item.ndeshje}}</div>
+					<div class="col col-center">{{item.golash - item.golap}}</div>
+				</div>
+			</div>
+			<div class="card">
+				<div class="row item" ng-repeat="item in itemsN">
+					<div ui-sref="app.ndeshja({ndeshjaId: '{{item.id}}'})" class="col {{item.team1}}"><img class="rank" ng-src="{{item.flag1}}">{{item.team1}}</div>
+					<div ui-sref="app.ndeshja({ndeshjaId: '{{item.id}}'})" class="col col-20 col-center"><a ng-if="item.over>0" class="rez assertive" href="#app/ndeshja/{{item.id}}">{{item.gol1_over}} - {{item.gol2_over}} </a><a class="rez over{{item.over}}" href="#app/ndeshja/{{item.id}}">{{item.gol1}} - {{item.gol2}}</a></div>
+					<div ui-sref="app.ndeshja({ndeshjaId: '{{item.id}}'})" class="col col-right {{item.team2}}">{{item.team2}} <img class="rank" ng-src="{{item.flag2}}"></div>
+				</div>
+			</div>
+		</div>
+	</ion-content>
+ </ion-tab>
+ 
+ <ion-tab class="bg-transparent"  on-select="selectedTab(6)" title="Gr. F">
+	<ion-content scroll="true" class="has-subheader">
+		<div class="bg-transparent gr-scroll">
+			<div class="item item-divider pad5">
+				<div class="row">
+					<div class="col col-15 col-center">N°</div>
+					<div class="col col-33">Ekipi</div>
+					<div class="col col-center">Pike</div>
+					<div class="col col-center">Nd</div>
+					<div class="col col-center">Glv</div>
+				</div>
+			</div>
+			<div id="grupet" class="item item-text-wrap bg-transparent pad5">
+				<div class="row {{item.name}} ranking" ng-repeat="item in items">
+					<div class="col col-center"><span class="rank rank-{{$index + 1}}">{{$index + 1}}</span></div>
+					<div class="col col-33">{{item.name}}</div>
+					<div class="col col-center"><b>{{item.pike}}</b></div>
+					<div class="col col-center">{{item.ndeshje}}</div>
+					<div class="col col-center">{{item.golash - item.golap}}</div>
+				</div>
+			</div>
+			<div class="card">
+				<div class="row item" ng-repeat="item in itemsN">
+					<div ui-sref="app.ndeshja({ndeshjaId: '{{item.id}}'})" class="col {{item.team1}}"><img class="rank" ng-src="{{item.flag1}}">{{item.team1}}</div>
+					<div ui-sref="app.ndeshja({ndeshjaId: '{{item.id}}'})" class="col col-20 col-center"><a ng-if="item.over>0" class="rez assertive" href="#app/ndeshja/{{item.id}}">{{item.gol1_over}} - {{item.gol2_over}} </a><a class="rez over{{item.over}}" href="#app/ndeshja/{{item.id}}">{{item.gol1}} - {{item.gol2}}</a></div>
+					<div ui-sref="app.ndeshja({ndeshjaId: '{{item.id}}'})" class="col col-right {{item.team2}}">{{item.team2}} <img class="rank" ng-src="{{item.flag2}}"></div>
+				</div>
+			</div>
+		</div>
+	</ion-content>
+ </ion-tab>
+ 
 
- <div class="item item-divider pad5">
-  <div class="row">
-    <div class="col col-15 col-center">N°</div>
-    <div class="col col-33">Ekipi</div>
-    <div class="col col-center">Pike</div>
-    <div class="col col-center">Nd</div>
-    <div class="col col-center">Glv</div>
-  </div>
- </div>
- <div id="grupet" class="item item-text-wrap bg-transparent pad5">
-  <div class="row {{item.name}} ranking" ng-repeat="item in items">
-    <div class="col col-center"><span class="rank rank-{{item.rank}}">{{item.rank}}</span></div>
-    <div class="col col-33">{{item.name}}</div>
-    <div class="col col-center"><b>{{item.pike}}</b></div>
-    <div class="col col-center">{{item.ndeshje}}</div>
-    <div class="col col-center">{{item.golash - item.golap}}</div>
-  </div>
- </div>
-</div>
-</ion-content>
+</ion-tabs>
 </ion-view>
 
 <script id="popover-template.html" type="text/ng-template">
    <ion-popover-view>
       <ion-content>
-         <ion-radio ng-repeat="item in SezoneList" ng-value="item.value" ng-model="sezoni_id" ng-change="changeSezoni(item)" ng-click="changeSezoni(item)">{{ item.text }}</ion-radio>
+         <ion-radio ng-repeat="item in SezoneList" ng-value="item.value" ng-model="gr_id" ng-change="changeSezoni(item)" ng-click="changeSezoni(item)">{{ item.text }}</ion-radio>
       </ion-content>
    </ion-popover-view>
 </script>
