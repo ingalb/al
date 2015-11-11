@@ -197,7 +197,7 @@ angular.module('albania.controllers', [])
 	   var isSubscribed = function(tags){
 		window.plugins.OneSignal.getTags(function(tag) {
 			alert(tag.tags);
-			alert(tag[0]);
+			alert(tag[tags]);
 			alert(JSON.stringify(tag));
 			if(tag.tags)
 			{
