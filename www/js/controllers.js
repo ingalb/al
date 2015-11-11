@@ -191,29 +191,35 @@ angular.module('albania.controllers', [])
        $scope.selected = 0;
 	   $scope.notification = false;
 	   $scope.anim = "ion-ios-bell-outline";
-	   console.log($scope.notification);
-	   var tags = "match"+$stateParams.ndeshjaId;
+	   //console.log($scope.notification);
+	   var tags = "match"+ $stateParams.ndeshjaId;
 	   
-	   var isSubscribed = function(tags){
-		//$scope.notification = true;
-		//$scope.anim = "ion-ios-bell";
-		alert("check is subscribed");
-		window.plugins.OneSignal.getTags(function(tags) {
-			alert('Tags Received: ' + JSON.stringify(tags));
+	   var isSubscribed = function(){
+		window.plugins.OneSignal.getTags(function(tag) {
+			alert(tag.tags);
+			alert(tag);
+			if(tag.tags)
+			{
+				$scope.notification = true;
+				$scope.anim = "ion-ios-bell";
+			}
+			else{
+				$scope.notification = false;
+				$scope.anim = "ion-ios-bell-outline";				
+			}
         }); 
 	   }
-	   isSubscribed(tags);
+	   isSubscribed();
 	   var subscribe = function(){
 		$scope.notification = true;
 		$scope.anim = "ion-ios-bell";
-		window.plugins.OneSignal.sendTag("match"+$stateParams.ndeshjaId+"", true); 
+		window.plugins.OneSignal.sendTag(tags, true); 
 	   }
 	   var unSubscribe = function(){
 		$scope.notification = false;
-		$scope.anim = "ion-ios-bell-outline";
-		//window.plugins.OneSignal.sendTag("match", $stateParams.ndeshjaId); 
-		window.plugins.OneSignal.sendTag("match"+$stateParams.ndeshjaId+"", false);
-		window.plugins.OneSignal.deleteTag("match"+$stateParams.ndeshjaId+"");
+		$scope.anim = "ion-ios-bell-outline"; 
+		window.plugins.OneSignal.sendTag(tags, false);
+		window.plugins.OneSignal.deleteTag(tags);
 	   }
        //$scope.minuta = "minuta";
        //admob.showBannerAd(false);
@@ -268,20 +274,13 @@ angular.module('albania.controllers', [])
        }
 
 	   $scope.subNotification = function(){
-		   /** window.plugins.OneSignal.getTags(function(tags) {
-				console.log('Tags Received: ' + JSON.stringify(tags));
-            }); **/
 		   $scope.notification = $scope.notification === true ? false: true;
 		   if($scope.notification)
 		   { 
-				$scope.anim = "ion-ios-bell";
 				subscribe();
-				alert("Subscribe notification");
 		   }
 		   else{
-			    $scope.anim = "ion-ios-bell-outline";
 				unSubscribe();
-				alert("Unsubsribe notification");
 		   }
 	   }
        $scope.doRefresh = function() {

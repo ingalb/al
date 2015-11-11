@@ -65,8 +65,8 @@ FacebookAds.showInterstitial();
     };
 
     // Update with your OneSignal AppId and googleProjectNumber before running.
-    window.plugins.OneSignal.init("fb965b9c-e77a-11e4-a9ea-97388ec7efa9",
-                                   {googleProjectNumber: "455582282730"},
+    window.plugins.OneSignal.init("989f0128-8884-11e5-bfb9-a0369f2d9328",
+                                   {googleProjectNumber: "656349133735"},
                                    notificationOpenedCallback);
 
     window.plugins.OneSignal.sendTags({version: "3"});
