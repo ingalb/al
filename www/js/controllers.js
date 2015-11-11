@@ -193,9 +193,9 @@ angular.module('albania.controllers', [])
 	   $scope.anim = "ion-ios-bell-outline";
 	   //console.log($scope.notification);
 	   var tags = "match"+ $stateParams.ndeshjaId;
-	   
+
 	   var isSubscribed = function(tags){
-		window.plugins.OneSignal.getTags(function(tag) {
+		 window.plugins.OneSignal.getTags(function(tag) {
 			alert(tag.tags);
 			alert(tag[0][tags]);
 			alert(JSON.stringify(tag));
@@ -205,24 +205,25 @@ angular.module('albania.controllers', [])
 				{
 					$scope.notification = true;
 					$scope.anim = "ion-ios-bell";
+          alert(tag[i][tags]);
 					break;
 				}
 				else{
 					$scope.notification = false;
-					$scope.anim = "ion-ios-bell-outline";				
+					$scope.anim = "ion-ios-bell-outline";
 				}
 			}
-        }); 
+        });
 	   }
 	   isSubscribed(tags);
 	   var subscribe = function(){
 		$scope.notification = true;
 		$scope.anim = "ion-ios-bell";
-		window.plugins.OneSignal.sendTag(tags, true); 
+		window.plugins.OneSignal.sendTag(tags, true);
 	   }
 	   var unSubscribe = function(){
 		$scope.notification = false;
-		$scope.anim = "ion-ios-bell-outline"; 
+		$scope.anim = "ion-ios-bell-outline";
 		window.plugins.OneSignal.sendTag(tags, false);
 		window.plugins.OneSignal.deleteTag(tags);
 	   }
@@ -281,7 +282,7 @@ angular.module('albania.controllers', [])
 	   $scope.subNotification = function(){
 		   $scope.notification = $scope.notification === true ? false: true;
 		   if($scope.notification)
-		   { 
+		   {
 				subscribe();
 		   }
 		   else{
