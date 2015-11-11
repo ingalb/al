@@ -197,16 +197,20 @@ angular.module('albania.controllers', [])
 	   var isSubscribed = function(tags){
 		window.plugins.OneSignal.getTags(function(tag) {
 			alert(tag.tags);
-			alert(tag[tags]);
+			alert(tag[0][tags]);
 			alert(JSON.stringify(tag));
-			if(tag.tags)
+			for(var i=0;i<tag.length;i++)
 			{
-				$scope.notification = true;
-				$scope.anim = "ion-ios-bell";
-			}
-			else{
-				$scope.notification = false;
-				$scope.anim = "ion-ios-bell-outline";				
+				if(tag[i][tags]=="true")
+				{
+					$scope.notification = true;
+					$scope.anim = "ion-ios-bell";
+					break;
+				}
+				else{
+					$scope.notification = false;
+					$scope.anim = "ion-ios-bell-outline";				
+				}
 			}
         }); 
 	   }
