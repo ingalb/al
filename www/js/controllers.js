@@ -183,7 +183,7 @@ angular.module('albania.controllers', [])
         $ionicLoading.hide();
     })
 
-    .controller('NdeshjetDetCtrl', function($scope, $sce, $stateParams, $timeout, $ionicScrollDelegate, $ionicSlideBoxDelegate, $ionicLoading, NdeshjaService) {
+    .controller('NdeshjetDetCtrl', function($scope, $sce, $stateParams, $timeout, $ionicNavBarDelegate, $ionicScrollDelegate, $ionicSlideBoxDelegate, $ionicLoading, NdeshjaService) {
        ga_storage._trackPageview('#/app/ndeshja/'+ $stateParams.ndeshjaId+'', 'Albania App Ndeshja Det');
        var tani = new Date();
        var time = 1;
@@ -193,27 +193,27 @@ angular.module('albania.controllers', [])
 	   $scope.anim = "ion-ios-bell-outline";
 	   //console.log($scope.notification);
 	   var tags = "match"+ $stateParams.ndeshjaId;
-
+     alert(tags);
 	   var isSubscribed = function(tags){
-		 window.plugins.OneSignal.getTags(function(tag) {
-			alert(tag.tags);
-			alert(tag[0][tags]);
-			alert(JSON.stringify(tag));
-			for(var i=0;i<tag.length;i++)
-			{
-				if(tag[i][tags]=="true")
+		  window.plugins.OneSignal.getTags(function(tags) {
+			 alert(tags.tags);
+			 alert(tags[0][tags]);
+			 alert(JSON.stringify(tags));
+			 for(var i=0;i<tags.length;i++)
+			 {
+				if(tags[i][tags]=="true")
 				{
 					$scope.notification = true;
 					$scope.anim = "ion-ios-bell";
-          alert(tag[i][tags]);
+          alert(tags[i][tags]);
 					break;
 				}
 				else{
 					$scope.notification = false;
 					$scope.anim = "ion-ios-bell-outline";
 				}
-			}
-        });
+			 }
+      });
 	   }
 	   isSubscribed(tags);
 	   var subscribe = function(){
@@ -255,10 +255,11 @@ angular.module('albania.controllers', [])
             $scope.item = data;
             $scope.content = data.kronika;
             $scope.percent = data.percent;
+            $ionicNavBarDelegate.title(data.java);
             $ionicSlideBoxDelegate.update();
             $ionicScrollDelegate.resize();
             $ionicLoading.hide();
-			isSubscribed(tags);
+			      isSubscribed(tags);
         });
        }());
        $scope.slideTo = function(index) {
@@ -302,12 +303,13 @@ angular.module('albania.controllers', [])
             $scope.item = data;
             $scope.content = data.kronika;
             $scope.percent = data.percent;
+            $ionicNavBarDelegate.title(data.java);
             $scope.$broadcast('scroll.refreshComplete');
             $ionicScrollDelegate.resize();
             $ionicScrollDelegate.scrollTop(true);
             $ionicSlideBoxDelegate.update();
             $ionicLoading.hide();
-			isSubscribed(tags);
+			      isSubscribed(tags);
         });
        }
     })
