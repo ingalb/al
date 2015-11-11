@@ -198,7 +198,7 @@ angular.module('albania.controllers', [])
 		window.plugins.OneSignal.getTags(function(tag) {
 			alert(tag.tags);
 			alert(tag[0]);
-			alert(JSON.stringify(tags));
+			alert(JSON.stringify(tag));
 			if(tag.tags)
 			{
 				$scope.notification = true;
