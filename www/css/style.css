@@ -244,7 +244,12 @@ body{
 	bottom:0;
 	font-weight: bold;
 }
-
+#lajme-index .row + .row {
+	margin-top: 0px;
+}
+#lajme-index {
+	margin-top: 0px;
+}
 @media screen and (min-height: 500px) {
   .slider-img {
     height: 280px;
@@ -515,7 +520,7 @@ margin: 0px;
    background:url("../img/karton-vk2x.png") no-repeat;
 }
 .ndeshje2x{
-   background:url("../img/ndeshje.png") no-repeat;
+   background:url("../img/matches.png") no-repeat;
 }
 .gol2x{
    background:url("../img/goal2x.png") no-repeat;
