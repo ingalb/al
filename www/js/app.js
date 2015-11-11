@@ -71,28 +71,7 @@ FacebookAds.showInterstitial();
                                    notificationOpenedCallback);
 
     window.plugins.OneSignal.sendTags({version: "3"});
-/*
-window.plugins.OneSignal.init("fb965b9c-e77a-11e4-a9ea-97388ec7efa9",
-                       {googleProjectNumber: "455582282730"},
-                       didReceiveRemoteNotificationCallBack);
 
-
-window.plugins.OneSignal.getIds(function(ids) {
-    console.log('getIds: ' + JSON.stringify(ids)); // I can see PushToken and UserId in the console.
-    window.localStorage["notification"] = JSON.stringify(jsonData);
-    //$rootScope.pushToken = ids.pushToken;
-});
-*/
-
-/*    window.didReceiveRemoteNotificationCallBack = function(jsonData) {
-        alert("Notification received:\n" + JSON.stringify(jsonData));
-        window.localStorage["notification"] = JSON.stringify(jsonData);
-        console.log('didReceiveRemoteNotificationCallBack: ' + JSON.stringify(jsonData));
-    }
-*/
-
-
-  // alert("Ready");
    if(window.cordova && window.cordova.plugins.Keyboard) {
       cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
     }
