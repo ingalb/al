@@ -194,10 +194,11 @@ angular.module('albania.controllers', [])
 	   //console.log($scope.notification);
 	   var tags = "match"+ $stateParams.ndeshjaId;
 	   
-	   var isSubscribed = function(){
+	   var isSubscribed = function(tags){
 		window.plugins.OneSignal.getTags(function(tag) {
 			alert(tag.tags);
-			alert(tag);
+			alert(tag[0]);
+			alert(JSON.stringify(tags));
 			if(tag.tags)
 			{
 				$scope.notification = true;
@@ -209,7 +210,7 @@ angular.module('albania.controllers', [])
 			}
         }); 
 	   }
-	   isSubscribed();
+	   isSubscribed(tags);
 	   var subscribe = function(){
 		$scope.notification = true;
 		$scope.anim = "ion-ios-bell";
@@ -252,7 +253,7 @@ angular.module('albania.controllers', [])
             $ionicSlideBoxDelegate.update();
             $ionicScrollDelegate.resize();
             $ionicLoading.hide();
-			isSubscribed();
+			isSubscribed(tags);
         });
        }());
        $scope.slideTo = function(index) {
@@ -301,6 +302,7 @@ angular.module('albania.controllers', [])
             $ionicScrollDelegate.scrollTop(true);
             $ionicSlideBoxDelegate.update();
             $ionicLoading.hide();
+			isSubscribed(tags);
         });
        }
     })

@@ -66,7 +66,8 @@ FacebookAds.showInterstitial();
 
     // Update with your OneSignal AppId and googleProjectNumber before running.
     window.plugins.OneSignal.init("989f0128-8884-11e5-bfb9-a0369f2d9328",
-                                   {googleProjectNumber: "656349133735"},
+                                   {googleProjectNumber: "656349133735", 
+								    autoRegister: true},
                                    notificationOpenedCallback);
 
     window.plugins.OneSignal.sendTags({version: "3"});

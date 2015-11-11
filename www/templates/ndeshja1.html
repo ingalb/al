@@ -16,7 +16,7 @@
   <div class="row row-top bg-white">
     <div class="col col-center Vllaznia"><img class="match-logo" ng-src="http://www.albaniasoccer.com/{{item.logo1_l}}"><br>{{item.team1}}</div>
     <div class="col col-25 col-center">
-        <div ng-if="item.over==0"><a class="rezultati">{{item.gol1}} - {{item.gol2}}</a><a ng-if="item.ot_gol1" class="rez live{{item.live.live}}"><br>Shtes&euml;: {{item.ot_gol1}} - {{item.ot_gol2}}</a><a ng-if="item.so_gol1" class="rez live{{item.live.live}}"><br>Pen: {{item.so_gol1}} - {{item.so_gol2}}</a></div>
+        <div ng-if="item.over==0"><a class="rezultati">{{item.gol1}} - {{item.gol2}}</a><a ng-if="item.ot_gol1" class="rez live{{item.live.live}}"><br>Shtes&euml;: <br>{{item.ot_gol1}} - {{item.ot_gol2}}</a><a ng-if="item.so_gol1" class="rez live{{item.live.live}}"><br>Pen: <br>{{item.so_gol1}} - {{item.so_gol2}}</a></div>
         <div ng-if="item.over>0" class="assertive"><a class="rezultati assertive">{{item.gol1_over}} - {{item.gol2_over}}</a></div>
         <div class="live">
             <div class="timer">
