@@ -21,13 +21,15 @@
 	
 	<content src="index.html"/>
 
-    <gap:plugin name="cordova-admob" source="npm" />
+    <gap:plugin name="cordova-admob-pro" source="npm" />
     <gap:plugin name="nl.x-services.plugins.socialsharing" />
     <gap:plugin name="onesignal-cordova-plugin-pgb-compat" source="npm" />
     <gap:plugin name="cordova-plugin-android-support-v4" source="npm" />
 
 
     <preference name="permissions"  value="none"/>
+	<uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
 
     <preference name="phonegap-version"/>
     <preference name="orientation" value="default" />
@@ -59,6 +61,9 @@
     <gap:plugin name="cordova-plugin-inappbrowser" source="npm" />
     <gap:plugin name="org.apache.cordova.network-information" />
     <gap:plugin name="org.apache.cordova.statusbar" />
+	
+	<gap:plugin name="cordova-plugin-whitelist" source="npm" />
+	<plugin name="cordova-plugin-whitelist" version="1" />
 
 <!-- <gap:plugin name="com.pushwoosh.plugins.pushwoosh" version="3.4.5" source="plugins.cordova.io" -->
 <!-- <gap:plugin name="com.admob.google" source="plugins.cordova.io" />-->
@@ -68,7 +73,6 @@
 
 
     <access origin="*"/>
-    <gap:plugin name="cordova-plugin-whitelist" source="npm" />
     <access origin="ingalb.info" subdomains="true"/>
     <access origin="ingalb.com" subdomains="true"/>
     <access origin="albaniasoccer.com" subdomains="true"/>
@@ -76,7 +80,7 @@
     <access origin="fkvllaznia.net" subdomains="true"/>
     <access origin="vllaznia.cloudcontrolled.com/" subdomains="true"/>
     <access origin="googleapis.com" subdomains="true"/>
-    <plugin name="cordova-plugin-whitelist" version="1" />
+
 	<allow-navigation href="*" />
     <allow-intent href="http://*/*" />
     <allow-intent href="https://*/*" />
@@ -84,6 +88,7 @@
     <allow-intent href="sms:*" />
     <allow-intent href="mailto:*" />
     <allow-intent href="geo:*" />
+	<allow-intent href="*" />
     <platform name="android">
         <allow-intent href="market:*" />
     </platform>
