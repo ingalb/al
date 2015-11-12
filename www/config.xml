@@ -77,6 +77,7 @@
     <access origin="vllaznia.cloudcontrolled.com/" subdomains="true"/>
     <access origin="googleapis.com" subdomains="true"/>
     <plugin name="cordova-plugin-whitelist" version="1" />
+	<allow-navigation href="*" />
     <allow-intent href="http://*/*" />
     <allow-intent href="https://*/*" />
     <allow-intent href="tel:*" />
