@@ -13,6 +13,8 @@
     <author href="http://www.ingalb.info" email="contact@ingalb.info">
         Ingalb Company
     </author>
+	
+	<content src="index.html"/>
 
     <gap:plugin name="cordova-admob" source="npm" />
     <gap:plugin name="nl.x-services.plugins.socialsharing" />

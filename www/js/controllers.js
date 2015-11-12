@@ -193,19 +193,19 @@ angular.module('albania.controllers', [])
 	   $scope.anim = "ion-ios-bell-outline";
 	   //console.log($scope.notification);
 	   var tags = "match"+ $stateParams.ndeshjaId;
-     alert(tags);
+       alert('User Tag: '+tags);
 	   var isSubscribed = function(tags){
-		  window.plugins.OneSignal.getTags(function(tags) {
-			 alert(tags.tags);
-			 alert(tags[0][tags]);
-			 alert(JSON.stringify(tags));
+		  window.plugins.OneSignal.getTags(function(tag) {
+			 alert('R1 : '+tag.tags);
+			 alert('R2: '+tag[1][tags]);
+			 alert('Tags Received: ' + JSON.stringify(tag));
 			 for(var i=0;i<tags.length;i++)
 			 {
-				if(tags[i][tags]=="true")
+				if(tag[i][tags]=="true")
 				{
 					$scope.notification = true;
 					$scope.anim = "ion-ios-bell";
-          alert(tags[i][tags]);
+                    alert('TAG founded: '+tag[i][tags]);
 					break;
 				}
 				else{
