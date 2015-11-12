@@ -53,7 +53,7 @@ FacebookAds.showInterstitial();
         admob.createBannerView();
         admob.requestInterstitialAd();
 **/
-    admob.showBanner(admob.BannerSize.SMART_BANNER,admob.Position.BOTTOM_CENTER);
+    admob.showBanner(admob.BannerSize.SMART_BANNER,admob.Position.BOTTOM_APP);
     admob.cacheInterstitial();
 
     } catch (e) {
