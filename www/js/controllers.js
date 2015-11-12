@@ -196,10 +196,11 @@ angular.module('albania.controllers', [])
        alert('User Tag: '+tags);
 	   var isSubscribed = function(tags){
 		  window.plugins.OneSignal.getTags(function(tag) {
+			 alert('Tags Received: ' + JSON.stringify(tag));
 			 alert('R1 : '+tag.tags);
 			 alert('R2: '+tag[1][tags]);
 			 alert('Tags Received: ' + JSON.stringify(tag));
-			 for(var i=0;i<tags.length;i++)
+			 for(var i=0;i<tag.length;i++)
 			 {
 				if(tag[i][tags]=="true")
 				{
@@ -213,8 +214,8 @@ angular.module('albania.controllers', [])
 					$scope.anim = "ion-ios-bell-outline";
 				}
 			 }
-      });
-	   }
+		  });
+	    }
 	   isSubscribed(tags);
 	   var subscribe = function(){
 		$scope.notification = true;
