@@ -181,6 +181,7 @@ angular.module('albania.controllers', [])
 	      });
         $scope.lajmi = LajmeService.getId($stateParams.lajmiId);
         $ionicLoading.hide();
+		admob.showInterstitial();
     })
 
     .controller('NdeshjetDetCtrl', function($scope, $sce, $stateParams, $timeout, $ionicNavBarDelegate, $ionicScrollDelegate, $ionicSlideBoxDelegate, $ionicLoading, NdeshjaService) {

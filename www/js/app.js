@@ -44,17 +44,20 @@ FacebookAds.prepareInterstitial( {adId:adid.interstitial, autoShow:true} );
 // show the interstitial later, e.g. at end of game level
 FacebookAds.showInterstitial();
 **/
-        admob.setOptions({
+        admob.initAdmob("ca-app-pub-7925487268042880/6770099564","ca-app-pub-7925487268042880/7097196767");
+ /**       admob.setOptions({
             publisherId: "ca-app-pub-7925487268042880/6770099564",  // Required
             interstitialAdId: "ca-app-pub-7925487268042880/7097196767",
             autoShowInterstitial: false
           });
-
         admob.createBannerView();
         admob.requestInterstitialAd();
+**/
+    admob.showBanner(admob.BannerSize.BANNER,admob.Position.BOTTOM_CENTER);
+    admob.cacheInterstitial();
 
     } catch (e) {
-          //alert(e.message);
+          console.log(e.message);
     }
 
     var notificationOpenedCallback = function(jsonData) {
