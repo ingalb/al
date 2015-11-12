@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <widget xmlns = "http://www.w3.org/ns/widgets"
         xmlns:gap = "http://phonegap.com/ns/1.0"
+		xmlns:android="http://schemas.android.com/apk/res/android"
         id = "com.ingalb.albania"
         versionCode = "1"
         version = "1.0">
@@ -13,6 +14,10 @@
     <author href="http://www.ingalb.info" email="contact@ingalb.info">
         Ingalb Company
     </author>
+	
+	<gap:config-file platform="android" parent="/manifest">
+		<application android:debuggable="true" />
+	</gap:config-file>
 	
 	<content src="index.html"/>
 
