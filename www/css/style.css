@@ -258,6 +258,7 @@ body{
     padding-bottom: 5px;
 	color: #EE1C24;
 	font-weight: bold;
+	bottom:0;
 }
 #title{
 	bottom:0;
@@ -274,9 +275,9 @@ body{
   .slider-img {
     height: 280px;
   }
-.lajmi-img {
-  height: 300px;
-}
+  .lajmi-img {
+    height: 300px;
+  }
 }
 .slider-slide img { width: 100%; }
 
