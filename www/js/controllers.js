@@ -59,11 +59,13 @@ angular.module('albania.controllers', [])
 
     .controller('IndexCtrl', function($scope, $ionicSlideBoxDelegate, $state, $timeout, $ionicLoading, $ionicPopup, LajmeService, $ionicModal, $rootScope, NdeshjetService) {
         var tani = new Date();
-        var timerhide = 10000;
+        var timerhide = 15000;
         ga_storage._trackPageview('#/app/index', 'Albania App Index');
         if(navigator.splashscreen){
            navigator.splashscreen.hide();
         }
+		
+		$ionicLoading.show();
 
         $scope.CloseNotification = function() {
            $scope.modal.hide();
@@ -149,6 +151,7 @@ angular.module('albania.controllers', [])
 	    showDelay: 100
 	    });
       //FacebookAds.showInterstitial();
+	  admob.showBanner(admob.BannerSize.SMART_BANNER,admob.Position.BOTTOM_CENTER);
         LajmeService.getAll(function(data) {
             $scope.lajme = data;
             //console.log($scope.lajme);
@@ -172,16 +175,22 @@ angular.module('albania.controllers', [])
           ga_storage._trackEvent('Lajme', 'Share', subject);
           window.plugins.socialsharing.share(message, subject, image, link, this.onSuccess, this.onError);
         }
+		admob.showBanner(admob.BannerSize.BANNER,admob.Position.BOTTOM_APP);
         $scope.loadingIndicator = $ionicLoading.show({
 	        content: 'Loading Data',
 	        animation: 'fade-in',
 	        showBackdrop: true,
 	        maxWidth: 200,
 	        showDelay: 100
-	      });
+	    });
         $scope.lajmi = LajmeService.getId($stateParams.lajmiId);
         $ionicLoading.hide();
-		admob.showInterstitial();
+		$scope.showAds = function()
+		{
+			console.log("call ads");
+			admob.cacheInterstitial();
+			admob.showInterstitial();
+		}
     })
 
     .controller('NdeshjetDetCtrl', function($scope, $sce, $stateParams, $timeout, $ionicNavBarDelegate, $ionicScrollDelegate, $ionicSlideBoxDelegate, $ionicLoading, NdeshjaService) {

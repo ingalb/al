@@ -58,6 +58,7 @@ FacebookAds.showInterstitial();
 
     } catch (e) {
           console.log(e.message);
+		  alert(e.message);
     }
 
     var notificationOpenedCallback = function(jsonData) {
