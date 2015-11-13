@@ -621,6 +621,38 @@ angular.module('albania.controllers', [])
            $ionicLoading.hide();
          },6000);
     })
+	
+	.controller('SettingsCtrl', function($scope, $ionicPopup) {
+		//$scope.menu = true;
+		
+		var subscribe = function(tags){
+			$scope.notification = true;
+			window.plugins.OneSignal.sendTag(tags, true);
+		}
+		var unSubscribe = function(tags){
+			window.plugins.OneSignal.deleteTag(tags);
+	    }
+		
+		$scope.pushNotificationChange = function() {
+			//console.log(data);
+			console.log('Push Notification Change', $scope.pushNotification.checked);
+			console.log('Push Notification Change', $scope.pushNews.checked);	
+			console.log('Push Notification Change', $scope.pushMatch.checked);
+
+			if($scope.pushNotification.checked)
+			{
+				console.log("subscribe");
+				window.plugins.OneSignal.setSubscription(true);
+			}
+		    else{
+				console.log("unsubscribe");
+				//window.plugins.OneSignal.setSubscription(false);
+			}
+		}; 
+		$scope.pushNotification = { checked: true };
+		$scope.pushNews = { checked: true };
+		$scope.pushMatch = { checked: true };
+	})
 
 	.controller('NdeshjetCtrl', function($scope, $sce, $timeout, $stateParams, $ionicLoading, $ionicBackdrop, $ionicPopover, NdeshjetService) {
 

@@ -178,6 +178,16 @@ FacebookAds.showInterstitial();
         }
       }
     })
+	
+	.state('app.settings', {
+      url: "/settings",
+      views: {
+        'menuContent' :{
+          templateUrl: "templates/settings.html",
+		  controller: 'SettingsCtrl'
+        }
+      }
+    })
 
     .state('app.lojtari', {
       url: "/ekipi/:lojtariId",
