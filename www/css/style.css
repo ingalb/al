@@ -225,6 +225,24 @@ body{
 }
 .lajmi-titulli{font-weight:bold;}
 
+.titleI{
+	display: inline-block;
+    width: 100%;
+    background: rgba(23, 23, 23, 0.4);
+    padding-top: 5px;
+    padding-bottom: 5px;
+	color: #EE1C24;
+	bottom:0;
+	font-weight: bold;
+	text-align: center;
+}
+.bg-image1{
+	height:  150px;
+	background-size : cover;
+  background-position-x: 50%;
+  background-position-y: 50%;
+  position:relative;
+}
 
 #lajme-index .bg-image{
 	height:  150px;
