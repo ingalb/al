@@ -165,8 +165,8 @@ body{
 	font-weight: bold;
 }
 .logo-fshf{
-	width:120px;
-	height:120px;
+	width:110px;
+	max-height:130px;
 }
 .scroll-content {
     background-attachment: scroll;
@@ -247,9 +247,8 @@ body{
 #lajme-index .bg-image{
 	height:  150px;
 	background-size : cover;
-  background-position-x: 50%;
-  background-position-y: 50%;
-  position:relative;
+    background-position-x: 50%;
+    background-position-y: 50%;
 }
 #lajme-index .title{
 	display: inline-block;
@@ -258,15 +257,18 @@ body{
     padding-top: 5px;
     padding-bottom: 5px;
 	color: #EE1C24;
-	position: absolute;
-	bottom:0;
 	font-weight: bold;
+}
+#title{
+	bottom:0;
+	position:absolute;
 }
 #lajme-index .row + .row {
 	margin-top: 0px;
 }
 #lajme-index {
 	margin-top: 0px;
+	position: relative;
 }
 @media screen and (min-height: 500px) {
   .slider-img {
