@@ -7,13 +7,13 @@
 	    <div class="item item-divider"> 
 			Zgjidh opsionet e njoftimeve (Notifications).
         </div>
-		<ion-toggle ng-model="pushNotification.checked" ng-change="pushNotificationChange()">
+		<ion-toggle ng-model="pushNotification.checked" ng-change="pushNotificationChange(true)">
           Njoftime te pergjithshme
         </ion-toggle>
-		<ion-toggle ng-model="pushNews.checked" ng-change="pushNotificationChange()">
+		<ion-toggle ng-model="pushNews.checked" ng-change="pushNotificationChange(false)">
           Njoftime nga lajmet
         </ion-toggle>
-		<ion-toggle ng-model="pushMatch.checked" ng-change="pushNotificationChange()">
+		<ion-toggle ng-model="pushMatch.checked" ng-change="pushNotificationChange(false)">
           Njoftime nga ndeshjet
         </ion-toggle>	    
     </div>

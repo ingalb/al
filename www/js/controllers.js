@@ -689,20 +689,24 @@ angular.module('albania.controllers', [])
 		  });
 	    }
 		isSubscribed();
-		$scope.pushNotificationChange = function() {
-			//console.log(data);
+		$scope.pushNotificationChange = function(data) {
+			console.log(data);
 			console.log('Push Notification Change', $scope.pushNotification.checked);
 			console.log('Push Notification Change', $scope.pushNews.checked);	
 			console.log('Push Notification Change', $scope.pushMatch.checked);
 
 			if(!$scope.pushNotification.checked)
 			{
+				$scope.pushNotification = { checked: false };
 				console.log("Unsubscribe");
 				window.plugins.OneSignal.deleteTags(["news", "match"]);
 				window.plugins.OneSignal.setSubscription(false);
-				$scope.pushNotification = { checked: false };
-				$scope.pushNews = { checked: false };
-				$scope.pushMatch = { checked: false };
+				if(data)
+				{
+					console.log(data);
+					$scope.pushNews = { checked: false };
+					$scope.pushMatch = { checked: false };
+				}
                 if($scope.pushNews.checked)
 				{
 					console.log("Subscribe News");
@@ -714,12 +718,11 @@ angular.module('albania.controllers', [])
 				if($scope.pushMatch.checked)
 				{
 					console.log("Subscribe Match");
+					window.plugins.OneSignal.setSubscription(true);
 					window.plugins.OneSignal.sendTag("match", true);
 					$scope.pushMatch = { checked: true };
-					window.plugins.OneSignal.sendTag("news", true);
 					$scope.pushNotification = { checked: true };
-				}				
-				
+				}
 			}
 		    else{
 				console.log("Subscribe");
