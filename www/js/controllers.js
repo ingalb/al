@@ -145,6 +145,7 @@ angular.module('albania.controllers', [])
 
     .controller('LajmeCtrl', function($scope, $sce, $timeout, $ionicLoading, LajmeService) {
       ga_storage._trackPageview('#/app/lajmet', 'Albania App Lajmet');
+	  $scope.anim = "ion-ios-bell-outline";
       $scope.loadingIndicator = $ionicLoading.show({
 	    content: 'Loading Data',
 	    animation: 'fade-in',
@@ -701,7 +702,24 @@ angular.module('albania.controllers', [])
 				window.plugins.OneSignal.setSubscription(false);
 				$scope.pushNotification = { checked: false };
 				$scope.pushNews = { checked: false };
-				$scope.pushMatch = { checked: false };	
+				$scope.pushMatch = { checked: false };
+                if($scope.pushNews.checked)
+				{
+					console.log("Subscribe News");
+					window.plugins.OneSignal.setSubscription(true);
+					window.plugins.OneSignal.sendTag("news", true);
+					$scope.pushNews = { checked: true };
+					$scope.pushNotification = { checked: true };
+				}
+				if($scope.pushMatch.checked)
+				{
+					console.log("Subscribe Match");
+					window.plugins.OneSignal.sendTag("match", true);
+					$scope.pushMatch = { checked: true };
+					window.plugins.OneSignal.sendTag("news", true);
+					$scope.pushNotification = { checked: true };
+				}				
+				
 			}
 		    else{
 				console.log("Subscribe");

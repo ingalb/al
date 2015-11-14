@@ -950,7 +950,7 @@ pullDown
     transform: scale3d(.3, .3, .3);
   }
 
-  50% {
+  30% {
     opacity: 1;
   }
 }
@@ -962,7 +962,7 @@ pullDown
     transform: scale3d(.3, .3, .3);
   }
 
-  50% {
+  30% {
     opacity: 1;
   }
 }
@@ -1011,20 +1011,4 @@ pullDown
 .zoomInUp {
   -webkit-animation-name: zoomInUp;
   animation-name: zoomInUp;
-}
-
-@-webkit-keyframes zoomOut {
-  from {
-    opacity: 1;
-  }
-
-  50% {
-    opacity: 0;
-    -webkit-transform: scale3d(.3, .3, .3);
-    transform: scale3d(.3, .3, .3);
-  }
-
-  to {
-    opacity: 0;
-  }
 }

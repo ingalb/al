@@ -1,4 +1,4 @@
-<ion-view drag-content="false" on-swipe-right="slidePrevious()" on-swipe-left="slideNext()" title="{{sezoni_text}}">
+<ion-view drag-content="false" on-swipe-right="slidePrevious()" scroll="true" on-swipe-left="slideNext()" title="{{sezoni_text}}">
   <ion-nav-buttons side="left">
     <button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
   </ion-nav-buttons>
@@ -41,7 +41,7 @@
  </ion-tab>
 
  <ion-tab class="bg-transparent"  on-select="selectedTab('2')" title="Gr. B">
-	<ion-content scroll="true" class="has-subheader">
+	<ion-content scroll="true" class="has-subheader has-footer">
 		<div class="bg-transparent gr-scroll">
 			<div class="item item-divider pad5">
 				<div class="row">
