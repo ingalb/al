@@ -59,7 +59,7 @@ angular.module('albania.controllers', [])
 
     .controller('IndexCtrl', function($scope, $ionicSlideBoxDelegate, $state, $timeout, $ionicLoading, $ionicPopup, LajmeService, $ionicModal, $rootScope, NdeshjetService) {
         var tani = new Date();
-        var timerhide = 15000;
+        var timerhide = 10000;
         ga_storage._trackPageview('#/app/index', 'Albania App Index');
         if(navigator.splashscreen){
            navigator.splashscreen.hide();
@@ -135,14 +135,16 @@ angular.module('albania.controllers', [])
          return ( d1>d2);
        };
 
-      $timeout(function(){
-        $ionicLoading.hide();
-      },timerhide);
+        $timeout(function(){
+			$ionicLoading.hide();
+			//admob.showBanner(admob.BannerSize.SMART_BANNER,admob.Position.BOTTOM_APP);
+		    console.log("hide loading + show banner");
+		},timerhide);
 
       })
 
     .controller('LajmeCtrl', function($scope, $sce, $timeout, $ionicLoading, LajmeService) {
-      ga_storage._trackPageview('#/app/lajmet', 'Vllaznia App Lajmet');
+      ga_storage._trackPageview('#/app/lajmet', 'Albania App Lajmet');
       $scope.loadingIndicator = $ionicLoading.show({
 	    content: 'Loading Data',
 	    animation: 'fade-in',
@@ -150,23 +152,62 @@ angular.module('albania.controllers', [])
 	    maxWidth: 200,
 	    showDelay: 100
 	    });
-      //FacebookAds.showInterstitial();
-	  admob.showBanner(admob.BannerSize.SMART_BANNER,admob.Position.BOTTOM_CENTER);
+		var isSubscribed = function(){
+		  window.plugins.OneSignal.getTags(function(tag) {
+			if(tag["news"]=="true")
+			{
+				$scope.notification = true;
+				$scope.anim = "ion-ios-bell";
+			}
+			else{
+				$scope.notification = false;
+				$scope.anim = "ion-ios-bell-outline";
+			}
+		  });
+	    }
+		isSubscribed();
+		
+	    var subscribe = function(){
+			$scope.notification = true;
+			$scope.anim = "ion-ios-bell";
+			window.plugins.OneSignal.setSubscription(true);
+			window.plugins.OneSignal.sendTag("news",true);
+		}
+		var unSubscribe = function(){
+			$scope.notification = false;
+			$scope.anim = "ion-ios-bell-outline";
+			window.plugins.OneSignal.deleteTag("news");
+		}
+        //FacebookAds.showInterstitial();
+	    //admob.showBanner(admob.BannerSize.SMART_BANNER,admob.Position.BOTTOM_CENTER);
         LajmeService.getAll(function(data) {
             $scope.lajme = data;
             //console.log($scope.lajme);
             $ionicLoading.hide();
         });
+		$scope.subNotification = function(){
+			$scope.notification = $scope.notification === true ? false: true;
+			if($scope.notification)
+			{
+				subscribe();
+			}
+			else{
+				unSubscribe();
+			}
+	    }
         $scope.doRefresh = function() {
           LajmeService.getAll(function(data) {
             $scope.lajme = data;
+			isSubscribed();
             $ionicLoading.hide();
             $scope.$broadcast('scroll.refreshComplete');
         });
        }
        $timeout(function(){
          $ionicLoading.hide();
-       },5000);
+		 //admob.showBanner(admob.BannerSize.SMART_BANNER,admob.Position.BOTTOM_APP);
+		 console.log("hide loading + show banner");
+       },10000);
     })
 
     .controller('LajmeDetCtrl', function($scope, $sce, $stateParams, $ionicLoading, LajmeService) {
@@ -221,12 +262,12 @@ angular.module('albania.controllers', [])
 	   var subscribe = function(){
 		$scope.notification = true;
 		$scope.anim = "ion-ios-bell";
-		window.plugins.OneSignal.sendTag(tags, true);
+		window.plugins.OneSignal.setSubscription(true);
+		window.plugins.OneSignal.sendTags({tags: true, "match": true});
 	   }
 	   var unSubscribe = function(){
 		$scope.notification = false;
 		$scope.anim = "ion-ios-bell-outline";
-		window.plugins.OneSignal.sendTag(tags, false);
 		window.plugins.OneSignal.deleteTag(tags);
 	   }
        //$scope.minuta = "minuta";
@@ -261,12 +302,12 @@ angular.module('albania.controllers', [])
 	    	console.log("enter view");
 			var update = function update() {
 				timer = $timeout(update, 59000);
+				isSubscribed(tags);
 				NdeshjaService.getReport($stateParams.ndeshjaId, function(data) {
 					$scope.item = data;
 					$scope.content = data.kronika;
 					$scope.percent = data.percent;
 					$ionicNavBarDelegate.title(data.java);
-					isSubscribed(tags);
 					$ionicSlideBoxDelegate.update();
 					$ionicScrollDelegate.resize();
 					$ionicLoading.hide();
@@ -305,7 +346,7 @@ angular.module('albania.controllers', [])
           $ionicScrollDelegate.resize();
        }
 
-	   $scope.subNotification = function(){
+	    $scope.subNotification = function(){
 		   $scope.notification = $scope.notification === true ? false: true;
 		   if($scope.notification)
 		   {
@@ -314,7 +355,7 @@ angular.module('albania.controllers', [])
 		   else{
 				unSubscribe();
 		   }
-	   }
+	    }
        $scope.doRefresh = function() {
          $scope.loadingIndicator = $ionicLoading.show({
 	          content: 'Loading Data',
@@ -377,10 +418,10 @@ angular.module('albania.controllers', [])
 			      $ionicSideMenuDelegate.canDragContent(false);
         });
         //console.log($scope.gr_id);
-		   NdeshjetService.getGrupetNdeshje($scope.gr_id, function(data) {
+		NdeshjetService.getGrupetNdeshje($scope.gr_id, function(data) {
             $scope.itemsN = data;
             $ionicLoading.hide();
-			      $ionicSideMenuDelegate.canDragContent(false);
+			$ionicSideMenuDelegate.canDragContent(false);
         });
 
 	    $scope.activeVew = function(valActive){
@@ -577,7 +618,7 @@ angular.module('albania.controllers', [])
         //$scope.playerID = 1;
        //$scope.item.pid = 1;
         //console.log($stateParams.lojtariId);
-        $scope.anim="";
+        $scope.anim="zoomIn";
         $scope.loadingIndicator = $ionicLoading.show({
 	         content: 'Loading Data',
 	         animation: 'fade-in',
@@ -589,10 +630,10 @@ angular.module('albania.controllers', [])
         $ionicLoading.hide();
         //console.log($scope.item.pid);
         $scope.lojtariN = function(numri){
-          if($scope.anim === "zoomInRight")
-             $scope.anim = "zoomInLeft";
+          if($scope.anim === "zoomIn")
+		  { $scope.anim = "zoomInUp";}
          else
-            $scope.anim = "zoomInRight";
+		  { $scope.anim = "zoomIn";}
           // $scope.anim="slideLeft";
            numri = $scope.item.pid +1;
            if(numri>25){numri=1;
@@ -604,10 +645,10 @@ angular.module('albania.controllers', [])
           // $scope.playerID = index+1;
          }
          $scope.lojtariP = function(numri){
-           if($scope.anim === "zoomInRight")
-              $scope.anim = "zoomInLeft";
+           if($scope.anim === "zoomInUp")
+              $scope.anim = "zoomIn";
            else
-            $scope.anim = "zoomInRight";
+            $scope.anim = "zoomIn";
            numri = $scope.item.pid - 1;
            if(numri<1){numri=25;
            $scope.item.pid=25;}
@@ -623,35 +664,73 @@ angular.module('albania.controllers', [])
     })
 	
 	.controller('SettingsCtrl', function($scope, $ionicPopup) {
-		//$scope.menu = true;
+
+		$scope.pushNotification = { checked: true };
+		$scope.pushNews = { checked: true };
+		$scope.pushMatch = { checked: false };
 		
-		var subscribe = function(tags){
-			$scope.notification = true;
-			window.plugins.OneSignal.sendTag(tags, true);
-		}
-		var unSubscribe = function(tags){
-			window.plugins.OneSignal.deleteTag(tags);
+		var isSubscribed = function(){
+		  window.plugins.OneSignal.getTags(function(tag) {
+			if(tag["match"]=="true")
+			{
+				$scope.pushMatch = { checked: true };
+			}
+			else{
+				$scope.pushMatch = { checked: false };
+			}
+			if(tag["news"]=="true")
+			{
+				$scope.pushNews = { checked: true };
+			}
+			else{
+				$scope.pushNews = { checked: false };
+			}
+		  });
 	    }
-		
+		isSubscribed();
 		$scope.pushNotificationChange = function() {
 			//console.log(data);
 			console.log('Push Notification Change', $scope.pushNotification.checked);
 			console.log('Push Notification Change', $scope.pushNews.checked);	
 			console.log('Push Notification Change', $scope.pushMatch.checked);
 
-			if($scope.pushNotification.checked)
+			if(!$scope.pushNotification.checked)
 			{
-				console.log("subscribe");
-				window.plugins.OneSignal.setSubscription(true);
+				console.log("Unsubscribe");
+				window.plugins.OneSignal.deleteTags(["news", "match"]);
+				window.plugins.OneSignal.setSubscription(false);
+				$scope.pushNotification = { checked: false };
+				$scope.pushNews = { checked: false };
+				$scope.pushMatch = { checked: false };	
 			}
 		    else{
-				console.log("unsubscribe");
-				//window.plugins.OneSignal.setSubscription(false);
+				console.log("Subscribe");
+				window.plugins.OneSignal.setSubscription(true);
+				$scope.pushNotification = { checked: true };
+				if($scope.pushNews.checked)
+				{
+					console.log("Subscribe News");
+					window.plugins.OneSignal.sendTag("news", true);
+					$scope.pushNews = { checked: true };
+				}
+			    else{
+					console.log("UnSubscribe News");
+					window.plugins.OneSignal.deleteTag("news");
+					$scope.pushNews = { checked: false };					
+				}
+				if($scope.pushMatch.checked)
+				{
+					console.log("Subscribe Match");
+					window.plugins.OneSignal.sendTag("match", true);
+					$scope.pushMatch = { checked: true };
+				}
+			    else{
+					console.log("UnSubscribe Match");
+					window.plugins.OneSignal.deleteTag("match");
+					$scope.pushMatch = { checked: false };					
+				}
 			}
 		}; 
-		$scope.pushNotification = { checked: true };
-		$scope.pushNews = { checked: true };
-		$scope.pushMatch = { checked: true };
 	})
 
 	.controller('NdeshjetCtrl', function($scope, $sce, $timeout, $stateParams, $ionicLoading, $ionicBackdrop, $ionicPopover, NdeshjetService) {

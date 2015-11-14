@@ -53,8 +53,8 @@ FacebookAds.showInterstitial();
         admob.createBannerView();
         admob.requestInterstitialAd();
 **/
-    admob.showBanner(admob.BannerSize.SMART_BANNER,admob.Position.BOTTOM_APP);
-    admob.cacheInterstitial();
+    //admob.showBanner(admob.BannerSize.SMART_BANNER,admob.Position.BOTTOM_APP);
+    //admob.cacheInterstitial();
 
     } catch (e) {
           console.log(e.message);
@@ -74,7 +74,7 @@ FacebookAds.showInterstitial();
 								    autoRegister: true},
                                     notificationOpenedCallback);
 
-    window.plugins.OneSignal.sendTags({version: "3"});
+    window.plugins.OneSignal.sendTags({app: "euro2016", news: "true"});
 
    if(window.cordova && window.cordova.plugins.Keyboard) {
       cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
@@ -137,7 +137,7 @@ FacebookAds.showInterstitial();
       url: "/ndeshja/:ndeshjaId",
       views: {
         'menuContent' :{
-          templateUrl: "templates/ndeshja1.html",
+          templateUrl: "templates/ndeshja.html",
           controller: 'NdeshjetDetCtrl'
         }
       }
