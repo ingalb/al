@@ -14,28 +14,29 @@
     <author href="http://www.ingalb.info" email="contact@ingalb.info">
         Ingalb Company
     </author>
-	
+
 	<gap:config-file platform="android" parent="/manifest">
 		<application android:debuggable="true" />
 	</gap:config-file>
-	
+
 	<content src="index.html"/>
-	
+
 	<gap:plugin name="org.apache.cordova.device" />
     <gap:plugin name="org.apache.cordova.device-orientation" />
     <gap:plugin name="cordova-plugin-inappbrowser" source="npm" />
     <gap:plugin name="org.apache.cordova.network-information" />
     <gap:plugin name="org.apache.cordova.statusbar" />
 	<gap:plugin name="org.apache.cordova.splashscreen" />
-	
+
 	<gap:plugin name="cordova-plugin-whitelist" source="npm" />
 	<plugin name="cordova-plugin-whitelist" version="1" />
 
     <!--<gap:plugin name="cordova-admob" source="npm" />-->
-	<gap:plugin name="com-admob-plugin" version="5.2.0" source="npm"/>
+	  <gap:plugin name="com-admob-plugin" version="5.2.0" source="npm"/>
     <gap:plugin name="nl.x-services.plugins.socialsharing" />
     <gap:plugin name="onesignal-cordova-plugin-pgb-compat" source="npm" />
     <gap:plugin name="cordova-plugin-android-support-v4" source="npm" />
+    <gap:plugin name="cordova-plugin-google-analytics" source="npm" />
 
 
     <preference name="permissions"  value="none"/>

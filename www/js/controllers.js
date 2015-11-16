@@ -68,12 +68,13 @@ angular.module('albania.controllers', [])
     .controller('IndexCtrl', function($scope, $ionicSlideBoxDelegate, $state, $timeout, $ionicLoading, $ionicPopup, LajmeService, $ionicModal, $rootScope, NdeshjetService) {
         var tani = new Date();
         var timerhide = 15000;
-        ga_storage._trackPageview('#/app/index', 'Albania App Index');
+        window.analytics.trackView('Albania Euro 2016 App');
+        //ga_storage._trackPageview('#/app/index', 'Albania App Index');
         if(navigator.splashscreen){
            navigator.splashscreen.hide();
 		   console.log("hide splash");
         }
-		
+
 		$ionicLoading.show();
 
         $scope.CloseNotification = function() {
@@ -153,7 +154,8 @@ angular.module('albania.controllers', [])
       })
 
     .controller('LajmeCtrl', function($scope, $sce, $timeout, $ionicLoading, LajmeService) {
-      ga_storage._trackPageview('#/app/lajmet', 'Albania App Lajmet');
+      //ga_storage._trackPageview('#/app/lajmet', 'Albania App Lajmet');
+      window.analytics.trackView('Lajmet Page');
 	  $scope.anim = "ion-ios-bell-outline";
       $scope.loadingIndicator = $ionicLoading.show({
 	    content: 'Loading Data',
@@ -176,7 +178,7 @@ angular.module('albania.controllers', [])
 		  });
 	    }
 		isSubscribed();
-		
+
 	    var subscribe = function(){
 			$scope.notification = true;
 			$scope.anim = "ion-ios-bell";
@@ -236,7 +238,7 @@ angular.module('albania.controllers', [])
 	    });
         $scope.lajmi = LajmeService.getId($stateParams.lajmiId);
         $ionicLoading.hide();
-		
+
 		admob.cacheInterstitial();
 		admob.showInterstitial();
 		$scope.showAds = function()
@@ -305,12 +307,12 @@ angular.module('albania.controllers', [])
             lineCap:'round',
             size:'60'
         };
-		
+
 		$scope.$on('$ionicView.beforeLeave', function(){
          $timeout.cancel(timer);
 		 console.log("leave view");
 		});
-		
+
 		$scope.$on('$ionicView.enter', function(){
 	    	console.log("enter view");
 			var update = function update() {
@@ -327,7 +329,7 @@ angular.module('albania.controllers', [])
 				});
 			}();
 		});
-		
+
        /* (function update() {
         $timeout(update, 59000);
         NdeshjaService.getReport($stateParams.ndeshjaId, function(data) {
@@ -603,7 +605,7 @@ angular.module('albania.controllers', [])
 
     })
 
-	
+
 	.controller('AllFazatCtrl', function($scope, $stateParams, $timeout, $ionicLoading, $ionicSideMenuDelegate, $ionicTabsDelegate, $ionicBackdrop, NdeshjetService, $ionicPopover) {
      ga_storage._trackPageview('#/app/grupi', 'Euro2016 App Grupi');
      var titulliPop = "Zgjidh Grupin";
@@ -768,15 +770,15 @@ angular.module('albania.controllers', [])
            $ionicLoading.hide();
          },6000);
     })
-	
+
 	.controller('SettingsCtrl', function($scope, $ionicPopup) {
 
 		//$scope.pushNotification = { checked: true };
 		//$scope.pushNews = { checked: true };
 		//$scope.pushMatch = { checked: false };
-		
+
 		var isSubscribed = function(){
-		  window.plugins.OneSignal.getIds(function(ids){  
+		  window.plugins.OneSignal.getIds(function(ids){
 		  //alert('getIds: ' + JSON.stringify(ids));
 		    if(ids["pushToken"])
 			{
@@ -809,7 +811,7 @@ angular.module('albania.controllers', [])
 		$scope.pushNotificationChange = function(data) {
 			//console.log(data);
 			console.log('Push Notification Change', $scope.pushNotification.checked);
-			console.log('Push Notification Change', $scope.pushNews.checked);	
+			console.log('Push Notification Change', $scope.pushNews.checked);
 			console.log('Push Notification Change', $scope.pushMatch.checked);
 
 			if(!$scope.pushNotification.checked)
@@ -854,7 +856,7 @@ angular.module('albania.controllers', [])
 			    else{
 					console.log("UnSubscribe News");
 					window.plugins.OneSignal.deleteTag("news");
-					$scope.pushNews = { checked: false };					
+					$scope.pushNews = { checked: false };
 				}
 				if($scope.pushMatch.checked)
 				{
@@ -865,10 +867,10 @@ angular.module('albania.controllers', [])
 			    else{
 					console.log("UnSubscribe Match");
 					window.plugins.OneSignal.deleteTag("match");
-					$scope.pushMatch = { checked: false };					
+					$scope.pushMatch = { checked: false };
 				}
 			}
-		}; 
+		};
 	})
 
 	.controller('NdeshjetCtrl', function($scope, $sce, $timeout, $stateParams, $ionicLoading, $ionicBackdrop, $ionicPopover, NdeshjetService) {

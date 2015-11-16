@@ -14,9 +14,11 @@ var albania = angular.module('albania', ['ionic', 'albania.services', 'albania.c
   $ionicPlatform.ready(function() {
    try{
 
-        ga_storage._setAccount('UA-2341193-x');
-        ga_storage._trackPageview('#/app/appJS', 'Albania App load');
+      //  ga_storage._setAccount('UA-2341193-x');
+      //  ga_storage._trackPageview('#/app/appJS', 'Albania App load');
        //ga_storage._trackPageview('#/app/klasifikimi', 'Vllaznia App klasifikimi');
+       window.analytics.startTrackerWithId('UA-70272201-1');
+       window.analytics.trackView('APP')
 
 var ad_units = {
     ios : {
@@ -70,7 +72,7 @@ FacebookAds.showInterstitial();
     //window.plugins.OneSignal.setLogLevel({logLevel: 4, visualLevel: 4});
     // Update with your OneSignal AppId and googleProjectNumber before running.
     window.plugins.OneSignal.init("989f0128-8884-11e5-bfb9-a0369f2d9328",
-                                   {googleProjectNumber: "656349133735", 
+                                   {googleProjectNumber: "656349133735",
 								    autoRegister: true},
                                     notificationOpenedCallback);
 
@@ -187,7 +189,7 @@ FacebookAds.showInterstitial();
         }
       }
     })
-	
+
 	.state('app.settings', {
       url: "/settings",
       views: {
