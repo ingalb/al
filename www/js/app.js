@@ -151,6 +151,15 @@ FacebookAds.showInterstitial();
         }
       }
     })
+	.state('app.finalet', {
+      url: "/finalet",
+      views: {
+        'menuContent' :{
+          templateUrl: "templates/faza-finale.html",
+          controller: 'AllFazatCtrl'
+        }
+      }
+    })
     .state('app.gr', {
       url: "/gr/:grId",
       views: {

@@ -27,6 +27,42 @@ angular.module('albania.services', [])
     }
 })
 
+	.factory('MenuService', function($http) {
+        var menu = [];
+        return {
+            getMenuStatus: function(callback){
+				$http.get('http://www.ingalb.info/apps/menu.php').then(function successCallback(data) {
+					menu = data;
+					window.localStorage["menu"] = JSON.stringify(menu);
+                    callback(menu); 
+				}, function errorCallback(data) {
+					console.log("ERROR loading" + data);
+					if(window.localStorage["menu"] !== undefined) {
+                    menu = JSON.parse(window.localStorage["menu"]);
+                    callback(menu);
+					}
+				});
+            },
+			getMenuStatus1: function(callback) {
+                $http.get('http://www.ingalb.info/apps/menu.php').success(
+                    function(data) {
+                        menu = data;
+                        window.localStorage["menu"] = JSON.stringify(menu);
+                        callback(data);
+                    }
+                )
+                .error(function(data) {
+                   console.log("ERROR:" + data);
+                   if(window.localStorage["menu"] !== undefined) {
+                    menu = JSON.parse(window.localStorage["menu"]);
+                    callback(menu);
+                }
+              });
+
+            }
+        }
+    })
+
 
    .factory('NdeshjetService', function($http) {
         var ndeshjet = [];

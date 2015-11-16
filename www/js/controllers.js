@@ -1,10 +1,18 @@
 angular.module('albania.controllers', [])
 
-.controller('AppCtrl', function($scope, $ionicPopup) {
+.controller('AppCtrl', function($scope, MenuService) {
    if(navigator.splashscreen){
       navigator.splashscreen.hide();
+	  console.log("hide splash 1");
    }
-   $scope.menu = true;
+    //$scope.menu = true;
+    MenuService.getMenuStatus(function(data) {
+		//console.log(data);
+		$scope.menu = data.data.menu;
+		//$scope.menu = $scope.menu.menu;
+		//console.log($scope.menu);
+		//alert(data.menu);
+    });
 })
 
     .filter('html',function($sce){
@@ -59,10 +67,11 @@ angular.module('albania.controllers', [])
 
     .controller('IndexCtrl', function($scope, $ionicSlideBoxDelegate, $state, $timeout, $ionicLoading, $ionicPopup, LajmeService, $ionicModal, $rootScope, NdeshjetService) {
         var tani = new Date();
-        var timerhide = 10000;
+        var timerhide = 15000;
         ga_storage._trackPageview('#/app/index', 'Albania App Index');
         if(navigator.splashscreen){
            navigator.splashscreen.hide();
+		   console.log("hide splash");
         }
 		
 		$ionicLoading.show();
@@ -137,7 +146,7 @@ angular.module('albania.controllers', [])
 
         $timeout(function(){
 			$ionicLoading.hide();
-			//admob.showBanner(admob.BannerSize.SMART_BANNER,admob.Position.BOTTOM_APP);
+			admob.showBanner(admob.BannerSize.SMART_BANNER,admob.Position.BOTTOM_APP);
 		    console.log("hide loading + show banner");
 		},timerhide);
 
@@ -152,8 +161,8 @@ angular.module('albania.controllers', [])
 	    showBackdrop: true,
 	    maxWidth: 200,
 	    showDelay: 100
-	    });
-		var isSubscribed = function(){
+	  });
+	    var isSubscribed = function(){
 		  window.plugins.OneSignal.getTags(function(tag) {
 			if(tag["news"]=="true")
 			{
@@ -180,7 +189,7 @@ angular.module('albania.controllers', [])
 			window.plugins.OneSignal.deleteTag("news");
 		}
         //FacebookAds.showInterstitial();
-	    //admob.showBanner(admob.BannerSize.SMART_BANNER,admob.Position.BOTTOM_CENTER);
+	    admob.showBanner(admob.BannerSize.SMART_BANNER,admob.Position.BOTTOM_CENTER);
         LajmeService.getAll(function(data) {
             $scope.lajme = data;
             //console.log($scope.lajme);
@@ -217,7 +226,7 @@ angular.module('albania.controllers', [])
           ga_storage._trackEvent('Lajme', 'Share', subject);
           window.plugins.socialsharing.share(message, subject, image, link, this.onSuccess, this.onError);
         }
-		admob.showBanner(admob.BannerSize.BANNER,admob.Position.BOTTOM_APP);
+		//admob.showBanner(admob.BannerSize.BANNER,admob.Position.BOTTOM_APP);
         $scope.loadingIndicator = $ionicLoading.show({
 	        content: 'Loading Data',
 	        animation: 'fade-in',
@@ -227,6 +236,9 @@ angular.module('albania.controllers', [])
 	    });
         $scope.lajmi = LajmeService.getId($stateParams.lajmiId);
         $ionicLoading.hide();
+		
+		admob.cacheInterstitial();
+		admob.showInterstitial();
 		$scope.showAds = function()
 		{
 			console.log("call ads");
@@ -248,7 +260,7 @@ angular.module('albania.controllers', [])
        //alert('User Tag: '+tags);
 	   var isSubscribed = function(tags){
 		  window.plugins.OneSignal.getTags(function(tag) {
-			if(tag[tags]=="true")
+			if(tag[tags]=="true" && tag["match"]=="true")
 			{
 				$scope.notification = true;
 				$scope.anim = "ion-ios-bell";
@@ -416,7 +428,7 @@ angular.module('albania.controllers', [])
         KlasifikimiGrupetService.getAllKlasifikimi(P_ID, $scope.gr_id,function(data) {
             $scope.items = data;
             //$ionicLoading.hide();
-			      $ionicSideMenuDelegate.canDragContent(false);
+			$ionicSideMenuDelegate.canDragContent(false);
         });
         //console.log($scope.gr_id);
 		NdeshjetService.getGrupetNdeshje($scope.gr_id, function(data) {
@@ -444,10 +456,10 @@ angular.module('albania.controllers', [])
 
 	    $scope.slideNext = function() {
             $ionicTabsDelegate.select(1);
-       }
-	   $scope.slidePrevious = function() {
+        }
+	    $scope.slidePrevious = function() {
             $ionicTabsDelegate.select(0);
-       }
+        }
 
       $scope.changeSezoni = function(item) {
         $scope.sezoni_text = item.text;
@@ -591,6 +603,99 @@ angular.module('albania.controllers', [])
 
     })
 
+	
+	.controller('AllFazatCtrl', function($scope, $stateParams, $timeout, $ionicLoading, $ionicSideMenuDelegate, $ionicTabsDelegate, $ionicBackdrop, NdeshjetService, $ionicPopover) {
+     ga_storage._trackPageview('#/app/grupi', 'Euro2016 App Grupi');
+     var titulliPop = "Zgjidh Grupin";
+	 var valActive = 0;
+	 $scope.gr_id = 4;
+     $scope.SezoneList = [
+       { text: "1/16", value: 4 },
+       { text: "1/8", value: 5 },
+       { text: "1/4", value: 6 },
+       { text: "1/2", value: 7 },
+       { text: "Finalja", value: 8 },
+      ];
+      $scope.loadingIndicator = $ionicLoading.show({
+	         content: 'Loading Data',
+	         animation: 'fade-in',
+	         showBackdrop: true,
+	         maxWidth: 200,
+	         showDelay: 500
+	     });
+       $ionicLoading.show();
+       $ionicPopover.fromTemplateUrl('popover1-template.html', {
+          scope: $scope,
+        }).then(function(popover) {
+          $scope.popover = popover;
+        });
+
+       // $scope.sezoni = "2014-15";
+       // $scope.sezoni_id = 100;
+       // $scope.sezoni_id = $scope.SezoneList[0].value;
+
+       $scope.sezoni_text = $scope.SezoneList[$scope.gr_id-4].text;
+
+        //console.log($scope.gr_id);
+		NdeshjetService.getGrNdeshje($scope.gr_id, function(data) {
+            $scope.itemsN = data;
+            $ionicLoading.hide();
+			$ionicSideMenuDelegate.canDragContent(false);
+        });
+
+		$scope.selectedTab = function(selectedId){
+			//alert("ok");
+			$ionicLoading.show();
+			$scope.gr_id = parseInt(selectedId) + parseInt(3);
+			//$scope.gr_id = 3 + $scope.gr_id;
+			console.log($scope.gr_id);
+			$scope.sezoni_text = $scope.SezoneList[selectedId-1].text;
+			NdeshjetService.getGrNdeshje($scope.gr_id, function(data) {
+                $scope.itemsN = data;
+                $ionicLoading.hide();
+			});
+		 }
+
+	    $scope.slideNext = function() {
+			$scope.gr_id = $scope.gr_id+1;
+			console.log($scope.gr_id);
+			if($scope.gr_id>8)
+		    {$scope.gr_id=8;}
+            $scope.sezoni_text = $scope.SezoneList[($scope.gr_id-4)].text;
+			$ionicLoading.show();
+			$scope.selectedTab($scope.gr_id-3);
+            $ionicTabsDelegate.select($scope.gr_id-4);
+       }
+	   $scope.slidePrevious = function() {
+		   $scope.gr_id= $scope.gr_id-1;
+		   if($scope.gr_id<4)
+		   {$scope.gr_id=4;}
+           $scope.sezoni_text = $scope.SezoneList[($scope.gr_id-4)].text;
+		   $scope.selectedTab($scope.gr_id-3);
+           $ionicTabsDelegate.select($scope.gr_id-4);
+       }
+
+       $scope.changeSezoni = function(item) {
+        $scope.sezoni_text = item.text;
+        $scope.gr_id = item.value;
+        $scope.sezoni_text = $scope.SezoneList[($scope.gr_id-4)].text;
+        $scope.popover.hide();
+        $ionicBackdrop.retain();
+		$ionicLoading.show();
+		NdeshjetService.getGrNdeshje($scope.gr_id, function(data) {
+            $scope.itemsN = data;
+        });
+		    $ionicBackdrop.release();
+		    $ionicLoading.hide();
+       };
+       $timeout(function(){
+          $ionicLoading.hide();
+          //selectPopup.close();
+          $scope.popover.hide();
+        //  $ionicBackdrop.release();
+      },10000);
+
+    })
 
     .controller('LojtaretCtrl', function($scope, $timeout, $stateParams, $ionicLoading, EkipiService) {
         ga_storage._trackPageview('#/app/ekipi', 'Vllaznia App Ekipi');
@@ -619,7 +724,7 @@ angular.module('albania.controllers', [])
         //$scope.playerID = 1;
        //$scope.item.pid = 1;
         //console.log($stateParams.lojtariId);
-        $scope.anim="zoomIn";
+        $scope.anim="zoomInDown";
         $scope.loadingIndicator = $ionicLoading.show({
 	         content: 'Loading Data',
 	         animation: 'fade-in',
@@ -631,10 +736,10 @@ angular.module('albania.controllers', [])
         $ionicLoading.hide();
         //console.log($scope.item.pid);
         $scope.lojtariN = function(numri){
-          if($scope.anim === "zoomIn")
+          if($scope.anim === "zoomInDown")
 		  { $scope.anim = "zoomInUp";}
          else
-		  { $scope.anim = "zoomIn";}
+		  { $scope.anim = "zoomInDown";}
           // $scope.anim="slideLeft";
            numri = $scope.item.pid +1;
            if(numri>25){numri=1;
@@ -647,9 +752,9 @@ angular.module('albania.controllers', [])
          }
          $scope.lojtariP = function(numri){
            if($scope.anim === "zoomInUp")
-              $scope.anim = "zoomIn";
+              $scope.anim = "zoomInDown";
            else
-            $scope.anim = "zoomIn";
+            $scope.anim = "zoomInUp";
            numri = $scope.item.pid - 1;
            if(numri<1){numri=25;
            $scope.item.pid=25;}
@@ -666,11 +771,23 @@ angular.module('albania.controllers', [])
 	
 	.controller('SettingsCtrl', function($scope, $ionicPopup) {
 
-		$scope.pushNotification = { checked: true };
-		$scope.pushNews = { checked: true };
-		$scope.pushMatch = { checked: false };
+		//$scope.pushNotification = { checked: true };
+		//$scope.pushNews = { checked: true };
+		//$scope.pushMatch = { checked: false };
 		
 		var isSubscribed = function(){
+		  window.plugins.OneSignal.getIds(function(ids){  
+		  //alert('getIds: ' + JSON.stringify(ids));
+		    if(ids["pushToken"])
+			{
+				$scope.pushNotification = { checked: true };
+			}
+			else{
+				$scope.pushNotification = { checked: false };
+				$scope.pushNews = { checked: false };
+				$scope.pushMatch = { checked: false };
+			}
+		  });
 		  window.plugins.OneSignal.getTags(function(tag) {
 			if(tag["match"]=="true")
 			{
@@ -690,7 +807,7 @@ angular.module('albania.controllers', [])
 	    }
 		isSubscribed();
 		$scope.pushNotificationChange = function(data) {
-			console.log(data);
+			//console.log(data);
 			console.log('Push Notification Change', $scope.pushNotification.checked);
 			console.log('Push Notification Change', $scope.pushNews.checked);	
 			console.log('Push Notification Change', $scope.pushMatch.checked);
