@@ -68,14 +68,13 @@ angular.module('albania.controllers', [])
     .controller('IndexCtrl', function($scope, $ionicSlideBoxDelegate, $state, $timeout, $ionicLoading, $ionicPopup, LajmeService, $ionicModal, $rootScope, NdeshjetService) {
         var tani = new Date();
         var timerhide = 15000;
-        window.analytics.trackView('Albania Euro 2016 App');
-        //ga_storage._trackPageview('#/app/index', 'Albania App Index');
+        ga_storage._trackPageview('#/app/index', 'Albania App Index');
         if(navigator.splashscreen){
            navigator.splashscreen.hide();
-		   console.log("hide splash");
+		       console.log("hide splash");
         }
 
-		$ionicLoading.show();
+		    $ionicLoading.show();
 
         $scope.CloseNotification = function() {
            $scope.modal.hide();
@@ -145,7 +144,7 @@ angular.module('albania.controllers', [])
          return ( d1>d2);
        };
 
-        $timeout(function(){
+    $timeout(function(){
 			$ionicLoading.hide();
 			admob.showBanner(admob.BannerSize.SMART_BANNER,admob.Position.BOTTOM_APP);
 		    console.log("hide loading + show banner");
@@ -154,9 +153,9 @@ angular.module('albania.controllers', [])
       })
 
     .controller('LajmeCtrl', function($scope, $sce, $timeout, $ionicLoading, LajmeService) {
-      //ga_storage._trackPageview('#/app/lajmet', 'Albania App Lajmet');
-      window.analytics.trackView('Lajmet Page');
-	  $scope.anim = "ion-ios-bell-outline";
+      ga_storage._trackPageview('#/app/lajmet', 'Albania App Lajmet');
+      //window.analytics.trackView('Lajmet Page');
+	    $scope.anim = "ion-ios-bell-outline";
       $scope.loadingIndicator = $ionicLoading.show({
 	    content: 'Loading Data',
 	    animation: 'fade-in',
@@ -165,19 +164,19 @@ angular.module('albania.controllers', [])
 	    showDelay: 100
 	  });
 	    var isSubscribed = function(){
-		  window.plugins.OneSignal.getTags(function(tag) {
-			if(tag["news"]=="true")
-			{
-				$scope.notification = true;
-				$scope.anim = "ion-ios-bell";
-			}
-			else{
-				$scope.notification = false;
-				$scope.anim = "ion-ios-bell-outline";
-			}
-		  });
+		      window.plugins.OneSignal.getTags(function(tag) {
+			     if(tag["news"]=="true")
+			     {
+				     $scope.notification = true;
+				     $scope.anim = "ion-ios-bell";
+			     }
+			     else{
+				     $scope.notification = false;
+				     $scope.anim = "ion-ios-bell-outline";
+			     }
+		      });
 	    }
-		isSubscribed();
+		  isSubscribed();
 
 	    var subscribe = function(){
 			$scope.notification = true;
@@ -223,7 +222,7 @@ angular.module('albania.controllers', [])
     })
 
     .controller('LajmeDetCtrl', function($scope, $sce, $stateParams, $ionicLoading, LajmeService) {
-        ga_storage._trackPageview('#/app/lajmi/'+ $stateParams.lajmiId+'', 'Vllaznia App Lajme Det');
+        ga_storage._trackPageview('#/app/lajmi/'+ $stateParams.lajmiId+'', 'Albania App Lajme Det');
         $scope.shareL = function(message, subject, image, link){
           ga_storage._trackEvent('Lajme', 'Share', subject);
           window.plugins.socialsharing.share(message, subject, image, link, this.onSuccess, this.onError);
@@ -396,7 +395,7 @@ angular.module('albania.controllers', [])
     })
 
 	.controller('GrupetCtrl', function($scope, $stateParams, $timeout, $ionicLoading, $ionicSideMenuDelegate, $ionicTabsDelegate, $ionicBackdrop, KlasifikimiGrupetService, NdeshjetService, $ionicPopover) {
-     ga_storage._trackPageview('#/app/grupi', 'Euro2016 App Grupi');
+     ga_storage._trackPageview('#/app/grupi'+$stateParams.grId+'', 'Euro2016 App Grupi');
      var titulliPop = "Zgjidh Grupin";
 	 var valActive = 1;
      $scope.SezoneList = [
@@ -490,7 +489,7 @@ angular.module('albania.controllers', [])
     })
 
 	.controller('AllGrupetCtrl', function($scope, $stateParams, $timeout, $ionicLoading, $ionicSideMenuDelegate, $ionicTabsDelegate, $ionicBackdrop, KlasifikimiGrupetService, NdeshjetService, $ionicPopover) {
-     ga_storage._trackPageview('#/app/grupi', 'Euro2016 App Grupi');
+     ga_storage._trackPageview('#/app/Allgrupet', 'Euro2016 App All Grupet');
      var titulliPop = "Zgjidh Grupin";
 	   var valActive = 0;
 	   $scope.gr_id = 1;
@@ -607,7 +606,7 @@ angular.module('albania.controllers', [])
 
 
 	.controller('AllFazatCtrl', function($scope, $stateParams, $timeout, $ionicLoading, $ionicSideMenuDelegate, $ionicTabsDelegate, $ionicBackdrop, NdeshjetService, $ionicPopover) {
-     ga_storage._trackPageview('#/app/grupi', 'Euro2016 App Grupi');
+     ga_storage._trackPageview('#/app/faza-finale', 'Euro2016 App Fazat finale');
      var titulliPop = "Zgjidh Grupin";
 	 var valActive = 0;
 	 $scope.gr_id = 4;
@@ -700,7 +699,7 @@ angular.module('albania.controllers', [])
     })
 
     .controller('LojtaretCtrl', function($scope, $timeout, $stateParams, $ionicLoading, EkipiService) {
-        ga_storage._trackPageview('#/app/ekipi', 'Vllaznia App Ekipi');
+        ga_storage._trackPageview('#/app/ekipi', 'Albania App Ekipi');
         $scope.sezoni_id ='superliga';
         $scope.ekipiId =13;
         $scope.loadingIndicator = $ionicLoading.show({
@@ -721,7 +720,7 @@ angular.module('albania.controllers', [])
     })
 
     .controller('LojtaretDetCtrl', function($scope, $stateParams, $timeout, $ionicLoading, EkipiService) {
-        ga_storage._trackPageview('#/app/ekipi/'+ $stateParams.lojtariId+'', 'Vllaznia App Lojtari Det');
+        ga_storage._trackPageview('#/app/ekipi/'+ $stateParams.lojtariId+'', 'Albania App Lojtari Det');
         //alert($stateParams.lojtariId);
         //$scope.playerID = 1;
        //$scope.item.pid = 1;
@@ -768,11 +767,11 @@ angular.module('albania.controllers', [])
          }
          $timeout(function(){
            $ionicLoading.hide();
-         },6000);
+         },10000);
     })
 
 	.controller('SettingsCtrl', function($scope, $ionicPopup) {
-
+     ga_storage._trackPageview('#/app/settings', 'Albania settings');
 		//$scope.pushNotification = { checked: true };
 		//$scope.pushNews = { checked: true };
 		//$scope.pushMatch = { checked: false };
@@ -810,6 +809,7 @@ angular.module('albania.controllers', [])
 		isSubscribed();
 		$scope.pushNotificationChange = function(data) {
 			//console.log(data);
+      ga_storage._trackEvent('settings', 'action', $scope.pushNotification.checked);
 			console.log('Push Notification Change', $scope.pushNotification.checked);
 			console.log('Push Notification Change', $scope.pushNews.checked);
 			console.log('Push Notification Change', $scope.pushMatch.checked);
