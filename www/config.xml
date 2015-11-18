@@ -32,7 +32,6 @@
 	<plugin name="cordova-plugin-whitelist" version="1" />
 
     <!--<gap:plugin name="cordova-admob" source="npm" />-->
-    <preference name="android-build-tool" value="gradle" />
 	  <gap:plugin name="com-admob-plugin" version="5.2.0" source="npm"/>
     <gap:plugin name="nl.x-services.plugins.socialsharing" />
     <gap:plugin name="onesignal-cordova-plugin-pgb-compat" source="npm" />
