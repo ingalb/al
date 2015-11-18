@@ -1,6 +1,7 @@
 var P_ID = 1;
 var EKIPI_ID = 87;
 var URL_APP = "http://vllaznia.cloudcontrolled.com/";
+var gaPlugin;
 
 // Ionic Starter App
 // angular.module is a global place for creating, registering and retrieving Angular modules
@@ -13,12 +14,13 @@ var albania = angular.module('albania', ['ionic', 'albania.services', 'albania.c
 .run(function($ionicPlatform, $rootScope) {
   $ionicPlatform.ready(function() {
    try{
-
+          gaPlugin = window.plugins.gaPlugin;
+          gaPlugin.init(successHandler, errorHandler, "UA-70272201-1", 10);
       //  ga_storage._setAccount('UA-2341193-x');
       //  ga_storage._trackPageview('#/app/appJS', 'Albania App load');
        //ga_storage._trackPageview('#/app/klasifikimi', 'Vllaznia App klasifikimi');
-       window.analytics.startTrackerWithId('UA-70272201-1');
-       window.analytics.trackView('APP')
+       //window.analytics.startTrackerWithId('UA-70272201-1');
+       //window.analytics.trackView('APP')
 
 var ad_units = {
     ios : {
@@ -30,6 +32,9 @@ var ad_units = {
         interstitial:"32016490754_10152997301780755"
     }
 };
+
+
+
 
 var adid = ad_units.android;
 /**
@@ -62,6 +67,17 @@ FacebookAds.showInterstitial();
           console.log(e.message);
 		  alert(e.message);
     }
+
+    gaPlugin.init(nativePluginResultHandler, nativePluginErrorHandler, "UA-70272201-1", 10);
+
+    var nativePluginResultHandler = function(result) {
+        //alert('nativePluginResultHandler - '+result);
+        console.log('nativePluginResultHandler: '+result);
+        }
+    var nativePluginErrorHandler = function(error) {
+        //alert('nativePluginErrorHandler - '+error);
+        console.log('nativePluginErrorHandler: '+error);
+      }
 
     var notificationOpenedCallback = function(jsonData) {
       //alert("Notification received:\n" + JSON.stringify(jsonData));
