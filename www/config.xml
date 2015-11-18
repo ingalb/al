@@ -36,7 +36,7 @@
     <gap:plugin name="nl.x-services.plugins.socialsharing" />
     <gap:plugin name="onesignal-cordova-plugin-pgb-compat" source="npm" />
     <gap:plugin name="cordova-plugin-android-support-v4" source="npm" />
-    <gap:plugin name="com.adobe.plugins.gaplugin" />
+  <!--  <gap:plugin name="com.adobe.plugins.gaplugin" />-->
   <!--  <gap:plugin name="cordova-plugin-google-analytics" source="npm" /> -->
 
 
