@@ -21,9 +21,9 @@
            </div>
         </ion-slide>
      </ion-slide-box>
-	 
+
 	<news-home></news-home>
-	
+
      <div class="row item item-divider bar bar-assertive statistika">
         <h1 class="title">Ndeshjet</h1>
      </div>
@@ -34,9 +34,10 @@
 				<div ui-sref="app.ndeshja({ndeshjaId: '{{item.id}}'})" class="col {{item.team1}} text-right">{{item.team1}}<img class="rank" ng-src="{{item.flag1}}"></div>
 				<div ui-sref="app.ndeshja({ndeshjaId: '{{item.id}}'})" class="col col-20 col-center"><a ng-if="item.over>0" class="rez assertive" href="#app/ndeshja/{{item.id}}">{{item.gol1_over}} - {{item.gol2_over}} </a><a ng-if="!item.gol1" class="rez assertive" href="#app/ndeshja/{{item.id}}">{{item.data | indexOrari}}</a><a ng-if="item.gol1" class="rez over{{item.over}} live{{item.live.live}}" href="#app/ndeshja/{{item.id}}">{{item.gol1}} - {{item.gol2}}</a><a ng-if="item.ot_gol1" class="rez over{{item.over}} live{{item.live.live}}" href="#app/ndeshja/{{item.id}}"><br>Shtes&euml;: {{item.ot_gol1}} - {{item.ot_gol2}}</a><a ng-if="item.so_gol1" class="rez over{{item.over}} live{{item.live.live}}" href="#app/ndeshja/{{item.id}}"><br>Pen: {{item.so_gol1}} - {{item.so_gol2}}</a></div>
 				<div ui-sref="app.ndeshja({ndeshjaId: '{{item.id}}'})" class="col text-left {{item.team2}}"><img class="rank" ng-src="{{item.flag2}}">{{item.team2}}</div>
-           </div>
-        </div>
+       </div>
+      </div>
 	 </div>
+   <div style="height:60px;"></div>
   </ion-content>
 </ion-view>
 
