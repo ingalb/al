@@ -779,7 +779,7 @@ angular.module('albania.controllers', [])
 		var isSubscribed = function(){
 		  window.plugins.OneSignal.getIds(function(ids){
 		  //alert('getIds: ' + JSON.stringify(ids));
-		    if(ids["pushToken"])
+		  if(ids["pushToken"])
 			{
 				$scope.pushNotification = { checked: true };
 			}
@@ -805,8 +805,11 @@ angular.module('albania.controllers', [])
 				$scope.pushNews = { checked: false };
 			}
 		  });
-	    }
+	  }
 		isSubscribed();
+    $scope.$on('$ionicView.enter', function(){
+       isSubscribed();
+    });
 		$scope.pushNotificationChange = function(data) {
 			//console.log(data);
       ga_storage._trackEvent('settings', 'action', $scope.pushNotification.checked);
