@@ -74,7 +74,7 @@
     <splash src="res/screen/android/hdpi.png" platform="android" qualifier="hdpi" />
     <splash src="res/screen/android/xhdpi.png" platform="android" qualifier="xhdpi" />
     <splash src="res/screen/android/portrait-xxhdpi.png" platform="android" qualifier="port-xxhdpi" />
-    <splash src="res/screen/android/landscape-xxhdpi.png" platform="android" qualifier="land-xxhdpi" />
+    <splash src="res/screen/android/xxhdpi.png" platform="android" qualifier="land-xxhdpi" />
 
     <!-- iPhone 6 / 6+ -->
     <icon src="res/icon/ios/icon-60@3x.png" platform="ios" width="180" height="180" />

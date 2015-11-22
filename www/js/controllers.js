@@ -91,7 +91,7 @@ angular.module('albania.controllers', [])
        });
 
        var notifica = $rootScope.$on('pushEvent', function(event,message){
-        // alert("Notification received:\n" + JSON.stringify(message));
+        console.log(JSON.stringify(message));
          $scope.titulli=message.additionalData.title;
          $scope.teksti=message.message;
          //$scope.dati = JSON.stringify(message);
@@ -177,6 +177,10 @@ angular.module('albania.controllers', [])
 		      });
 	    }
 		  isSubscribed();
+
+      $scope.$on('$ionicView.enter', function(){
+         isSubscribed();
+      });
 
 	    var subscribe = function(){
 			$scope.notification = true;
