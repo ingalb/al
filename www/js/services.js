@@ -285,6 +285,22 @@ angular.module('albania.services', [])
             getAllEkipi: function(sezoniId, ekipiId, callback) {
                 $http.get(URL_APP+'ekipi.php',{params:{id: sezoniId, ekipi: ekipiId}}).success(
                     function(data) {
+                        ekipi1 = data;
+                        window.localStorage["ekipi"] = JSON.stringify(data);
+                        callback(data);
+                    }
+                )
+                .error(function(data) {
+                   console.log("ERROR: " + data);
+                if(window.localStorage["ekipi"] !== undefined) {
+                    ekipi1 = JSON.parse(window.localStorage["ekipi"]);
+                    callback(ekipi);
+                  }
+                });
+            },
+			getAlb: function(sezoniId, ekipiId, callback) {
+                $http.get('http://www.albaniasoccer.com/statistika/kosova/roster/109-euro-2016-france-2016/4-shqiperi.html?format=raw&type=1').success(
+                    function(data) {
                         ekipi = data;
                         window.localStorage["ekipi"] = JSON.stringify(data);
                         callback(data);
@@ -298,33 +314,36 @@ angular.module('albania.services', [])
                   }
                 });
             },
-            get: function(lojtariId) {
-              return ekipi[lojtariId - 1];
+            get: function(lojtariId, callback) {
+				$http.get(URL_APP+'ekipi.php',{params:{id: 109, ekipi: 4}}).success(
+                    function(data) {
+                        ekipi1 = data;
+                        window.localStorage["ekipi1"] = JSON.stringify(data);
+                        callback(ekipi1);
+                    }
+                );
+                //return ekipi1[lojtariId - 1];
             }
         }
     })
 
-   .factory('ForumiService', function($http) {
-        var postimet = [];
-        return {
-            getAllPostimet: function(callback) {
-                $http.get('http://www.fkvllaznia.net/main/forum/json.php').success(
-                    function(data) {
-                        postimet = data;
-                        window.localStorage["postimet"] = JSON.stringify(data);
-                        callback(data);
-                    }
-                )
-                .error(function(data) {
-                   console.log("ERROR: " + data);
-                if(window.localStorage["postimet"] !== undefined) {
-                    postimet = JSON.parse(window.localStorage["postimet"]);
-                    callback(postimet);
+	.factory('Util', [function () {
+            return {
+                dhms: function (t) {
+                    var days, hours, minutes, seconds;
+                    days = Math.floor(t / 86400);
+                    t -= days * 86400;
+                    hours = Math.floor(t / 3600) % 24;
+                    t -= hours * 3600;
+                    minutes = Math.floor(t / 60) % 60;
+                    t -= minutes * 60;
+                    seconds = t % 60;
+                    return [
+                        days + ' dite',
+                        hours + ' ore',
+                        minutes + ' m e ',
+                        seconds + ' s'
+                    ].join(' ');
                 }
-            });
-            },
-            get: function(postId) {
-                return postimet[postId - 1];
-            }
-        }
-    });
+            };
+    }]);

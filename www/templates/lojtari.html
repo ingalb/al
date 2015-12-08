@@ -6,7 +6,7 @@
   <div ng-class="anim" class="animated" on-swipe-left="lojtariP({{item.pid - 1}})" on-swipe-right="lojtariN({{item.pid + 1}})">
     <div>
        <img class="full-image lojtari-img lajmi-img" ng-src="http://www.albaniasoccer.com/{{ item.foto }}">
-       <span class="bluza">{{ item.nr }}</span>
+       <span ng-if="item.type == 'player'" class="bluza">{{ item.nr }}</span>
        <div class="lojtari-emri button-bar">
           <button ng-click="lojtariP({{item.pid - 1}})" class="button icon-left ion-chevron-left button-clear button-light width-10"></button>
           <span style="color:#FFF;" class="button button-clear button-light lojtari-titull">{{ item.emri }} {{ item.mbiemri}}</span>

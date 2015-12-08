@@ -398,12 +398,12 @@ angular.module('albania.controllers', [])
      var titulliPop = "Zgjidh Grupin";
 	 var valActive = 1;
      $scope.SezoneList = [
-       { text: "Grupi A", value: 1 },
-       { text: "Grupi B", value: 2 },
-       { text: "Grupi C", value: 3 },
-       { text: "Grupi D", value: 4 },
-       { text: "Grupi E", value: 5 },
-       { text: "Grupi F", value: 6 },
+       { text: "Grupi A", value: 24 },
+       { text: "Grupi B", value: 25 },
+       { text: "Grupi C", value: 26 },
+       { text: "Grupi D", value: 27 },
+       { text: "Grupi E", value: 28 },
+       { text: "Grupi F", value: 29 },
       ];
       $scope.loadingIndicator = $ionicLoading.show({
 	         content: 'Loading Data',
@@ -422,9 +422,9 @@ angular.module('albania.controllers', [])
        // $scope.sezoni = "2014-15";
        // $scope.sezoni_id = 100;
        // $scope.sezoni_id = $scope.SezoneList[0].value;
-	     $scope.gr_id = $stateParams.grId;
-       $scope.sezoni_text = $scope.SezoneList[($scope.gr_id-1)].text;
-
+	   $scope.gr_id = $scope.SezoneList[($stateParams.grId-1)].value;
+       $scope.sezoni_text = $scope.SezoneList[($stateParams.grId-1)].text;
+       
         KlasifikimiGrupetService.getAllKlasifikimi(P_ID, $scope.gr_id,function(data) {
             $scope.items = data;
             //$ionicLoading.hide();
@@ -444,13 +444,13 @@ angular.module('albania.controllers', [])
 				KlasifikimiGrupetService.getAllKlasifikimi(P_ID, $scope.gr_id,function(data) {
                 $scope.items = data;
                 $ionicLoading.hide();
-        });
+                });
 			}
 			else{
 				NdeshjetService.getGrupetNdeshje($scope.gr_id, function(data) {
                 $scope.itemsN = data;
                 $ionicLoading.hide();
-        });
+                });
 			}
 		}
 
@@ -493,12 +493,12 @@ angular.module('albania.controllers', [])
 	   var valActive = 0;
 	   $scope.gr_id = 1;
      $scope.SezoneList = [
-       { text: "Grupi A", value: 1 },
-       { text: "Grupi B", value: 2 },
-       { text: "Grupi C", value: 3 },
-       { text: "Grupi D", value: 4 },
-       { text: "Grupi E", value: 5 },
-       { text: "Grupi F", value: 6 },
+       { text: "Grupi A", value: 24 },
+       { text: "Grupi B", value: 25 },
+       { text: "Grupi C", value: 26 },
+       { text: "Grupi D", value: 27 },
+       { text: "Grupi E", value: 28 },
+       { text: "Grupi F", value: 29 },
       ];
       $scope.loadingIndicator = $ionicLoading.show({
 	         content: 'Loading Data',
@@ -717,13 +717,37 @@ angular.module('albania.controllers', [])
           $ionicLoading.hide();
         },6000);
     })
+	
+	
+    .controller('Lojtaret1Ctrl', function($scope, $timeout, $stateParams, $ionicLoading, EkipiService) {
+        ga_storage._trackPageview('#/app/ekipi', 'Vllaznia App Ekipi');
+        $scope.sezoni_id ='superliga';
+        $scope.ekipiId =13;
+        $scope.loadingIndicator = $ionicLoading.show({
+	         content: 'Loading Data',
+	         animation: 'fade-in',
+	         showBackdrop: true,
+	         maxWidth: 200,
+	         showDelay: 500
+	      });
+        //EkipiService.getAllEkipi($scope.sezoni_id,$scope.ekipiId, function(data) {
+		EkipiService.getAlb($scope.sezoni_id,$scope.ekipiId, function(data) {
+            $scope.items = data;
+            console.log(data);
+            $ionicLoading.hide();
+        });
+        $timeout(function(){
+          $ionicLoading.hide();
+        },6000);
+    })
 
     .controller('LojtaretDetCtrl', function($scope, $stateParams, $timeout, $ionicLoading, EkipiService) {
-        ga_storage._trackPageview('#/app/ekipi/'+ $stateParams.lojtariId+'', 'Vllaznia App Lojtari Det');
+        ga_storage._trackPageview('#/app/ekipi/'+ $stateParams.lojtariId+'', 'Albania Euro2016 App Lojtari Det');
         //alert($stateParams.lojtariId);
         //$scope.playerID = 1;
-       //$scope.item.pid = 1;
+        //$scope.item.pid = 1;
         //console.log($stateParams.lojtariId);
+		var maxlen = 25;
         $scope.anim="zoomInDown";
         $scope.loadingIndicator = $ionicLoading.show({
 	         content: 'Loading Data',
@@ -732,19 +756,21 @@ angular.module('albania.controllers', [])
 	         maxWidth: 200,
 	         showDelay: 50
 	      });
-        $scope.item = EkipiService.get($stateParams.lojtariId);
+        EkipiService.get($stateParams.lojtariId, function(data){$scope.item = data[$stateParams.lojtariId-1]; maxlen=Object.keys(data).length;});
         $ionicLoading.hide();
         //console.log($scope.item.pid);
         $scope.lojtariN = function(numri){
           if($scope.anim === "zoomInDown")
 		  { $scope.anim = "zoomInUp";}
-         else
+          else
 		  { $scope.anim = "zoomInDown";}
-          // $scope.anim="slideLeft";
+           // $scope.anim="slideLeft";
            numri = $scope.item.pid +1;
-           if(numri>25){numri=1;
+		   //console.log(maxlen);
+           if(numri>maxlen){numri=1;
             $scope.item.pid=1;}
-           $scope.item = EkipiService.get(numri);
+           EkipiService.get(numri,function(data){$scope.item = data[numri-1]; maxlen=Object.keys(data).length;});
+		   //console.log($scope.item);
            $ionicLoading.hide();
            //console.log($scope.item.pid);
            //numri = $scope.item.pid;
@@ -755,14 +781,14 @@ angular.module('albania.controllers', [])
               $scope.anim = "zoomInDown";
            else
             $scope.anim = "zoomInUp";
-           numri = $scope.item.pid - 1;
-           if(numri<1){numri=25;
+            numri = $scope.item.pid - 1;
+           if(numri<1){numri=maxlen;
            $scope.item.pid=25;}
-           $scope.item = EkipiService.get(numri);
+           EkipiService.get(numri,function(data){$scope.item = data[numri-1]; maxlen=Object.keys(data).length;});
            $ionicLoading.hide();
-          // console.log($scope.item.pid);
+           // console.log($scope.item.pid);
            //numri = $scope.item.pid;
-          // $scope.playerID = index+1;
+           // $scope.playerID = index+1;
          }
          $timeout(function(){
            $ionicLoading.hide();

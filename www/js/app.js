@@ -1,5 +1,5 @@
-var P_ID = 1;
-var EKIPI_ID = 87;
+var P_ID = 109;
+var EKIPI_ID = 25;
 var URL_APP = "http://vllaznia.cloudcontrolled.com/";
 
 // Ionic Starter App
@@ -173,8 +173,18 @@ FacebookAds.showInterstitial();
       url: "/ekipi",
       views: {
         'menuContent' :{
-          templateUrl: "templates/lojtaret.html",
-          controller: 'LojtaretCtrl'
+          templateUrl: "templates/lojtaret1.html",
+          controller: 'Lojtaret1Ctrl'
+        }
+      }
+    })
+	
+	.state('app.ekipi1', {
+      url: "/ekipi1",
+      views: {
+        'menuContent' :{
+          templateUrl: "templates/lojtaret1.html",
+          controller: 'Lojtaret1Ctrl'
         }
       }
     })
@@ -223,3 +233,22 @@ albania.directive('newsHome', ['$compile', 'LajmeService', function($compile, La
         }
     }
  }]);
+
+albania.directive('countdown', ['Util','$interval', function (Util, $interval) {
+            return {
+                restrict: 'A',
+                scope: { date: '@' },
+                link: function (scope, element) {
+                    var future;
+                    future = new Date(scope.date);
+                    $interval(function () {
+                        var diff;
+                        diff = Math.floor((future.getTime() - new Date().getTime()) / 1000);
+                        return element.text(Util.dhms(diff));
+                    }, 1000);
+                }
+            };
+        }
+]);
+ 
+	
