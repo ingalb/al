@@ -21,6 +21,7 @@
            </div>
         </ion-slide>
      </ion-slide-box>
+	 
 	 <div class="card pad5">
 	    <p class="row item">Europiani fillon pas...</p>
         <h3 class="title text-center" countdown='' date='June 10, 2016 21:00:00'></h3>
@@ -38,9 +39,10 @@
 				<div ui-sref="app.ndeshja({ndeshjaId: '{{item.id}}'})" class="col {{item.team1}} text-right">{{item.team1}}<img class="rank" ng-src="{{item.flag1}}"></div>
 				<div ui-sref="app.ndeshja({ndeshjaId: '{{item.id}}'})" class="col col-20 col-center"><a ng-if="item.over>0" class="rez assertive" href="#app/ndeshja/{{item.id}}">{{item.gol1_over}} - {{item.gol2_over}} </a><a ng-if="!item.gol1" class="rez assertive" href="#app/ndeshja/{{item.id}}">{{item.data | indexOrari}}</a><a ng-if="item.gol1" class="rez over{{item.over}} live{{item.live.live}}" href="#app/ndeshja/{{item.id}}">{{item.gol1}} - {{item.gol2}}</a><a ng-if="item.ot_gol1" class="rez over{{item.over}} live{{item.live.live}}" href="#app/ndeshja/{{item.id}}"><br>Shtes&euml;: {{item.ot_gol1}} - {{item.ot_gol2}}</a><a ng-if="item.so_gol1" class="rez over{{item.over}} live{{item.live.live}}" href="#app/ndeshja/{{item.id}}"><br>Pen: {{item.so_gol1}} - {{item.so_gol2}}</a></div>
 				<div ui-sref="app.ndeshja({ndeshjaId: '{{item.id}}'})" class="col text-left {{item.team2}}"><img class="rank" ng-src="{{item.flag2}}">{{item.team2}}</div>
-           </div>
-        </div>
+       </div>
+      </div>
 	 </div>
+   <div style="height:30px;"></div>
   </ion-content>
 </ion-view>
 
@@ -55,6 +57,9 @@
       <div class="padding item item-body">
          {{teksti}}
       </div>
+      <button ng-show="lajmi" ui-sref="app.lajmi({lajmiId: '1'})" class="button button-full button-dark">
+           Lexo lajmin e plot&euml;
+      </button>
     </ion-content>
   </ion-modal-view>
 </script>

@@ -13,23 +13,24 @@ var albania = angular.module('albania', ['ionic', 'albania.services', 'albania.c
 .run(function($ionicPlatform, $rootScope) {
   $ionicPlatform.ready(function() {
    try{
-
-        ga_storage._setAccount('UA-2341193-x');
-        ga_storage._trackPageview('#/app/appJS', 'Albania App load');
+          ga_storage._setAccount('UA-70272201-2');
+          ga_storage._trackPageview('#/app/appJS', 'Albania App load');
        //ga_storage._trackPageview('#/app/klasifikimi', 'Vllaznia App klasifikimi');
+       //window.analytics.startTrackerWithId('UA-70272201-1');
+       //window.analytics.trackView('APP')
 
-var ad_units = {
-    ios : {
+    var ad_units = {
+      ios : {
         banner:"32016490754_10152997301780755",
         interstitial:"32016490754_10152997301780755"
-    },
-    android : {
+      },
+      android : {
         banner:"32016490754_10152997570155755",
         interstitial:"32016490754_10152997301780755"
-    }
-};
+      }
+    };
 
-var adid = ad_units.android;
+    var adid = ad_units.android;
 /**
 if(FacebookAds) FacebookAds.setOptions({
     isTesting: false
@@ -70,7 +71,7 @@ FacebookAds.showInterstitial();
     //window.plugins.OneSignal.setLogLevel({logLevel: 4, visualLevel: 4});
     // Update with your OneSignal AppId and googleProjectNumber before running.
     window.plugins.OneSignal.init("989f0128-8884-11e5-bfb9-a0369f2d9328",
-                                   {googleProjectNumber: "656349133735", 
+                                   {googleProjectNumber: "656349133735",
 								    autoRegister: true},
                                     notificationOpenedCallback);
 
@@ -197,7 +198,7 @@ FacebookAds.showInterstitial();
         }
       }
     })
-	
+
 	.state('app.settings', {
       url: "/settings",
       views: {
