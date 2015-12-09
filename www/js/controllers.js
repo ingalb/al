@@ -655,6 +655,7 @@ angular.module('albania.controllers', [])
                 $scope.itemsN = data;
                 $ionicLoading.hide();
 			});
+			$ionicTabsDelegate.select($scope.gr_id-4);
 		 }
 
 	    $scope.slideNext = function() {
@@ -686,8 +687,9 @@ angular.module('albania.controllers', [])
 		NdeshjetService.getGrNdeshje($scope.gr_id, function(data) {
             $scope.itemsN = data;
         });
-		    $ionicBackdrop.release();
-		    $ionicLoading.hide();
+		$ionicTabsDelegate.select($scope.gr_id-4);
+		$ionicBackdrop.release();
+		$ionicLoading.hide();
        };
        $timeout(function(){
           $ionicLoading.hide();
@@ -721,7 +723,7 @@ angular.module('albania.controllers', [])
 	
 	
     .controller('Lojtaret1Ctrl', function($scope, $timeout, $stateParams, $ionicLoading, EkipiService) {
-        ga_storage._trackPageview('#/app/ekipi', 'Vllaznia App Ekipi');
+        ga_storage._trackPageview('#/app/ekipi', 'Albania Euro2016 App Ekipi');
         $scope.sezoni_id ='superliga';
         $scope.ekipiId =13;
         $scope.loadingIndicator = $ionicLoading.show({
@@ -837,9 +839,12 @@ angular.module('albania.controllers', [])
     $scope.$on('$ionicView.enter', function(){
        isSubscribed();
     });
+	$scope.$on('$ionicView.beforeEnter', function(){
+       isSubscribed();
+    });
 		$scope.pushNotificationChange = function(data) {
 			//console.log(data);
-      ga_storage._trackEvent('settings', 'action', $scope.pushNotification.checked);
+            ga_storage._trackEvent('settings', 'action', $scope.pushNotification.checked);
 			console.log('Push Notification Change', $scope.pushNotification.checked);
 			console.log('Push Notification Change', $scope.pushNews.checked);
 			console.log('Push Notification Change', $scope.pushMatch.checked);
