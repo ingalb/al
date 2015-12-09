@@ -96,9 +96,9 @@ angular.module('albania.controllers', [])
          $scope.teksti=message.message;
          //$scope.dati = JSON.stringify(message);
 		 //$scope.teksti=message.additionalData;
-		 console.log(JSON.stringify(message.additionalData));
+		 //console.log(JSON.stringify(message.additionalData));
 		 var myVar = message.additionalData.page;
-		 console.log(myVar);
+		 //console.log(myVar);
 		 var pattern = /match/;
 		//returns true or false...
 		var exists = pattern.test(myVar);
@@ -111,8 +111,7 @@ angular.module('albania.controllers', [])
 			//false statement..do whatever
 			if(myVar=="lajme")
 			{$scope.lajme = true;}
-			$scope.modal.show();
-			
+			$scope.modal.show();	
 		}
        });
 
@@ -133,7 +132,7 @@ angular.module('albania.controllers', [])
             //alert(tani);
             $scope.items = data;
             //$scope.items = data.slice(0,3);
-		  	//console.log($scope.items);
+		  	console.log($scope.items);
             $ionicLoading.hide();
             $scope.loadNdeshje = true;
             $ionicSlideBoxDelegate.update();

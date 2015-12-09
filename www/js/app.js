@@ -1,5 +1,5 @@
 var P_ID = 109;
-var EKIPI_ID = 25;
+var EKIPI_ID = 4;
 var URL_APP = "http://vllaznia.cloudcontrolled.com/";
 
 // Ionic Starter App
