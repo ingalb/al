@@ -132,7 +132,7 @@ angular.module('albania.controllers', [])
             //alert(tani);
             $scope.items = data;
             //$scope.items = data.slice(0,3);
-		  	console.log($scope.items);
+		  	//console.log($scope.items);
             $ionicLoading.hide();
             $scope.loadNdeshje = true;
             $ionicSlideBoxDelegate.update();
