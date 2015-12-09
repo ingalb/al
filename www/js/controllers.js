@@ -283,7 +283,8 @@ angular.module('albania.controllers', [])
 		$scope.notification = true;
 		$scope.anim = "ion-ios-bell";
 		window.plugins.OneSignal.setSubscription(true);
-		window.plugins.OneSignal.sendTags({tags: true, "match": true});
+		window.plugins.OneSignal.sendTag("match",true);
+		window.plugins.OneSignal.sendTag(tags,true);
 	   }
 	   var unSubscribe = function(tags){
 		console.log("unsub called");
