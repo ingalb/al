@@ -75,6 +75,11 @@ angular.module('albania.controllers', [])
         }
 
 		$ionicLoading.show();
+		var future = new Date('June 10, 2016 21:00:00');
+		var diff = Math.floor((future.getTime() - new Date().getTime()) / 1000);
+		$scope.countd = diff;
+		
+		console.log($scope.countd);
 
         $scope.CloseNotification = function() {
            $scope.modal.hide();

@@ -354,6 +354,11 @@ angular.module('albania.services', [])
                     var days, hours, minutes, seconds;
                     days = Math.floor(t / 86400);
 					d3 = parseInt(days / 100);
+					if(d3<1)
+					{d3='';}
+				    else{
+						d3 = '<span class="position"><span class="digit static">'+d3+'</span></span>'
+					}
 					d2 = parseInt(days / 10)%10;
 					d1 = days%10;
                     t -= days * 86400;
@@ -369,15 +374,15 @@ angular.module('albania.services', [])
 					s1 = seconds%10;
 					s2 = parseInt(seconds / 10);
                     return [
-                        '<span class="countDays"><span class="position"><span class="digit static">'+d3+'</span></span>',
+                        '<span class="countDays">'+d3,
 						'<span class="position"><span class="digit static">'+d2+'</span></span>',
-						'<span class="position"><span class="digit static">'+d1+'</span></span></span></span><span class="countDiv countDiv0"></span>',
+						'<span class="position"><span class="digit static">'+d1+'</span></span></span></span><span class="countDiv countDiv0">d</span>',
                         '<span class="countHours"><span class="position"><span class="digit static">'+h2+'</span></span>',
-						'<span class="position"><span class="digit static">'+h1+'</span></span></span></span><span class="countDiv countDiv1"></span>',
+						'<span class="position"><span class="digit static">'+h1+'</span></span></span></span><span class="countDiv countDiv0">o</span>',
                         '<span class="countMinutes"><span class="position"><span class="digit static">'+m2+'</span></span>',
-						'<span class="position"><span class="digit static">'+m1+'</span></span></span></span><span class="countDiv countDiv2"></span>',
+						'<span class="position"><span class="digit static">'+m1+'</span></span></span></span><span class="countDiv countDiv0">m</span>',
                         '<span class="countSeconds"><span class="position"><span class="digit static">'+ s2 +'</span></span>',
-						'<span class="position"><span class="digit static">'+s1+'</span></span></span></span>'
+						'<span class="position"><span class="digit static">'+s1+'</span></span></span></span><span class="countDiv countDiv0">s</span>'
                     ].join(' ');
                 }
             };
