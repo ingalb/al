@@ -74,7 +74,7 @@ angular.module('albania.controllers', [])
 		       console.log("hide splash");
         }
 
-		    $ionicLoading.show();
+		$ionicLoading.show();
 
         $scope.CloseNotification = function() {
            $scope.modal.hide();
@@ -95,6 +95,22 @@ angular.module('albania.controllers', [])
          $scope.titulli=message.additionalData.title;
          $scope.teksti=message.message;
          //$scope.dati = JSON.stringify(message);
+		 $scope.teksti=message.additionalData;
+		 console.log(JSON.stringify(message.additionalData));
+		 var myVar = message.additionalData.page;
+		 console.log(myVar);
+		 var pattern = /match/;
+		//returns true or false...
+		var exists = pattern.test(myVar);
+		if(exists){
+			//true statement, do whatever
+			console.log(myVar.substr( 3, 4 ));
+			$state.go('app.ndeshja', {ndeshjaId: parseInt(myVar.substr( 3, 4 ))} );
+			
+		}else{
+			//false statement..do whatever
+			
+		}
          $scope.modal.show();
        });
 
