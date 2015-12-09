@@ -95,7 +95,7 @@ angular.module('albania.controllers', [])
          $scope.titulli=message.additionalData.title;
          $scope.teksti=message.message;
          //$scope.dati = JSON.stringify(message);
-		 $scope.teksti=message.additionalData;
+		 //$scope.teksti=message.additionalData;
 		 console.log(JSON.stringify(message.additionalData));
 		 var myVar = message.additionalData.page;
 		 console.log(myVar);
@@ -104,14 +104,16 @@ angular.module('albania.controllers', [])
 		var exists = pattern.test(myVar);
 		if(exists){
 			//true statement, do whatever
-			console.log(myVar.substr( 3, 4 ));
-			$state.go('app.ndeshja', {ndeshjaId: parseInt(myVar.substr( 3, 4 ))} );
+			console.log(myVar.substr(5));
+			$state.go('app.ndeshja', {ndeshjaId: parseInt(myVar.substr(5))} );
 			
 		}else{
 			//false statement..do whatever
+			if(myVar=="lajme")
+			{$scope.lajme = true;}
+			$scope.modal.show();
 			
 		}
-         $scope.modal.show();
        });
 
         $scope.loadNdeshje = false;
