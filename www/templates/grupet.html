@@ -211,6 +211,11 @@
 </ion-view>
 
 <script id="popover1-template.html" type="text/ng-template">
+   <style>
+   .popover {
+      height: auto !important;
+    }
+   </style>
    <ion-popover-view>
       <ion-content>
          <ion-radio ng-repeat="item in SezoneList" ng-value="item.value" ng-model="gr_id" ng-change="changeSezoni(item)" ng-click="changeSezoni(item)">{{ item.text }}</ion-radio>

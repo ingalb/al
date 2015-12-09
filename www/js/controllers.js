@@ -91,7 +91,7 @@ angular.module('albania.controllers', [])
        });
 
        var notifica = $rootScope.$on('pushEvent', function(event,message){
-        console.log(JSON.stringify(message));
+         console.log(JSON.stringify(message));
          $scope.titulli=message.additionalData.title;
          $scope.teksti=message.message;
          //$scope.dati = JSON.stringify(message);
@@ -352,12 +352,13 @@ angular.module('albania.controllers', [])
 
 	    $scope.subNotification = function(){
 		   $scope.notification = $scope.notification === true ? false: true;
+		   var tag = "match"+ $stateParams.ndeshjaId;
 		   if($scope.notification)
 		   {
-				subscribe(tags);
+				subscribe(tag);
 		   }
 		   else{
-				unSubscribe(tags);
+				unSubscribe(tag);
 		   }
 	    }
        $scope.doRefresh = function() {

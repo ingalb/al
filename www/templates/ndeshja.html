@@ -30,9 +30,9 @@
   <div ng-if="item.over>0" class="assertive col col-center bg-white">{{item.over_text}}</div>
   <div id="match" class="tabs-striped tabs-top tabs-icon-left tabs-background-dark tabs-color-assertive">
     <div class="tabs">
-      <a class="tab-item" ng-class="{active: 0 == selected}" ng-click="slideTo(0)"><i class="icon ion-ios-bell"></i>Eventet</a>
-      <a class="tab-item" ng-class="{active: 1 == selected}" ng-click="slideTo(1)"><i class="icon ion-person"></i>Formacionet</a>
-      <a class="tab-item" ng-class="{active: 2 == selected}" ng-click="slideTo(2)"><i class="icon ion-ios-chatbubble"></i>Kronika</a>
+      <a class="tab-item" ng-class="{active: 0 == selected}" ng-click="slideTo(0)"><i class="icon ion-clock"></i>Eventet</a>
+      <a class="tab-item" ng-class="{active: 1 == selected}" ng-click="slideTo(1)"><i class="icon ion-tshirt"></i>Formacionet</a>
+      <a class="tab-item" ng-class="{active: 2 == selected}" ng-click="slideTo(2)"><i class="icon ion-chatbubble"></i>Komentet</a>
     </div>
   </div>
   <ion-slide-box id="match" show-pager="false" class="has-header" on-slide-changed="slideTo($index)">
