@@ -57,7 +57,7 @@
       <div class="padding item item-body">
          {{teksti}}
       </div>
-      <button ng-show="lajmi" ui-sref="app.lajmi({lajmiId: '1'})" class="button button-block button-assertive padding">
+      <button ng-show="lajmi" ng-click="CloseNotification()" ui-sref="app.lajmi({lajmiId: '1'})" class="button button-block button-assertive padding">
            Lexo lajmin e plot&euml;
       </button>
     </ion-content>
