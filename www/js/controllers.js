@@ -82,7 +82,7 @@ angular.module('albania.controllers', [])
 		var diff = Math.floor((future.getTime() - new Date().getTime()) / 1000);
 		$scope.countd = diff;
 		
-		console.log($scope.countd);
+		//console.log($scope.countd);
 
         $scope.CloseNotification = function() {
            $scope.modal.hide();
