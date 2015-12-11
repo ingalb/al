@@ -1,18 +1,21 @@
 angular.module('albania.controllers', [])
 
-.controller('AppCtrl', function($scope, MenuService) {
+.controller('AppCtrl', function($scope) {
    if(navigator.splashscreen){
       navigator.splashscreen.hide();
 	  console.log("hide splash 1");
    }
     //$scope.menu = true;
-    MenuService.getMenuStatus(function(data) {
-		//console.log(data);
+	var future = new Date('June 23, 2016 08:00:00');
+	var diff = Math.floor((future.getTime() - new Date().getTime()) / 1000);
+		if(diff<0)
+		{
+			$scope.menu = true;
+		}
+   /** MenuService.getMenuStatus(function(data) {
 		$scope.menu = data.data.menu;
-		//$scope.menu = $scope.menu.menu;
-		//console.log($scope.menu);
-		//alert(data.menu);
     });
+	**/
 })
 
     .filter('html',function($sce){
@@ -115,7 +118,7 @@ angular.module('albania.controllers', [])
 		}else{
 			//false statement..do whatever
 			if(myVar=="lajme")
-			{$scope.lajme = true;}
+			{$scope.lajmi = true;}
 			$scope.modal.show();	
 		}
        });
