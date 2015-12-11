@@ -574,6 +574,7 @@ angular.module('albania.controllers', [])
 		$scope.selectedTab = function(selectedId){
 			//alert("ok");
 			$ionicLoading.show();
+			$ionicTabsDelegate.select(selectedId-1);
 			$scope.gr_id = selectedId+23;
 			$scope.sezoni_text = $scope.SezoneList[($scope.gr_id-24)].text;
 			KlasifikimiGrupetService.getAllKlasifikimi(P_ID, $scope.gr_id, function(data) {
@@ -583,24 +584,25 @@ angular.module('albania.controllers', [])
                 $scope.itemsN = data;
                 $ionicLoading.hide();
 			});
+			//$ionicLoading.hide();
 		 }
 
 	    $scope.slideNext = function() {
-			$scope.gr_id = $scope.gr_id+1;
-			if($scope.gr_id>6)
-		    {$scope.gr_id=6;}
-            $scope.sezoni_text = $scope.SezoneList[($scope.gr_id-1)].text;
 			$ionicLoading.show();
-			$scope.selectedTab($scope.gr_id);
-            $ionicTabsDelegate.select($scope.gr_id-1);
+			$scope.gr_id = $scope.gr_id+1;
+			if($scope.gr_id>29)
+		    {$scope.gr_id=29;}
+            //$scope.sezoni_text = $scope.SezoneList[($scope.gr_id-1)].text;
+			$scope.selectedTab($scope.gr_id-23);
+            //$ionicTabsDelegate.select($scope.gr_id-1);
        }
 	   $scope.slidePrevious = function() {
 		   $scope.gr_id= $scope.gr_id-1;
-		   if($scope.gr_id<1)
-		   {$scope.gr_id=1;}
-           $scope.sezoni_text = $scope.SezoneList[($scope.gr_id-1)].text;
-		   $scope.selectedTab($scope.gr_id);
-           $ionicTabsDelegate.select($scope.gr_id-1);
+		   if($scope.gr_id<24)
+		   {$scope.gr_id=24;}
+           //$scope.sezoni_text = $scope.SezoneList[($scope.gr_id-23)].text;
+		   $scope.selectedTab($scope.gr_id-23);
+           //$ionicTabsDelegate.select($scope.gr_id-1);
        }
 
       $scope.changeSezoni = function(item) {
