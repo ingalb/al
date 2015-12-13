@@ -29,18 +29,19 @@
 	<gap:plugin name="org.apache.cordova.splashscreen" />
 
 	<gap:plugin name="cordova-plugin-whitelist" source="npm" />
-	<plugin name="cordova-plugin-whitelist" version="1" />
+	<!--<plugin name="cordova-plugin-whitelist" version="1" />-->
 
 
 	<!--<gap:plugin name="com-admob-plugin" version="5.2.0" source="npm"/>-->
 	<gap:plugin name="onesignal-cordova-plugin-pgb-compat" source="npm" />
+	<gap:plugin name="cordova-plugin-googleplayservices" source="npm" />
     <gap:plugin name="nl.x-services.plugins.socialsharing" />
     <gap:plugin name="cordova-plugin-android-support-v4" source="npm" />
 
 
 
     <preference name="permissions"  value="none"/>
-	  <uses-permission android:name="android.permission.INTERNET" />
+	<uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
 
     <preference name="phonegap-version"/>
