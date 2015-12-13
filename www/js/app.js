@@ -69,7 +69,7 @@ FacebookAds.showInterstitial();
       // firing an event downwards
       $rootScope.$broadcast('pushEvent', jsonData);
     };
-    window.plugins.OneSignal.setLogLevel({logLevel: 4, visualLevel: 4});
+    //window.plugins.OneSignal.setLogLevel({logLevel: 4, visualLevel: 4});
     // Update with your OneSignal AppId and googleProjectNumber before running.
     window.plugins.OneSignal.init("989f0128-8884-11e5-bfb9-a0369f2d9328",
                                    {googleProjectNumber: "656349133735",
