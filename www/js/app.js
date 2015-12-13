@@ -19,7 +19,7 @@ var albania = angular.module('albania', ['ionic', 'albania.services', 'albania.c
        //window.analytics.startTrackerWithId('UA-70272201-1');
        //window.analytics.trackView('APP')
 
-    var ad_units = {
+   /** var ad_units = {
       ios : {
         banner:"32016490754_10152997301780755",
         interstitial:"32016490754_10152997301780755"
@@ -31,6 +31,7 @@ var albania = angular.module('albania', ['ionic', 'albania.services', 'albania.c
     };
 
     var adid = ad_units.android;
+	**/
 /**
 if(FacebookAds) FacebookAds.setOptions({
     isTesting: false
@@ -45,7 +46,7 @@ FacebookAds.prepareInterstitial( {adId:adid.interstitial, autoShow:true} );
 // show the interstitial later, e.g. at end of game level
 FacebookAds.showInterstitial();
 **/
-        admob.initAdmob("ca-app-pub-7925487268042880/6770099564","ca-app-pub-7925487268042880/7097196767");
+       // admob.initAdmob("ca-app-pub-7925487268042880/6770099564","ca-app-pub-7925487268042880/7097196767");
  /**       admob.setOptions({
             publisherId: "ca-app-pub-7925487268042880/6770099564",  // Required
             interstitialAdId: "ca-app-pub-7925487268042880/7097196767",
@@ -59,7 +60,7 @@ FacebookAds.showInterstitial();
 
     } catch (e) {
           console.log(e.message);
-		  alert(e.message);
+		  //alert(e.message);
     }
 
     var notificationOpenedCallback = function(jsonData) {
