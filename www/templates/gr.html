@@ -36,9 +36,9 @@
 	<ion-content class="has-subheader">
 		<div class="item bg-transparent gr-scroll item-text-wrap pad5">
 			<div class="row rnk" ng-repeat="item in itemsN">
-				<div ui-sref="app.ndeshja({ndeshjaId: '{{item.id}}'})" class="col {{item.team1}}"><img class="rank" ng-src="{{item.flag1}}">{{item.team1}}</div>
-				<div ui-sref="app.ndeshja({ndeshjaId: '{{item.id}}'})" class="col col-20 col-center"><a ng-if="item.over>0" class="rez assertive" href="#app/ndeshja/{{item.id}}">{{item.gol1_over}} - {{item.gol2_over}} </a><a class="rez over{{item.over}}" href="#app/ndeshja/{{item.id}}">{{item.gol1}} - {{item.gol2}}</a></div>
-				<div ui-sref="app.ndeshja({ndeshjaId: '{{item.id}}'})" class="col col-right {{item.team2}}">{{item.team2}} <img class="rank" ng-src="{{item.flag2}}"></div>
+				<div ui-sref="app.ndeshja({ndeshjaId: '{{item.id}}'})" class="col col-center {{item.team1}}"><img class="rank" ng-src="{{item.flag1}}">{{item.team1}}</div>
+				<div ui-sref="app.ndeshja({ndeshjaId: '{{item.id}}'})" class="col col-20 col-center1"><a ng-if="item.over>0" class="rez assertive" href="#app/ndeshja/{{item.id}}">{{item.gol1_over}} - {{item.gol2_over}} </a><a ng-if="!item.gol1" class="assertive">{{item.data | matchData}}</a><a ng-if="item.gol1" class="rez over{{item.over}}" href="#app/ndeshja/{{item.id}}">{{item.gol1}} - {{item.gol2}}</a></div>
+				<div ui-sref="app.ndeshja({ndeshjaId: '{{item.id}}'})" class="col col-center col-right {{item.team2}}">{{item.team2}} <img class="rank" ng-src="{{item.flag2}}"></div>
 			</div>
 		</div>
 	</ion-content>

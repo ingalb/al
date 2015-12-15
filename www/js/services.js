@@ -374,15 +374,15 @@ angular.module('albania.services', [])
 					s1 = seconds%10;
 					s2 = parseInt(seconds / 10);
                     return [
-                        '<span class="countDays">'+d3,
+                        '<div class="row timer-center pull-center"><div class="text-center"><span class="countDays">'+d3,
 						'<span class="position"><span class="digit static">'+d2+'</span></span>',
-						'<span class="position"><span class="digit static">'+d1+'</span></span></span></span><span class="countDiv countDiv0">d</span>',
-                        '<span class="countHours"><span class="position"><span class="digit static">'+h2+'</span></span>',
-						'<span class="position"><span class="digit static">'+h1+'</span></span></span></span><span class="countDiv countDiv0">o</span>',
-                        '<span class="countMinutes"><span class="position"><span class="digit static">'+m2+'</span></span>',
-						'<span class="position"><span class="digit static">'+m1+'</span></span></span></span><span class="countDiv countDiv0">m</span>',
-                        '<span class="countSeconds"><span class="position"><span class="digit static">'+ s2 +'</span></span>',
-						'<span class="position"><span class="digit static">'+s1+'</span></span></span></span><span class="countDiv countDiv0">s</span>'
+						'<span class="position"><span class="digit static">'+d1+'</span></span></span></span><span class="countDiv countDiv0"></span><br>Dit&euml;</div>',
+                        '<div class="text-center"><span class="countHours"><span class="position"><span class="digit static">'+h2+'</span></span>',
+						'<span class="position"><span class="digit static">'+h1+'</span></span></span></span><span class="countDiv countDiv0"></span><br>Or&euml;</div>',
+                        '<div class="text-center"><span class="countMinutes"><span class="position"><span class="digit static">'+m2+'</span></span>',
+						'<span class="position"><span class="digit static">'+m1+'</span></span></span></span><span class="countDiv countDiv0"></span><br>Min</div>',
+                        '<div class="text-center"><span class="countSeconds"><span class="position"><span class="digit static">'+s2+'</span></span>',
+						'<span class="position"><span class="digit static">'+s1+'</span></span></span></span></br>Sek</div></div>'
                     ].join(' ');
                 }
             };

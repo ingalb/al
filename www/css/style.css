@@ -318,7 +318,7 @@ body{
 .rank-3{background-color:#ff9900; color:#FFF;}
 .rnk:nth-child(odd){background:#ededed;}
 .rnk:nth-child(even){background:#fff;}
-.col-center{text-align:center;}
+.col-center1{text-align:center;}
 .col-left{text-align:left;}
 .col-right{text-align:right;}
 .col-30px{width:30px;}
@@ -1124,7 +1124,32 @@ pullDown
 .countDiv2{}
 .countSeconds{}
 
+.countDiv{
+	display:inline-block;
+	width:16px;
+	height:1.6em;
+	position:relative;
+}
 
+.countDiv:before,
+.countDiv:after{
+	position:absolute;
+	width:5px;
+	height:5px;
+	background-color:#444;
+	border-radius:50%;
+	left:50%;
+	margin-left:-2px;
+	top:0.5em;
+	box-shadow:1px 1px 1px rgba(4, 4, 4, 0.5);
+	content:'';
+}
+
+.countDiv:after{
+	top:0.85em;
+}
+
+/**
 .countDiv{
 	display:inline-block;
 	width:12px;
@@ -1132,4 +1157,15 @@ pullDown
 	top:-6px;
 	margin-left:1px;
 	color: #666;
+}
+**/
+.countName{
+	font-size: 14px;
+	color: #666;
+}
+
+.timer-center{
+	margin: auto;
+    width: 330px;
+	color: #444;
 }

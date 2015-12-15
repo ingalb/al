@@ -43,6 +43,16 @@ angular.module('albania.controllers', [])
        return _date;
      };
     })
+	
+	.filter('matchData', function($filter){
+     return function(input)
+     {
+       if(input == null){ return ""; }
+       var value = input.split("+");
+       var _date = $filter('date')(new Date(value[0]),'dd MMM HH:mm');
+       return _date;
+     };
+    })
 
     .filter('lajmeData', function($filter){
       return function(input)
@@ -459,6 +469,7 @@ angular.module('albania.controllers', [])
         //console.log($scope.gr_id);
 		NdeshjetService.getGrupetNdeshje($scope.gr_id, function(data) {
             $scope.itemsN = data;
+			//console.log(data);
             $ionicLoading.hide();
 			$ionicSideMenuDelegate.canDragContent(false);
         });
@@ -639,11 +650,10 @@ angular.module('albania.controllers', [])
 	 var valActive = 0;
 	 $scope.gr_id = 4;
      $scope.SezoneList = [
-       { text: "1/16", value: 4 },
-       { text: "1/8", value: 5 },
-       { text: "1/4", value: 6 },
-       { text: "1/2", value: 7 },
-       { text: "Finalja", value: 8 },
+       { text: "1/8", value: 4 },
+       { text: "1/4", value: 5 },
+       { text: "1/2", value: 6 },
+       { text: "Finalja", value: 7 },
       ];
       $scope.loadingIndicator = $ionicLoading.show({
 	         content: 'Loading Data',
@@ -689,8 +699,8 @@ angular.module('albania.controllers', [])
 	    $scope.slideNext = function() {
 			$scope.gr_id = $scope.gr_id+1;
 			console.log($scope.gr_id);
-			if($scope.gr_id>8)
-		    {$scope.gr_id=8;}
+			if($scope.gr_id>7)
+		    {$scope.gr_id=7;}
             $scope.sezoni_text = $scope.SezoneList[($scope.gr_id-4)].text;
 			$ionicLoading.show();
 			$scope.selectedTab($scope.gr_id-3);
@@ -943,11 +953,10 @@ angular.module('albania.controllers', [])
       $scope.clubId = 13;
 
       $scope.SezoneList = [
-        { text: "1/16", value: 4 },
-        { text: "1/8", value: 5 },
-        { text: "Cerekfinalet", value: 6 },
-        { text: "Gjysemfinalet", value: 7 },
-        { text: "Finalja", value: 8 }
+        { text: "1/8", value: 4 },
+        { text: "Cerekfinalet", value: 5 },
+        { text: "Gjysemfinalet", value: 6 },
+        { text: "Finalja", value: 7 },
        ];
 
       //admob.showBannerAd(true);
