@@ -11,11 +11,11 @@
  </ion-refresher>
  <div class="item item-text-wrap pad0 bg-transparent">
   <div class="row bg-white">
-    <div class="col col-center"><span>{{item.orari | indexData}}</span></div>
+    <div class="col col-center1"><span>{{item.orari | indexData}}</span></div>
   </div>
   <div class="row row-top bg-white">
-    <div class="col col-center Vllaznia"><img class="match-logo" ng-src="http://www.albaniasoccer.com/{{item.logo1_l}}"><br>{{item.team1}}</div>
-    <div class="col col-25 col-center">
+    <div class="col col-center1 Vllaznia"><img class="match-logo" ng-src="http://www.albaniasoccer.com/{{item.logo1_l}}"><br>{{item.team1}}</div>
+    <div class="col col-25 col-center col-center1">
         <div ng-if="item.over==0"><a class="rezultati">{{item.gol1}} - {{item.gol2}}</a><a ng-if="item.ot_gol1" class="rez live{{item.live.live}}"><br>Shtes&euml;: <br>{{item.ot_gol1}} - {{item.ot_gol2}}</a><a ng-if="item.so_gol1" class="rez live{{item.live.live}}"><br>Pen: <br>{{item.so_gol1}} - {{item.so_gol2}}</a></div>
         <div ng-if="item.over>0" class="assertive"><a class="rezultati assertive">{{item.gol1_over}} - {{item.gol2_over}}</a></div>
         <div class="live">
@@ -25,9 +25,9 @@
             </div>
         </div>
     </div>
-    <div class="col col-center Vllaznia"><img class="match-logo" ng-src="http://www.albaniasoccer.com/{{item.logo2_l}}"><br>{{item.team2}}</div>
+    <div class="col col-center1 Vllaznia"><img class="match-logo" ng-src="http://www.albaniasoccer.com/{{item.logo2_l}}"><br>{{item.team2}}</div>
   </div>
-  <div ng-if="item.over>0" class="assertive col col-center bg-white">{{item.over_text}}</div>
+  <div ng-if="item.over>0" class="assertive col col-center1 bg-white">{{item.over_text}}</div>
   <div id="match" class="tabs-striped tabs-top tabs-icon-left tabs-background-dark tabs-color-assertive">
     <div class="tabs">
       <a class="tab-item" ng-class="{active: 0 == selected}" ng-click="slideTo(0)"><i class="icon ion-clock"></i>Eventet</a>
@@ -45,7 +45,7 @@
                  <p ng-if="eventet.tipo_evento=='Zevendesim' && eventet.ekipi==item.team1" id="font" class="zv-left {{eventet.tipo_evento}}">{{eventet.in}}<br>{{eventet.out}}</p>
               </div>
            </div>
-           <div class="col col-20 col-center" id="minuta"><span class="minuta">{{eventet.minuta}}'</span></div>
+           <div class="col col-20 col-center1 col-center" id="minuta"><span class="minuta">{{eventet.minuta}}'</span></div>
            <div class="col col-right">
               <div ng-if="eventet.ekipi==item.team2" class="eventi">{{eventet.emri}}<span class="icon {{eventet.tipo_evento}}"></span>
                  <p ng-if="eventet.tipo_evento=='Zevendesim' && eventet.ekipi==item.team2" id="font" class="zv-right {{eventet.tipo_evento}}">{{eventet.in}}<br>{{eventet.out}}</p>
@@ -56,7 +56,7 @@
     </ion-slide>
 
     <ion-slide>
-       <div class="item item-divider item-assertive col-center">Lojtaret</div>
+       <div class="item item-divider item-assertive col-center1">Lojtaret</div>
        <div class="row">
            <div class="col col-50 col-right">
               <div ng-repeat="lojtaret in item.formacionet | orderObjectBy:'item.formacionet.pozicioni':reverse" ng-if="lojtaret.ekipi==item.team1" class="list">
@@ -69,7 +69,7 @@
               </div>
            </div>
        </div>
-       <div class="item item-divider item-assertive col-center">Stafi</div>
+       <div class="item item-divider item-assertive col-center1">Stafi</div>
        <div class="row">
            <div class="col col-50 col-right">
               <div ng-repeat="stafi in item.stafet" ng-if="stafi.ekipi==item.team1" class="list">
