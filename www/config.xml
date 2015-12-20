@@ -2,10 +2,10 @@
 <widget xmlns = "http://www.w3.org/ns/widgets"
         xmlns:gap = "http://phonegap.com/ns/1.0"
 		    xmlns:android="http://schemas.android.com/apk/res/android"
-        id = "com.ingalb.albania2016"
-        versionCode = "3"
+        id = "com.ingalb.albania-2016"
+        versionCode = "1"
         version = "1.0">
-    <name>Albania ne Euro 2016</name>
+    <name>Albania in France 2016</name>
 
     <description>
        Aplikacioni realizuar per ekipin e Shqiperise ne Europianin France 2016. Ndeshjet live, Historia, lajme, informacione dhe statistika nga ekipi kuq e zi Shqiperia.

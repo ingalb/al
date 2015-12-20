@@ -11,24 +11,24 @@
                	   <div class="col col-center1"><span>{{ndeshje.data | indexData}}<br>{{ndeshje.stadiumi.emri}}</span></div>
                </div>
                <div class="row">
-                   <div class="col col-center1 Vllaznia"><img class="slider-logo" ng-src="http://www.albaniasoccer.com/{{ndeshje.logo1_l}}"><br>{{ndeshje.team1}}</div>
+                   <div class="col col-center1 Vllaznia"><img class="slider-logo" ng-src="{{ndeshje.flag1_l}}"><br>{{ndeshje.team1}}</div>
                    <div ui-sref="app.ndeshja({ndeshjaId: '{{ndeshje.id}}'})" class="col col-33 col-center1 col-center">
                        <div ng-if="ndeshje.over==0"><a class="rezultati"><span ng-if="!ndeshje.gol1" class="rez">{{ndeshje.data | indexOrari}}</span><span class="badge rezultati padding sliderlive{{ndeshje.live.live}}">{{ndeshje.gol1}}</span><span ng-if="ndeshje.gol1">-</span><span class="badge rezultati padding sliderlive{{ndeshje.live.live}}">{{ndeshje.gol2}}</span></a><a ng-if="ndeshje.ot_gol1" class="rez over{{ndeshje.over}} live{{ndeshje.live.live}}" href="#app/ndeshja/{{ndeshje.id}}"><br>Shtes&euml;: {{ndeshje.ot_gol1}} - {{ndeshje.ot_gol2}}</a><a ng-if="ndeshje.so_gol1" class="rez over{{ndeshje.over}} live{{ndeshje.live.live}}" href="#app/ndeshja/{{ndeshje.id}}"><br>Pen: {{ndeshje.so_gol1}} - {{ndeshje.so_gol2}}</a></div>
                        <div ng-if="ndeshje.over>0" class="assertive"><a class="rezultati assertive">{{ndeshje.gol1_over}} - {{ndeshje.gol2_over}}</a></div>
                    </div>
-                   <div class="col col-center1 Vllaznia"><img class="slider-logo" ng-src="http://www.albaniasoccer.com/{{ndeshje.logo2_l}}"><br>{{ndeshje.team2}}</div>
+                   <div class="col col-center1 Vllaznia"><img class="slider-logo" ng-src="{{ndeshje.flag2_l}}"><br>{{ndeshje.team2}}</div>
                </div>
            </div>
         </ion-slide>
      </ion-slide-box>
-	 
+
 	 <div ng-if="countd>0" class="card pad5">
 	    <p class="row item">Europiani fillon pas...</p>
         <h3 class="title text-center" countdown='' date='June 10, 2016 21:00:00'></h3>
      </div>
-	 
+
 	 <news-home></news-home>
-	
+
      <div class="row item item-divider bar bar-assertive statistika">
         <h1 class="title">Ndeshjet</h1>
      </div>

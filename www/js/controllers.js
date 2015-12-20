@@ -43,7 +43,7 @@ angular.module('albania.controllers', [])
        return _date;
      };
     })
-	
+
 	.filter('matchData', function($filter){
      return function(input)
      {
@@ -91,7 +91,7 @@ angular.module('albania.controllers', [])
 		var future = new Date('June 10, 2016 21:00:00');
 		var diff = Math.floor((future.getTime() - new Date().getTime()) / 1000);
 		$scope.countd = diff;
-		
+
 		//console.log($scope.countd);
 
         $scope.CloseNotification = function() {
@@ -124,12 +124,12 @@ angular.module('albania.controllers', [])
 			//true statement, do whatever
 			console.log(myVar.substr(5));
 			$state.go('app.ndeshja', {ndeshjaId: parseInt(myVar.substr(5))} );
-			
+
 		}else{
 			//false statement..do whatever
 			if(myVar=="lajme")
 			{$scope.lajmi = true;}
-			$scope.modal.show();	
+			$scope.modal.show();
 		}
        });
 
@@ -460,7 +460,7 @@ angular.module('albania.controllers', [])
        // $scope.sezoni_id = $scope.SezoneList[0].value;
 	   $scope.gr_id = $scope.SezoneList[($stateParams.grId-1)].value;
        $scope.sezoni_text = $scope.SezoneList[($stateParams.grId-1)].text;
-       
+
         KlasifikimiGrupetService.getAllKlasifikimi(P_ID, $scope.gr_id,function(data) {
             $scope.items = data;
             //$ionicLoading.hide();
@@ -740,8 +740,8 @@ angular.module('albania.controllers', [])
 
     .controller('LojtaretCtrl', function($scope, $timeout, $stateParams, $ionicLoading, EkipiService) {
         ga_storage._trackPageview('#/app/ekipi', 'Albania App Ekipi');
-        $scope.sezoni_id ='superliga';
-        $scope.ekipiId =13;
+        $scope.sezoni_id = 109;
+        $scope.ekipiId = 4;
         $scope.loadingIndicator = $ionicLoading.show({
 	         content: 'Loading Data',
 	         animation: 'fade-in',
@@ -758,12 +758,12 @@ angular.module('albania.controllers', [])
           $ionicLoading.hide();
         },6000);
     })
-	
-	
+
+
     .controller('Lojtaret1Ctrl', function($scope, $timeout, $stateParams, $ionicLoading, EkipiService) {
         ga_storage._trackPageview('#/app/ekipi', 'Albania Euro2016 App Ekipi');
-        $scope.sezoni_id ='superliga';
-        $scope.ekipiId =13;
+        $scope.sezoni_id =109;
+        $scope.ekipiId = 4;
         $scope.loadingIndicator = $ionicLoading.show({
 	         content: 'Loading Data',
 	         animation: 'fade-in',
@@ -774,7 +774,7 @@ angular.module('albania.controllers', [])
         //EkipiService.getAllEkipi($scope.sezoni_id,$scope.ekipiId, function(data) {
 		EkipiService.getAlb($scope.sezoni_id,$scope.ekipiId, function(data) {
             $scope.items = data;
-            console.log(data);
+            //console.log(data);
             $ionicLoading.hide();
         });
         $timeout(function(){

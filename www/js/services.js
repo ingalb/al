@@ -1,7 +1,5 @@
 angular.module('albania.services', [])
 
-
-
 .factory('LoaderService', function($rootScope, $ionicLoading) {
   // Trigger the loading indicator
   return {
@@ -34,7 +32,7 @@ angular.module('albania.services', [])
 				$http.get('http://www.ingalb.info/apps/menu.php').then(function successCallback(data) {
 					menu = data;
 					window.localStorage["menu"] = JSON.stringify(menu);
-                    callback(menu); 
+                    callback(menu);
 				}, function errorCallback(data) {
 					console.log("ERROR loading" + data);
 					if(window.localStorage["menu"] !== undefined) {
@@ -298,8 +296,8 @@ angular.module('albania.services', [])
                   }
                 });
             },
-			getAlb: function(sezoniId, ekipiId, callback) {
-                $http.get('http://www.albaniasoccer.com/statistika/kosova/roster/109-euro-2016-france-2016/4-shqiperi.html?format=raw&type=1').success(
+			      getAlb: function(sezoniId, ekipiId, callback) {
+                $http.get(URL_APP+'ekipi.php',{params:{id: sezoniId, ekipi: ekipiId, type: "1"}}).success(
                     function(data) {
                         ekipi = data;
                         window.localStorage["ekipi"] = JSON.stringify(data);
@@ -326,7 +324,7 @@ angular.module('albania.services', [])
             }
         }
     })
-	
+
 	.factory('Util1', [function () {
             return {
                 dhms: function (t) {
