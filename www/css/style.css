@@ -184,8 +184,10 @@ body{
 #grupet .tab-item{
 	max-width:100%;
 }
+
 #grupet .tab-item.active, .tab-item.activated,.tabs-top.tabs-striped .tab-item.tab-item-active, .tabs-top.tabs-striped .tab-item.active, .tabs-top.tabs-striped .tab-item.activated{
 	border-bottom-color: #EE1C24;
+  font-weight: bold;
 }
 
 #grupet .has-subheader{
@@ -201,7 +203,9 @@ body{
 #grupet .row {
 	padding: 6px 5px 5px 5px;
 }
-
+#grupet .slider-slide img{
+  width: auto;
+}
 #match .tabs{
 	top:inherit;
 	bottom: inherit;
@@ -1095,13 +1099,13 @@ pullDown
 
 .digit.static{
 	box-shadow:1px 1px 1px rgba(4, 4, 4, 0.35);
-	
+
 	background-image: linear-gradient(bottom, #930d0d 50%, #c21111 50%);
 	background-image: -o-linear-gradient(bottom, #930d0d 50%, #c21111 50%);
 	background-image: -moz-linear-gradient(bottom, #930d0d 50%, #c21111 50%);
 	background-image: -webkit-linear-gradient(bottom, #930d0d 50%, #c21111 50%);
 	background-image: -ms-linear-gradient(bottom, #930d0d 50%, #c21111 50%);
-	
+
 	background-image: -webkit-gradient(
 		linear,
 		left bottom,

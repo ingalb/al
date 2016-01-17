@@ -6,6 +6,64 @@
     <button class="button button-icon ion-more" ng-click="popover.show($event)"></button>
   </ion-nav-buttons>
 
+  <ion-content class="has-header">
+    <div id="match" class="tabs-striped tabs-top tabs-background-dark tabs-color-assertive">
+      <div class="tabs" id="grupet">
+        <a class="tab-item" ng-class="{active: 0 == selected}" ng-click="selectedTab(1)">1/8</a>
+        <a class="tab-item" ng-class="{active: 1 == selected}" ng-click="selectedTab(2)">1/4</a>
+        <a class="tab-item" ng-class="{active: 2 == selected}" ng-click="selectedTab(3)">1/2</a>
+        <a class="tab-item" ng-class="{active: 3 == selected}" ng-click="selectedTab(4)">Finalja</a>
+      </div>
+    </div>
+    <ion-slide-box id="grupet" show-pager="false" class="has-header" on-slide-changed="selectedTab1($index+1)">
+        <ion-slide>
+            <div class="bg-transparent gr-scroll">
+              <div class="card item-text-wrap">
+                <div class="row item" ng-repeat="item in itemsN">
+                  <div ui-sref="app.ndeshja({ndeshjaId: '{{item.id}}'})" class="col col-center col-left {{item.team1}}"><img class="rank" ng-src="{{item.flag1}}">{{item.team1}}</div>
+                  <div ui-sref="app.ndeshja({ndeshjaId: '{{item.id}}'})" class="col col-20 col-center1"><a ng-if="item.over>0" class="rez assertive" href="#app/ndeshja/{{item.id}}">{{item.gol1_over}} - {{item.gol2_over}} </a><a ng-if="!item.gol1" class="assertive">{{item.data | matchData}}</a><a ng-if="item.gol1" class="rez over{{item.over}}" href="#app/ndeshja/{{item.id}}">{{item.gol1}} - {{item.gol2}}</a><a ng-if="item.ot_gol1" class="rez over{{item.over}} live{{item.live.live}}" href="#app/ndeshja/{{item.id}}"><br>Shtes&euml;: {{item.ot_gol1}} - {{item.ot_gol2}}</a><a ng-if="item.so_gol1" class="rez over{{item.over}} live{{item.live.live}}" href="#app/ndeshja/{{item.id}}"><br>Pen: {{item.so_gol1}} - {{item.so_gol2}}</a></div>
+                  <div ui-sref="app.ndeshja({ndeshjaId: '{{item.id}}'})" class="col col-right {{item.team2}}">{{item.team2}} <img class="rank" ng-src="{{item.flag2}}"></div>
+                </div>
+              </div>
+            </div>
+        </ion-slide>
+        <ion-slide>
+            <div class="bg-transparent gr-scroll">
+              <div class="card item-text-wrap">
+                <div class="row item" ng-repeat="item in itemsN">
+                  <div ui-sref="app.ndeshja({ndeshjaId: '{{item.id}}'})" class="col {{item.team1}}"><img class="rank" ng-src="{{item.flag1}}">{{item.team1}}</div>
+                  <div ui-sref="app.ndeshja({ndeshjaId: '{{item.id}}'})" class="col col-20 col-center1"><a ng-if="item.over>0" class="rez assertive" href="#app/ndeshja/{{item.id}}">{{item.gol1_over}} - {{item.gol2_over}} </a><a ng-if="!item.gol1" class="assertive">{{item.data | matchData}}</a><a ng-if="item.gol1" class="rez over{{item.over}}" href="#app/ndeshja/{{item.id}}">{{item.gol1}} - {{item.gol2}}</a><a ng-if="item.ot_gol1" class="rez over{{item.over}} live{{item.live.live}}" href="#app/ndeshja/{{item.id}}"><br>Shtes&euml;: {{item.ot_gol1}} - {{item.ot_gol2}}</a><a ng-if="item.so_gol1" class="rez over{{item.over}} live{{item.live.live}}" href="#app/ndeshja/{{item.id}}"><br>Pen: {{item.so_gol1}} - {{item.so_gol2}}</a></div>
+                  <div ui-sref="app.ndeshja({ndeshjaId: '{{item.id}}'})" class="col col-right {{item.team2}}">{{item.team2}} <img class="rank" ng-src="{{item.flag2}}"></div>
+                </div>
+              </div>
+            </div>
+        </ion-slide>
+        <ion-slide>
+            <div class="bg-transparent gr-scroll">
+              <div class="card item-text-wrap">
+                <div class="row item" ng-repeat="item in itemsN">
+                  <div ui-sref="app.ndeshja({ndeshjaId: '{{item.id}}'})" class="col {{item.team1}}"><img class="rank" ng-src="{{item.flag1}}">{{item.team1}}</div>
+                  <div ui-sref="app.ndeshja({ndeshjaId: '{{item.id}}'})" class="col col-20 col-center1"><a ng-if="item.over>0" class="rez assertive" href="#app/ndeshja/{{item.id}}">{{item.gol1_over}} - {{item.gol2_over}} </a><a ng-if="!item.gol1" class="assertive">{{item.data | matchData}}</a><a ng-if="item.gol1" class="rez over{{item.over}}" href="#app/ndeshja/{{item.id}}">{{item.gol1}} - {{item.gol2}}</a><a ng-if="item.ot_gol1" class="rez over{{item.over}} live{{item.live.live}}" href="#app/ndeshja/{{item.id}}"><br>Shtes&euml;: {{item.ot_gol1}} - {{item.ot_gol2}}</a><a ng-if="item.so_gol1" class="rez over{{item.over}} live{{item.live.live}}" href="#app/ndeshja/{{item.id}}"><br>Pen: {{item.so_gol1}} - {{item.so_gol2}}</a></div>
+                  <div ui-sref="app.ndeshja({ndeshjaId: '{{item.id}}'})" class="col col-right {{item.team2}}">{{item.team2}} <img class="rank" ng-src="{{item.flag2}}"></div>
+                </div>
+              </div>
+            </div>
+        </ion-slide>
+        <ion-slide>
+            <div class="bg-transparent gr-scroll">
+              <div class="card item-text-wrap">
+                <div class="row item" ng-repeat="item in itemsN">
+                  <div ui-sref="app.ndeshja({ndeshjaId: '{{item.id}}'})" class="col {{item.team1}}"><img class="rank" ng-src="{{item.flag1}}">{{item.team1}}</div>
+                  <div ui-sref="app.ndeshja({ndeshjaId: '{{item.id}}'})" class="col col-20 col-center1"><a ng-if="item.over>0" class="rez assertive" href="#app/ndeshja/{{item.id}}">{{item.gol1_over}} - {{item.gol2_over}} </a><a ng-if="!item.gol1" class="assertive">{{item.data | matchData}}</a><a ng-if="item.gol1" class="rez over{{item.over}}" href="#app/ndeshja/{{item.id}}">{{item.gol1}} - {{item.gol2}}</a><a ng-if="item.ot_gol1" class="rez over{{item.over}} live{{item.live.live}}" href="#app/ndeshja/{{item.id}}"><br>Shtes&euml;: {{item.ot_gol1}} - {{item.ot_gol2}}</a><a ng-if="item.so_gol1" class="rez over{{item.over}} live{{item.live.live}}" href="#app/ndeshja/{{item.id}}"><br>Pen: {{item.so_gol1}} - {{item.so_gol2}}</a></div>
+                  <div ui-sref="app.ndeshja({ndeshjaId: '{{item.id}}'})" class="col col-right {{item.team2}}">{{item.team2}} <img class="rank" ng-src="{{item.flag2}}"></div>
+                </div>
+              </div>
+            </div>
+        </ion-slide>
+    </ion-slide-box>
+  </ionic-content>
+
+<!--
 <ion-tabs id="grupet" class="tabs-striped has-header tabs-top scroll-x tabs-background-dark tabs-color-light">
 
 <ion-tab class="bg-transparent"  on-select="selectedTab(1)" ng-click="selectedTab(1)" title="1/8">
@@ -69,6 +127,7 @@
  </ion-tab>
 
 </ion-tabs>
+-->
 </ion-view>
 
 <script id="popover1-template.html" type="text/ng-template">
