@@ -15,6 +15,7 @@ var albania = angular.module('albania', ['ionic', 'albania.services', 'albania.c
    try{
           ga_storage._setAccount('UA-70272201-2');
           ga_storage._trackPageview('#/app/appJS', 'Albania App load');
+		  navigator.splashscreen.hide();
        //ga_storage._trackPageview('#/app/klasifikimi', 'Vllaznia App klasifikimi');
        //window.analytics.startTrackerWithId('UA-70272201-1');
        //window.analytics.trackView('APP')
