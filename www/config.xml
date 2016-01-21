@@ -3,8 +3,8 @@
         xmlns:gap = "http://phonegap.com/ns/1.0"
 		    xmlns:android="http://schemas.android.com/apk/res/android"
         id = "com.ingalb.albania-2016"
-        versionCode = "2"
-        version = "1.0">
+        versionCode = "3"
+        version = "1.1">
     <name>Albania in France 2016</name>
 
     <description>
@@ -86,7 +86,7 @@
 
     <!-- iPad -->
     <icon src="res/icon/ios/icon-76.png" platform="ios" width="76" height="76" />
-    <icon src="res/icon/ios/-76@2x.png" platform="ios" width="152" height="152" />
+    <icon src="res/icon/ios/icon-76@2x.png" platform="ios" width="152" height="152" />
 
     <!-- Settings Icon -->
     <icon src="res/icon/ios/icon-small.png" platform="ios" width="29" height="29" />
