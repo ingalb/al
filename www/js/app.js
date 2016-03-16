@@ -1,6 +1,6 @@
 var P_ID = 109;
 var EKIPI_ID = 4;
-var URL_APP = "http://vllaznia.cloudcontrolled.com/";
+var URL_APP = "http://api.ingalb.info/";
 
 // Ionic Starter App
 // angular.module is a global place for creating, registering and retrieving Angular modules
@@ -46,7 +46,7 @@ FacebookAds.prepareInterstitial( {adId:adid.interstitial, autoShow:true} );
 // show the interstitial later, e.g. at end of game level
 FacebookAds.showInterstitial();
 **/
-        admob.initAdmob("ca-app-pub-7925487268042880/6770099564","ca-app-pub-7925487268042880/7097196767");
+        admob.initAdmob("ca-app-pub-7925487268042880/9744485565","ca-app-pub-7925487268042880/3804502366");
  /**       admob.setOptions({
             publisherId: "ca-app-pub-7925487268042880/6770099564",  // Required
             interstitialAdId: "ca-app-pub-7925487268042880/7097196767",
@@ -55,8 +55,9 @@ FacebookAds.showInterstitial();
         admob.createBannerView();
         admob.requestInterstitialAd();
 **/
-    //admob.showBanner(admob.BannerSize.SMART_BANNER,admob.Position.BOTTOM_APP);
-    //admob.cacheInterstitial();
+    admob.showBanner(admob.BannerSize.SMART_BANNER,admob.Position.BOTTOM_APP);
+    admob.cacheInterstitial();
+	admob.showInterstitial();
 
     } catch (e) {
           console.log(e.message);

@@ -9,13 +9,13 @@
   <ion-content class="has-header">
     <div id="match" class="tabs-striped tabs-top tabs-background-dark tabs-color-assertive">
       <div class="tabs" id="grupet">
-        <a class="tab-item" ng-class="{active: 0 == selected}" ng-click="selectedTab(1)">1/8</a>
-        <a class="tab-item" ng-class="{active: 1 == selected}" ng-click="selectedTab(2)">1/4</a>
-        <a class="tab-item" ng-class="{active: 2 == selected}" ng-click="selectedTab(3)">1/2</a>
-        <a class="tab-item" ng-class="{active: 3 == selected}" ng-click="selectedTab(4)">Finalja</a>
+        <a class="tab-item" ng-class="{active: 1 == selected_id}" ng-click="selectedTab(1)">1/8</a>
+        <a class="tab-item" ng-class="{active: 2 == selected_id}" ng-click="selectedTab(2)">1/4</a>
+        <a class="tab-item" ng-class="{active: 3 == selected_id}" ng-click="selectedTab(3)">1/2</a>
+        <a class="tab-item" ng-class="{active: 4 == selected_id}" ng-click="selectedTab(4)">Finalja</a>
       </div>
     </div>
-    <ion-slide-box id="grupet" show-pager="false" class="has-header" on-slide-changed="selectedTab1($index+1)">
+    <ion-slide-box id="grupet" show-pager="false" class="has-header">
         <ion-slide>
             <div class="bg-transparent gr-scroll">
               <div class="card item-text-wrap">
