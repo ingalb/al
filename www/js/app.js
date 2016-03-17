@@ -1,6 +1,6 @@
 var P_ID = 109;
 var EKIPI_ID = 4;
-var URL_APP = "http://api.ingalb.info/";
+var URL_APP = "http://api1.ingalb.info/";
 
 // Ionic Starter App
 // angular.module is a global place for creating, registering and retrieving Angular modules
@@ -12,6 +12,7 @@ var albania = angular.module('albania', ['ionic', 'albania.services', 'albania.c
 
 .run(function($ionicPlatform, $rootScope) {
   $ionicPlatform.ready(function() {
+   var admobid = {};
    try{
           ga_storage._setAccount('UA-70272201-2');
           ga_storage._trackPageview('#/app/appJS', 'Albania App load');
@@ -20,18 +21,10 @@ var albania = angular.module('albania', ['ionic', 'albania.services', 'albania.c
        //window.analytics.startTrackerWithId('UA-70272201-1');
        //window.analytics.trackView('APP')
 
-    var ad_units = {
-      ios : {
-        banner:"32016490754_10152997301780755",
-        interstitial:"32016490754_10152997301780755"
-      },
-      android : {
-        banner:"32016490754_10152997570155755",
-        interstitial:"32016490754_10152997301780755"
-      }
-    };
-
-    var adid = ad_units.android;
+	   admobid = { 
+         banner: 'ca-app-pub-7925487268042880/9744485565',
+        interstitial: 'ca-app-pub-7925487268042880/3804502366'
+       };
 /**
 if(FacebookAds) FacebookAds.setOptions({
     isTesting: false
@@ -46,7 +39,7 @@ FacebookAds.prepareInterstitial( {adId:adid.interstitial, autoShow:true} );
 // show the interstitial later, e.g. at end of game level
 FacebookAds.showInterstitial();
 **/
-        admob.initAdmob("ca-app-pub-7925487268042880/9744485565","ca-app-pub-7925487268042880/3804502366");
+        //admob.initAdmob("ca-app-pub-7925487268042880/9744485565","ca-app-pub-7925487268042880/3804502366");
  /**       admob.setOptions({
             publisherId: "ca-app-pub-7925487268042880/6770099564",  // Required
             interstitialAdId: "ca-app-pub-7925487268042880/7097196767",
@@ -54,10 +47,25 @@ FacebookAds.showInterstitial();
           });
         admob.createBannerView();
         admob.requestInterstitialAd();
-**/
+
     admob.showBanner(admob.BannerSize.SMART_BANNER,admob.Position.BOTTOM_APP);
     admob.cacheInterstitial();
 	admob.showInterstitial();
+	**/
+	
+	AdMob.createBanner( {
+        adId: admobid.banner, 
+        isTesting: true,
+        overlap: false, 
+        offsetTopBar: false, 
+        position: AdMob.AD_POSITION.BOTTOM_CENTER,
+        bgColor: 'black'
+    } );
+    
+    AdMob.prepareInterstitial({
+        adId: admobid.interstitial,
+        autoShow: true
+    });
 
     } catch (e) {
           console.log(e.message);

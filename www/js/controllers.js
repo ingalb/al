@@ -181,7 +181,7 @@ angular.module('albania.controllers', [])
 
     $timeout(function(){
 			$ionicLoading.hide();
-			admob.showBanner(admob.BannerSize.SMART_BANNER,admob.Position.BOTTOM_APP);
+			AdMob.showBanner(8);
 		    console.log("hide loading + show banner");
 		},timerhide);
 
@@ -229,7 +229,7 @@ angular.module('albania.controllers', [])
 			window.plugins.OneSignal.deleteTag("news");
 		}
         //FacebookAds.showInterstitial();
-	    admob.showBanner(admob.BannerSize.SMART_BANNER,admob.Position.BOTTOM_CENTER);
+	    AdMob.showBanner(8);
         LajmeService.getAll(function(data) {
             $scope.lajme = data;
             //console.log($scope.lajme);
@@ -277,13 +277,13 @@ angular.module('albania.controllers', [])
         $scope.lajmi = LajmeService.getId($stateParams.lajmiId);
         $ionicLoading.hide();
 
-		admob.cacheInterstitial();
-		admob.showInterstitial();
+		//admob.cacheInterstitial();
+		AdMob.showInterstitial();
 		$scope.showAds = function()
 		{
 			console.log("call ads");
-			admob.cacheInterstitial();
-			admob.showInterstitial();
+			AdMob.showInterstitial();
+			//admob.showInterstitial();
 		}
     })
 
