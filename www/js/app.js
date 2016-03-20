@@ -29,14 +29,7 @@ var albania = angular.module('albania', ['ionic', 'albania.services', 'albania.c
 	
 	admob.showBanner(admob.BannerSize.SMART_BANNER,admob.Position.BOTTOM_APP);
 	admob.cacheInterstitial();
-	admob.isInterstitialReady(function(isReady){
-        if(isReady){
-            admob.showInterstitial();
-        }
-		else 
-			alert("Not Ready");
-    });
-	
+
 	/**
 	AdMob.createBanner( {
         adId: admobid.banner, 
