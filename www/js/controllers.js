@@ -87,16 +87,6 @@ angular.module('albania.controllers', [])
 		       console.log("hide splash");
         }
 
-/* 		admob.isInterstitialReady(function(isReady){
-            if(isReady){
-               admob.showInterstitial();
-            }
-		    else 
-			{
-				alert("Not Ready");
-			}
-        }); */
-		
 		$ionicLoading.show();
 		var future = new Date('June 10, 2016 21:00:00');
 		var diff = Math.floor((future.getTime() - new Date().getTime()) / 1000);

@@ -15,22 +15,20 @@ var albania = angular.module('albania', ['ionic', 'albania.services', 'albania.c
    var admobid = {};
    try{
           ga_storage._setAccount('UA-70272201-2');
-          ga_storage._trackPageview('#/app/appJS', 'Albania App load');
+          ga_storage._trackPageview('#/app/appJS', 'Albania App load v1.2');
 		  navigator.splashscreen.hide();
-    /**
+    
 	    admobid = { 
           banner: 'ca-app-pub-7925487268042880/9744485565',
           interstitial: 'ca-app-pub-7925487268042880/3804502366'
        };
-	**/   
+	   
 
-    admob.initAdmob("ca-app-pub-7925487268042880/9744485565","ca-app-pub-7925487268042880/3804502366");
+    //admob.initAdmob("ca-app-pub-7925487268042880/9744485565","ca-app-pub-7925487268042880/3804502366");
+	//admob.showBanner(admob.BannerSize.SMART_BANNER,admob.Position.BOTTOM_APP);
+	//admob.cacheInterstitial();
 
 	
-	admob.showBanner(admob.BannerSize.SMART_BANNER,admob.Position.BOTTOM_APP);
-	admob.cacheInterstitial();
-
-	/**
 	AdMob.createBanner( {
         adId: admobid.banner, 
         isTesting: false,
@@ -44,7 +42,7 @@ var albania = angular.module('albania', ['ionic', 'albania.services', 'albania.c
         adId: admobid.interstitial,
         autoShow: true
     });
-    **/
+    
     } catch (e) {
           console.log(e.message);
 		  //alert(e.message);
