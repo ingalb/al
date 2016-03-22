@@ -21,12 +21,10 @@
 
 	<content src="index.html"/>
 	
-	<preference name="phonegap-version" value="cli-6.0.0" />
-
 	<gap:plugin name="org.apache.cordova.device" />
     <gap:plugin name="org.apache.cordova.device-orientation" />
     <gap:plugin name="cordova-plugin-inappbrowser" source="npm" />
-    <gap:plugin name="org.apache.cordova.network-information" source="npm" />
+    <gap:plugin name="org.apache.cordova.network-information" />
     <gap:plugin name="org.apache.cordova.statusbar" />
 	<gap:plugin name="org.apache.cordova.splashscreen" />
 
@@ -46,6 +44,7 @@
 	<uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
 
+    <preference name="phonegap-version"/>
     <preference name="orientation" value="default" />
     <preference name="target-device" value="universal" />
     <preference name="fullscreen" value="false" />
