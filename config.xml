@@ -26,7 +26,7 @@
 	<gap:plugin name="org.apache.cordova.device" />
     <gap:plugin name="org.apache.cordova.device-orientation" />
     <gap:plugin name="cordova-plugin-inappbrowser" source="npm" />
-    <gap:plugin name="org.apache.cordova.network-information" />
+    <gap:plugin name="cordova-plugin-network-information" source="npm" />
     <gap:plugin name="org.apache.cordova.statusbar" />
 	<gap:plugin name="org.apache.cordova.splashscreen" />
 
