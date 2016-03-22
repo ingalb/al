@@ -20,6 +20,8 @@
 	</gap:config-file>-->
 
 	<content src="index.html"/>
+	
+	<preference name="phonegap-version" value="cli-6.0.1" />
 
 	<gap:plugin name="org.apache.cordova.device" />
     <gap:plugin name="org.apache.cordova.device-orientation" />
