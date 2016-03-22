@@ -34,7 +34,7 @@
 
 
 	<!--<gap:plugin name="admob" version="5.4.2" source="npm"/>-->
-    <gap:plugin name="cordova-plugin-admob" source="npm" />
+    <gap:plugin name="cordova-plugin-admobpro" version="2.9.9" source="npm" />
 	<gap:plugin name="onesignal-cordova-plugin-pgb-compat" source="npm" />
 	<!--<gap:plugin name="cordova-plugin-googleplayservices" source="npm" />-->
     <gap:plugin name="nl.x-services.plugins.socialsharing" />
@@ -46,6 +46,7 @@
 	<uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
 
+    <preference name="phonegap-version"/>
     <preference name="orientation" value="default" />
     <preference name="target-device" value="universal" />
     <preference name="fullscreen" value="false" />
