@@ -34,7 +34,7 @@
 
 
 	<!--<gap:plugin name="admob" version="5.4.2" source="npm"/>-->
-    <gap:plugin name="cordova-plugin-admob" source="npm" />
+    <gap:plugin name="cordova-plugin-admobpro" source="npm" />
 	<gap:plugin name="onesignal-cordova-plugin-pgb-compat" source="npm" />
 	<!--<gap:plugin name="cordova-plugin-googleplayservices" source="npm" />-->
     <gap:plugin name="nl.x-services.plugins.socialsharing" />
