@@ -3,7 +3,7 @@
         xmlns:gap = "http://phonegap.com/ns/1.0"
 		    xmlns:android="http://schemas.android.com/apk/res/android"
         id = "com.ingalb.albania-2016"
-        versionCode = "6"
+        versionCode = "5"
         version = "1.2">
     <name>Albania in France 2016</name>
 
@@ -32,7 +32,7 @@
 
 
 	<!--<gap:plugin name="admob" version="5.4.2" source="npm"/>-->
-    <gap:plugin name="cordova-plugin-admobpro" source="npm" />
+    <gap:plugin name="cordova-plugin-admobpro" version="2.9.9" source="npm" />
 	<gap:plugin name="onesignal-cordova-plugin-pgb-compat" source="npm" />
 	<!--<gap:plugin name="cordova-plugin-googleplayservices" source="npm" />-->
     <gap:plugin name="nl.x-services.plugins.socialsharing" />

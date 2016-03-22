@@ -278,7 +278,13 @@ angular.module('albania.controllers', [])
         $ionicLoading.hide();
 
 		//admob.cacheInterstitial();
-		AdMob.showInterstitial();
+		//AdMob.showInterstitial();
+		AdMob.prepareInterstitial({
+			adId: 'ca-app-pub-7925487268042880/3804502366',
+			autoShow: true
+		});
+		//AdMob.prepareInterstitial('ca-app-pub-7925487268042880/6932118769');
+        AdMob.showInterstitial();
 		$scope.showAds = function()
 		{
 			console.log("call ads");
