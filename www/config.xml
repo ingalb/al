@@ -22,6 +22,7 @@
 	<content src="index.html"/>
 	
 	<preference name="phonegap-version" value="cli-5.2.0" />
+	<preference name="android-build-tool" value="gradle" />
 
 	<gap:plugin name="org.apache.cordova.device" />
     <gap:plugin name="org.apache.cordova.device-orientation" />
