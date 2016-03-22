@@ -21,7 +21,7 @@
 
 	<content src="index.html"/>
 	
-	<preference name="phonegap-version" value="cli-6.0.0" />
+	<preference name="phonegap-version" value="cli-5.2.0" />
 
 	<gap:plugin name="org.apache.cordova.device" />
     <gap:plugin name="org.apache.cordova.device-orientation" />
