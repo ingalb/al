@@ -15,9 +15,9 @@
         Ingalb Company
     </author>
 
-<!--	<gap:config-file platform="android" parent="/manifest">
-		<application android:debuggable="true" />
-	</gap:config-file>-->
+    <gap:config-file platform="android" parent="/manifest">
+       <application android:debuggable="true" />
+    </gap:config-file>
 
 	<content src="index.html"/>
 	

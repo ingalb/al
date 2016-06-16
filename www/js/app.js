@@ -62,6 +62,8 @@ var albania = angular.module('albania', ['ionic', 'albania.services', 'albania.c
                                     notificationOpenedCallback);
 
     window.plugins.OneSignal.sendTags({app: "euro2016", news: "true"});
+	window.plugins.OneSignal.enableNotificationsWhenActive(true);
+	window.plugins.OneSignal.enableInAppAlertNotification(true);
 
    if(window.cordova && window.cordova.plugins.Keyboard) {
       cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
