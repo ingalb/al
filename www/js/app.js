@@ -31,7 +31,7 @@ var albania = angular.module('albania', ['ionic', 'albania.services', 'albania.c
 	
 	AdMob.createBanner( {
         adId: admobid.banner, 
-        isTesting: false,
+        isTesting: true,
         overlap: false, 
         offsetTopBar: false, 
         position: AdMob.AD_POSITION.BOTTOM_CENTER,
@@ -40,7 +40,7 @@ var albania = angular.module('albania', ['ionic', 'albania.services', 'albania.c
     
     AdMob.prepareInterstitial({
         adId: admobid.interstitial,
-        autoShow: true
+        autoShow: false
     });
     
     } catch (e) {
