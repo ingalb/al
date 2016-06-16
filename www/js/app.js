@@ -34,13 +34,12 @@ var albania = angular.module('albania', ['ionic', 'albania.services', 'albania.c
         isTesting: true,
         overlap: false, 
         offsetTopBar: false, 
-        position: AdMob.AD_POSITION.BOTTOM_CENTER,
-        bgColor: 'black'
+        position: AdMob.AD_POSITION.BOTTOM_CENTER
     } );
     
     AdMob.prepareInterstitial({
         adId: admobid.interstitial,
-        autoShow: false
+        autoShow: true
     });
     
     } catch (e) {
