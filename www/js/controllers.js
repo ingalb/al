@@ -156,11 +156,11 @@ angular.module('albania.controllers', [])
             $ionicSlideBoxDelegate.update();
         });
 
-        NdeshjetService.getTodayNdeshje(function(data) {
+        NdeshjetService.getLiveScoreNdeshje(function(data) {
             //alert(tani);
             $scope.itemsT = data;
             //$scope.itemsT = data.slice(0,1);
-            //console.log(data);
+            console.log(data);
             $ionicLoading.hide();
         });
 		LajmeService.getSlider(function(data) {

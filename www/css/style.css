@@ -229,8 +229,8 @@ body{
   height: 200px;
 }
 .slider-logo {
-	max-height:200px;
-	max-width: 200px;
+	max-height:120px;
+	max-width: 120px;
 }
 .lajmi-titulli{font-weight:bold;}
 
@@ -265,7 +265,7 @@ body{
     background: rgba(23, 23, 23, 0.4);
     padding-top: 5px;
     padding-bottom: 5px;
-	color: #EE1C24;
+	color: #FFF;
 	font-weight: bold;
 	bottom:0;
 }
@@ -305,7 +305,7 @@ body{
 .ion-record:before{color:#cc3333;}
 /* .bar .title{overflow:visible;} */
 .klasifikimi-header {background-color:#ef4e3a;color:#fff;}
-.Vllaznia {color:#ef4e3a;font-weight:bold;}
+
 .rank {
   background-color: transparent;
   z-index: 1;
@@ -1172,4 +1172,8 @@ pullDown
 	margin: auto;
     width: 330px;
 	color: #444;
+}
+.text-clip{
+	overflow: hidden;
+    text-overflow: clip;
 }

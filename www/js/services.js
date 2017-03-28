@@ -146,6 +146,22 @@ angular.module('albania.services', [])
                 }
               });
             },
+			getLiveScoreNdeshje: function(callback) {
+                $http.get('http://www.albaniasoccer.com/livescore.html?format=raw').success(
+                    function(data) {
+                        ndeshjet = data;
+                        window.localStorage["LiveScoreNdeshjet"] = JSON.stringify(data);
+                        callback(data);
+                    }
+                )
+                .error(function(data) {
+                   console.log("ERROR: last ndeshje" + data);
+                if(window.localStorage["LiveScoreNdeshjet"] !== undefined) {
+                    lastndeshjet = JSON.parse(window.localStorage["LiveScoreNdeshjet"]);
+                    callback(lastndeshjet);
+                }
+              });
+            },
 			     getAlbaniaNdeshje: function(callback) {
                 $http.get(URL_APP+'ndeshjet.php?id='+P_ID+'&ekipi='+EKIPI_ID).success(
                     function(data) {
