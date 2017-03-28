@@ -1,6 +1,6 @@
 var P_ID = 109;
 var EKIPI_ID = 4;
-var URL_APP = "http://api1.ingalb.info/";
+var URL_APP = "http://api.albaniasoccer.com/";
 
 // Ionic Starter App
 // angular.module is a global place for creating, registering and retrieving Angular modules
@@ -12,35 +12,39 @@ var albania = angular.module('albania', ['ionic', 'albania.services', 'albania.c
 
 .run(function($ionicPlatform, $rootScope) {
   $ionicPlatform.ready(function() {
-   var admobid = {};
-   try{
-          ga_storage._setAccount('UA-70272201-2');
-          ga_storage._trackPageview('#/app/appJS', 'Albania App load v1.2');
-		  navigator.splashscreen.hide();
-    
+	  
+	navigator.splashscreen.hide();
+	var admobid = {};
+	try{
+        ga_storage._setAccount('UA-70272201-2');
+        ga_storage._trackPageview('#/app/appJS', 'Albania App load v1.2');
+		    
 	    admobid = { 
           banner: 'ca-app-pub-7925487268042880/9744485565',
           interstitial: 'ca-app-pub-7925487268042880/3804502366'
        };
 	   
-
     //admob.initAdmob("ca-app-pub-7925487268042880/9744485565","ca-app-pub-7925487268042880/3804502366");
 	//admob.showBanner(admob.BannerSize.SMART_BANNER,admob.Position.BOTTOM_APP);
 	//admob.cacheInterstitial();
 
-	
-	AdMob.createBanner( {
+ 	AdMob.createBanner( {
         adId: admobid.banner, 
-        isTesting: true,
-        overlap: false, 
-        offsetTopBar: false, 
-        position: AdMob.AD_POSITION.BOTTOM_CENTER
+        isTesting: false,
+        overlap: false,  
+        position: AdMob.AD_POSITION.BOTTOM_CENTER,
+        bgColor: 'red'
     } );
     
     AdMob.prepareInterstitial({
         adId: admobid.interstitial,
         autoShow: true
     });
+	    
+    AppRate.preferences.storeAppURL = {
+  	ios: '1071146509',
+  	android: 'market://details?id=com.ingalb.albania_2016'
+	};
     
     } catch (e) {
           console.log(e.message);
@@ -51,16 +55,22 @@ var albania = angular.module('albania', ['ionic', 'albania.services', 'albania.c
       //alert("Notification received:\n" + JSON.stringify(jsonData));
       //console.log('didReceiveRemoteNotificationCallBack: ' + JSON.stringify(jsonData));
       // firing an event downwards
-      $rootScope.$broadcast('pushEvent', jsonData);
+      $rootScope.$broadcast('pushEvent', jsonData.notification.payload);
     };
     //window.plugins.OneSignal.setLogLevel({logLevel: 4, visualLevel: 4});
     // Update with your OneSignal AppId and googleProjectNumber before running.
-    window.plugins.OneSignal.init("989f0128-8884-11e5-bfb9-a0369f2d9328",
+    /**
+	window.plugins.OneSignal.init("989f0128-8884-11e5-bfb9-a0369f2d9328",
                                    {googleProjectNumber: "656349133735",
 								    autoRegister: true},
                                     notificationOpenedCallback);
+	**/								
+	window.plugins.OneSignal
+    .startInit("989f0128-8884-11e5-bfb9-a0369f2d9328")
+    .handleNotificationOpened(notificationOpenedCallback)
+    .endInit();
 
-    window.plugins.OneSignal.sendTags({app: "euro2016", news: "true"});
+    window.plugins.OneSignal.sendTags({app: "AS2017", news: "true"});
 	window.plugins.OneSignal.enableNotificationsWhenActive(true);
 	window.plugins.OneSignal.enableInAppAlertNotification(true);
 

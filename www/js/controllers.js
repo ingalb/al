@@ -181,7 +181,7 @@ angular.module('albania.controllers', [])
 
     $timeout(function(){
 			$ionicLoading.hide();
-			AdMob.showBanner(8);
+			AppRate.promptForRating(false);
 		    console.log("hide loading + show banner");
 		},timerhide);
 
