@@ -147,7 +147,7 @@ angular.module('albania.services', [])
               });
             },
 			getLiveScoreNdeshje: function(callback) {
-                $http.get('http://www.albaniasoccer.com/livescore.html?format=raw').success(
+                $http.get(URL_APP+'ndeshjet.php?id=livescore&format=raw&app_id=3').success(
                     function(data) {
                         ndeshjet = data;
                         window.localStorage["LiveScoreNdeshjet"] = JSON.stringify(data);
@@ -155,7 +155,7 @@ angular.module('albania.services', [])
                     }
                 )
                 .error(function(data) {
-                   console.log("ERROR: last ndeshje" + data);
+                   console.log("ERROR: last ndeshje");
                 if(window.localStorage["LiveScoreNdeshjet"] !== undefined) {
                     lastndeshjet = JSON.parse(window.localStorage["LiveScoreNdeshjet"]);
                     callback(lastndeshjet);
@@ -240,6 +240,22 @@ angular.module('albania.services', [])
                 }
               });
 
+            },
+			getAllId: function(catId, callback) {
+                $http.get(URL_APP+'/as-news.php',{params:{id: catId, limit: '50'}}).success(
+                    function(data) {
+                        lajmet = data;
+                        window.localStorage["lajmet"] = JSON.stringify(data);
+                        callback(lajmet);
+                    }
+                )
+                .error(function(data) {
+                   console.log("ERROR: " + data);
+                if(window.localStorage["lajmet-'+catId+'"] !== undefined) {
+                    lajmet = JSON.parse(window.localStorage["lajmet-'+catId+'"]);
+                    callback(lajmet);
+                }
+              });
             },
             getId: function(lajmiId) {
                 return lajmet[lajmiId - 1];

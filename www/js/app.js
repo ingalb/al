@@ -105,7 +105,7 @@ var albania = angular.module('albania', ['ionic', 'albania.services', 'albania.c
     })
 
     .state('app.lajmet', {
-      url: "/lajmet",
+      url: "/lajmet/:catId",
       views: {
         'menuContent' :{
           templateUrl: "templates/lajmet.html",

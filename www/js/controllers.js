@@ -160,7 +160,7 @@ angular.module('albania.controllers', [])
             //alert(tani);
             $scope.itemsT = data;
             //$scope.itemsT = data.slice(0,1);
-            console.log(data);
+            //console.log(data);
             $ionicLoading.hide();
         });
 		LajmeService.getSlider(function(data) {
@@ -187,8 +187,8 @@ angular.module('albania.controllers', [])
 
       })
 
-    .controller('LajmeCtrl', function($scope, $sce, $timeout, $ionicLoading, LajmeService) {
-      ga_storage._trackPageview('#/app/lajmet', 'Albania App Lajmet');
+    .controller('LajmeCtrl', function($scope, $sce, $timeout, $stateParams, $ionicLoading, LajmeService) {
+      ga_storage._trackPageview('#/app/lajmet'+ $stateParams.catId+'', 'Albania App Lajmet');
       //window.analytics.trackView('Lajmet Page');
 	    $scope.anim = "ion-ios-bell-outline";
       $scope.loadingIndicator = $ionicLoading.show({
@@ -211,10 +211,10 @@ angular.module('albania.controllers', [])
 			     }
 		      });
 	    }
-		  isSubscribed();
+		//isSubscribed();
 
       $scope.$on('$ionicView.enter', function(){
-         isSubscribed();
+         //isSubscribed();
       });
 
 	    var subscribe = function(){
@@ -229,8 +229,8 @@ angular.module('albania.controllers', [])
 			window.plugins.OneSignal.deleteTag("news");
 		}
         //FacebookAds.showInterstitial();
-	    AdMob.showBanner(8);
-        LajmeService.getAll(function(data) {
+	    //AdMob.showBanner(8);
+        LajmeService.getAllId($stateParams.catId, function(data) {
             $scope.lajme = data;
             //console.log($scope.lajme);
             $ionicLoading.hide();
@@ -246,7 +246,7 @@ angular.module('albania.controllers', [])
 			}
 	    }
         $scope.doRefresh = function() {
-          LajmeService.getAll(function(data) {
+          LajmeService.getAllId($stateParams.catId, function(data) {
             $scope.lajme = data;
 			isSubscribed();
             $ionicLoading.hide();
@@ -471,7 +471,7 @@ angular.module('albania.controllers', [])
         KlasifikimiGrupetService.getAllKlasifikimi(P_ID, $scope.gr_id,function(data) {
             $scope.items = data;
             //$ionicLoading.hide();
-			     $ionicSideMenuDelegate.canDragContent(false);
+			$ionicSideMenuDelegate.canDragContent(false);
         });
         //console.log($scope.gr_id);
 		    NdeshjetService.getGrupetNdeshje($scope.gr_id, function(data) {
