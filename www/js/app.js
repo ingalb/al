@@ -1,7 +1,7 @@
 var P_ID = 109;
 var EKIPI_ID = 4;
 var URL_APP = "http://api.albaniasoccer.com/";
-
+var APP_ID = 3;
 // Ionic Starter App
 // angular.module is a global place for creating, registering and retrieving Angular modules
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
@@ -202,6 +202,16 @@ var albania = angular.module('albania', ['ionic', 'albania.services', 'albania.c
         'menuContent' :{
           templateUrl: "templates/settings.html",
 		  controller: 'SettingsCtrl'
+        }
+      }
+    })
+	
+	.state('app.klasifikimi', {
+      url: "/klasifikimi/:catId/:pId",
+      views: {
+        'menuContent' :{
+          templateUrl: "templates/klasifikimi.html",
+          controller: 'KlasifikimiCtrl'
         }
       }
     })

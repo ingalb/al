@@ -147,7 +147,7 @@ angular.module('albania.services', [])
               });
             },
 			getLiveScoreNdeshje: function(callback) {
-                $http.get(URL_APP+'ndeshjet.php?id=livescore&format=raw&app_id=3').success(
+                $http.get(URL_APP+'ndeshjet.php?id=livescore&app_id=3').success(
                     function(data) {
                         ndeshjet = data;
                         window.localStorage["LiveScoreNdeshjet"] = JSON.stringify(data);
@@ -291,7 +291,52 @@ angular.module('albania.services', [])
 
         return {
             getAllKlasifikimi: function(sezoniId, callback) {
-                $http.get(URL_APP+'klasifikimi.php',{params:{id: sezoniId}}).success(
+                $http.get(URL_APP+'klasifikimi.php',{params:{id: sezoniId, app_id: APP_ID}}).success(
+                    function(data) {
+                        ndeshja = data;
+                        window.localStorage["klasifikimi"+sezoniId+""] = JSON.stringify(data);
+                        callback(data);
+                    }
+                )
+                .error(function(data) {
+                   console.log("ERROR: " + data);
+                if(window.localStorage["klasifikimi"+sezoniId+""] !== undefined) {
+                    klasifikimi = JSON.parse(window.localStorage["klasifikimi"+sezoniId+""]);
+                    callback(klasifikimi);
+                }
+              });
+            }
+        }
+    })
+	
+	.factory('ProjectService', function($http) {
+        var Projects = [];
+        return {
+            getProjects: function(catId, callback){
+				$http.get(URL_APP+'projects.php',{params:{id: catId}}).success(
+                    function(data) {
+						SuperligaProjects = data;
+						window.localStorage["superligaP"+catId+""] = JSON.stringify(SuperligaProjects);
+						callback(SuperligaProjects);
+					}
+				)
+                .error(function(data) {
+					console.log("ERROR loading" + data);
+					if(window.localStorage["superligaP"+catId+""] !== undefined) {
+                    SuperligaProjects = JSON.parse(window.localStorage["superligaP"+catId+""]);
+                    callback(SuperligaProjects);
+					}
+				});
+            }
+        }
+    })
+	
+   .factory('KlasifikimiService', function($http) {
+        var klasifikimi = [];
+
+        return {
+            getAllKlasifikimi: function(sezoniId, callback) {
+                $http.get(URL_APP+'klasifikimi.php',{params:{id: sezoniId, app_id: APP_ID}}).success(
                     function(data) {
                         ndeshja = data;
                         window.localStorage["klasifikimi"] = JSON.stringify(data);
@@ -307,6 +352,20 @@ angular.module('albania.services', [])
               });
             }
         }
+
+       /** return {
+            getAllKlasifikimi: function(callback) {
+                $http.get('http://www.ingalb.com/as/klasifikimi.php?id=superliga').success(
+                    function(data) {
+                        klasifikimi = data;
+                        callback(data);
+                    }
+                );
+            },
+            get: function(klasifikimiId) {
+              return klasifikimi[klasifikimiId - 1];
+            }
+        } **/
     })
 
    .factory('EkipiService', function($http) {

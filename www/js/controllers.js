@@ -981,6 +981,138 @@ angular.module('albania.controllers', [])
 			}
 		};
 	})
+	
+	.controller('KlasifikimiCtrl', function($scope, $stateParams, $timeout, $ionicLoading, $ionicBackdrop, KlasifikimiService, ProjectService, $ionicPopover) {
+     ga_storage._trackPageview('#/app/klasifikimi', 'AlbaniSoccer App Klasifikimi');
+     var titulliPop = "Zgjidh kampionatin";
+	 $scope.start_val_id = 0;
+	console.log($stateParams.catId);
+	if($stateParams.catId == 4)
+     $scope.SezoneList = [
+	   { text: "Kualifikimi Boterori Rusi 2018", value: 112 },
+       { text: "Euro France 2016", value: 109 },
+       { text: "Kualifikimi France 2016", value: 102 },
+       { text: "Kualifikimi Boterori Brazil 2014", value: 94 },
+       { text: "Kualifikimi Euro 2012", value: 70 },
+       { text: "Kualifikimi Boterori 2010", value: 2 },
+      ];
+	else if($stateParams.catId == 2)
+	{
+	 $scope.SezoneList = [
+	   { text: "Superliga 2016-17", value: 111 },
+       { text: "Superliga 2015-16", value: 105 },
+       { text: "Superliga 2014-15", value: 100 },
+       { text: "Superliga 2013-14", value: 97 },
+       { text: "Superliga 2012-13", value: 86 },
+       { text: "Superliga 2011-12", value: 79 },
+       { text: "Superliga 2010-11", value: 15 },
+       { text: "Superliga 2009-10", value: 10 },
+      ];  
+	}
+	else if($stateParams.catId == 3)
+	{
+	  $scope.SezoneList = [
+	   { text: "Kategoria 1 2016-17", value: 114 },
+       { text: "Kategoria 1 2015-16", value: 107 },
+       { text: "Kategoria 1 2014-15", value: 101 },
+       { text: "Kategoria 1 2013-14", value: 98 },
+       { text: "Kategoria 1 2012-13", value: 92 },
+       { text: "Kategoria 1 2011-12", value: 80 },
+       { text: "Kategoria 1 2010-11", value: 11 },
+       { text: "Kategoria 1 2009-10", value: 6 },
+      ];  
+	}
+	else if($stateParams.catId == 5)
+	{
+	  $scope.SezoneList = [
+	   { text: "Superliga 2016-17", value: 111 },
+       { text: "Superliga 2015-16", value: 105 },
+       { text: "Superliga 2014-15", value: 100 },
+       { text: "Superliga 2013-14", value: 97 },
+      ];  
+	}
+	else
+	{
+	  $scope.SezoneList = [
+	   { text: "Superliga 2016-17", value: 111 },
+      ];  
+	}  
+      
+	  $scope.sezoni_id = $scope.SezoneList[$scope.start_val_id].value;
+      $scope.sezoni_text = $scope.SezoneList[$scope.start_val_id].text;
+
+	 ProjectService.getProjects($stateParams.catId, function(data) {
+		  $scope.SezoneList = data;
+	 });
+	 
+	
+	  $scope.$on('$ionicView.Enter', function(){
+	    //console.log("enter view 12");
+		$ionicBackdrop.retain();
+		$ionicLoading.show();
+		ProjectService.getProjects($stateParams.catId, function(data) {
+		  $scope.SezoneList = data;
+		  $scope.sezoni_id = $scope.SezoneList[$scope.start_val_id].value;
+          $scope.sezoni_text = $scope.SezoneList[$scope.start_val_id].text;
+		  KlasifikimiService.getAllKlasifikimi($scope.sezoni_id,function(data) {
+            $scope.items = data;
+			$scope.note = data[0].note;
+			$scope.legend = data[0].legend;
+            $ionicLoading.hide();
+			$ionicBackdrop.release();
+		  });
+	    });
+	   });
+	 
+       $scope.loadingIndicator = $ionicLoading.show({
+	         content: 'Loading Data',
+	         animation: 'fade-in',
+	         showBackdrop: true,
+	         maxWidth: 200,
+	         showDelay: 500
+	     });
+
+       $ionicPopover.fromTemplateUrl('popover-template.html', {
+          scope: $scope,
+        }).then(function(popover) {
+          $scope.popover = popover;
+        });
+
+       KlasifikimiService.getAllKlasifikimi($stateParams.pId,function(data) {
+            $scope.items = data;
+			$scope.note = data[0].note;
+			$scope.legend = data[0].legend;
+			//console.log(data[0]);
+            $ionicLoading.hide();
+        });
+
+      $scope.changeSezoni = function(item, index) {
+		$scope.start_val_id = index;
+		//console.log(index);
+        $scope.sezoni_text = item.text;
+        $scope.sezoni_id = item.value;
+        $scope.popover.hide();
+        $ionicBackdrop.retain();
+		$ionicLoading.show();
+        KlasifikimiService.getAllKlasifikimi($scope.sezoni_id,function(data) {
+            $scope.items = data;
+			$scope.note = data[0].note;
+			$scope.legend = data[0].legend;
+            //selectPopup.close();
+            $scope.popover.hide();
+			$ionicLoading.hide();
+            $ionicBackdrop.release();
+        });
+      };
+       
+	  $timeout(function(){
+        $ionicLoading.hide();
+        //selectPopup.close();
+        $scope.popover.hide();
+        $ionicBackdrop.release();
+      },160000);
+    })
+
 
 	.controller('NdeshjetCtrl', function($scope, $sce, $timeout, $stateParams, $ionicLoading, $ionicBackdrop, $ionicPopover, NdeshjetService) {
 

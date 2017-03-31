@@ -22,15 +22,27 @@
   </div>
  </div>
  <div class="item item-text-wrap bg-transparent pad5">
-  <div class="row {{item.name}} rnk" ng-repeat="item in items">
-    <div class="col col-center"><span class="rank rank-{{$index + 1}}">{{item.rank}}</span></div>
+  <div class="{{item.name}} rnk" ng-repeat="item in items">
+  <div ng-if="!item.division && item.division_name" class="item item-divider">
+     <h2 class="center">{{item.division_name}}</h2>
+  </div>
+  <div class="row">
+    <div class="col col-center">
+	   <span ng-if="item.kolor" class="rank" style="background-color:{{item.kolor}}; color:#FFF;">{{item.rank}}</span>
+	   <span ng-if="!item.kolor" class="rank">{{item.rank}}</span>
+	</div>
     <div class="col col-33">{{item.name}}</div>
     <div class="col col-center"><b>{{item.pike}}</b></div>
     <div class="col col-center">{{item.ndeshje}}</div>
     <div class="col col-center">{{item.golash - item.golap}}</div>
   </div>
+  </div>
  </div>
 </div>
+<div ng-if="legend" class="row item" id="rank">
+   <p class="small-klasifikimi"><span ng-repeat="item in legend"><span class="rank badge-assertive" style="background-color:{{item.color}};border-radius: 0px;">&nbsp;&nbsp;</span> {{item.description}}<br></span></p>
+</div>
+<div ng-if="note" id="rank" class="item row"><p class="small-klasifikimi" data-ng-bind-html="note"></p></div>
 </ion-content>
 </ion-view>
 
