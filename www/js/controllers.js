@@ -78,21 +78,19 @@ angular.module('albania.controllers', [])
     };
   })
 
-    .controller('IndexCtrl', function($scope, $ionicSlideBoxDelegate, $state, $timeout, $ionicLoading, $ionicPopup, LajmeService, $ionicModal, $rootScope, NdeshjetService) {
+    .controller('IndexCtrl', function($scope, $ionicSlideBoxDelegate, $ionicNavBarDelegate, $state, $timeout, $ionicLoading, $ionicPopup, LajmeService, $ionicModal, $rootScope, NdeshjetService) {
         var tani = new Date();
         var timerhide = 15000;
         ga_storage._trackPageview('#/app/index', 'Albania App Index');
         if(navigator.splashscreen){
-           navigator.splashscreen.hide();
-		       console.log("hide splash");
+			navigator.splashscreen.hide();
         }
-
+        $ionicNavBarDelegate.title("Albani Soccer App");
 		$ionicLoading.show();
 		var future = new Date('June 10, 2016 21:00:00');
 		var diff = Math.floor((future.getTime() - new Date().getTime()) / 1000);
 		$scope.countd = diff;
 
-		//console.log($scope.countd);
 
         $scope.CloseNotification = function() {
            $scope.modal.hide();
@@ -156,6 +154,20 @@ angular.module('albania.controllers', [])
             $ionicSlideBoxDelegate.update();
         });
 
+		$scope.$on('$ionicView.enter', function(){
+			var update = function update() {
+				timer = $timeout(update, 12000);
+				NdeshjetService.getLiveScoreNdeshje(function(data) {
+				$scope.itemsT = data;
+				});
+			}();
+		});
+		
+	    $scope.$on('$ionicView.beforeLeave', function(){
+         $timeout.cancel(timer);
+		 console.log("leave view");
+		});
+		
         NdeshjetService.getLiveScoreNdeshje(function(data) {
             //alert(tani);
             $scope.itemsT = data;
@@ -179,13 +191,13 @@ angular.module('albania.controllers', [])
          return ( d1>d2);
        };
 
-    $timeout(function(){
+        $timeout(function(){
 			$ionicLoading.hide();
 			AppRate.promptForRating(false);
 		    console.log("hide loading + show banner");
 		},timerhide);
 
-      })
+    })
 
     .controller('LajmeCtrl', function($scope, $sce, $timeout, $stateParams, $ionicLoading, LajmeService) {
       ga_storage._trackPageview('#/app/lajmet'+ $stateParams.catId+'', 'Albania App Lajmet');
@@ -211,10 +223,10 @@ angular.module('albania.controllers', [])
 			     }
 		      });
 	    }
-		//isSubscribed();
+	  isSubscribed();
 
       $scope.$on('$ionicView.enter', function(){
-         //isSubscribed();
+         isSubscribed();
       });
 
 	    var subscribe = function(){
@@ -363,10 +375,20 @@ angular.module('albania.controllers', [])
 		});
 
 		$scope.$on('$ionicView.enter', function(){
-	    	console.log("enter view");
+	    	var counter = 0;
 			var update = function update() {
 				timer = $timeout(update, 59000);
 				isSubscribed(tags);
+				counter ++;
+				if(counter%2)
+				{
+					AdMob.hideBanner();
+				}
+			    else
+				{
+					AdMob.showBanner(AdMob.AD_POSITION.BOTTOM_CENTER);
+				}
+				
 				NdeshjaService.getReport($stateParams.ndeshjaId, function(data) {
 					$scope.item = data;
 					$scope.content = data.kronika;
@@ -986,7 +1008,6 @@ angular.module('albania.controllers', [])
      ga_storage._trackPageview('#/app/klasifikimi', 'AlbaniSoccer App Klasifikimi');
      var titulliPop = "Zgjidh kampionatin";
 	 $scope.start_val_id = 0;
-	console.log($stateParams.catId);
 	if($stateParams.catId == 4)
      $scope.SezoneList = [
 	   { text: "Kualifikimi Boterori Rusi 2018", value: 112 },
@@ -996,7 +1017,7 @@ angular.module('albania.controllers', [])
        { text: "Kualifikimi Euro 2012", value: 70 },
        { text: "Kualifikimi Boterori 2010", value: 2 },
       ];
-	else if($stateParams.catId == 2)
+	else if($stateParams.catId == 1)
 	{
 	 $scope.SezoneList = [
 	   { text: "Superliga 2016-17", value: 111 },
@@ -1025,10 +1046,14 @@ angular.module('albania.controllers', [])
 	else if($stateParams.catId == 5)
 	{
 	  $scope.SezoneList = [
-	   { text: "Superliga 2016-17", value: 111 },
-       { text: "Superliga 2015-16", value: 105 },
-       { text: "Superliga 2014-15", value: 100 },
-       { text: "Superliga 2013-14", value: 97 },
+	   { text: "Superliga Kosove 2016-17", value: 115 },
+       { text: "Superliga Kosove 2015-16", value: 108 },
+       { text: "Superliga Kosove 2014-15", value: 103 },
+       { text: "Superliga Kosove 2013-14", value: 96 },
+	   { text: "Superliga Kosove 2012-13", value: 93 },
+	   { text: "Superliga Kosove 2011-12", value: 81 },
+	   { text: "Superliga Kosove 2010-11", value: 12 },
+	   { text: "Superliga Kosove 2009-10", value: 7 },
       ];  
 	}
 	else
@@ -1038,22 +1063,21 @@ angular.module('albania.controllers', [])
       ];  
 	}  
       
-	  $scope.sezoni_id = $scope.SezoneList[$scope.start_val_id].value;
-      $scope.sezoni_text = $scope.SezoneList[$scope.start_val_id].text;
-
-	 ProjectService.getProjects($stateParams.catId, function(data) {
-		  $scope.SezoneList = data;
-	 });
+	ProjectService.getProjects($stateParams.catId, function(data) {
+		$scope.SezoneList = data;
+	});
 	 
+	$scope.sezoni_id = $scope.SezoneList[$scope.start_val_id].value;
+    $scope.sezoni_text = $scope.SezoneList[$scope.start_val_id].text;
 	
-	  $scope.$on('$ionicView.Enter', function(){
-	    //console.log("enter view 12");
+	$scope.$on('$ionicView.afterEnter', function(){
+	    //console.log($scope.start_val_id);
 		$ionicBackdrop.retain();
 		$ionicLoading.show();
 		ProjectService.getProjects($stateParams.catId, function(data) {
 		  $scope.SezoneList = data;
-		  $scope.sezoni_id = $scope.SezoneList[$scope.start_val_id].value;
-          $scope.sezoni_text = $scope.SezoneList[$scope.start_val_id].text;
+		  $scope.sezoni_id = $scope.SezoneList[0].value;
+          $scope.sezoni_text = $scope.SezoneList[0].text;
 		  KlasifikimiService.getAllKlasifikimi($scope.sezoni_id,function(data) {
             $scope.items = data;
 			$scope.note = data[0].note;
@@ -1062,21 +1086,22 @@ angular.module('albania.controllers', [])
 			$ionicBackdrop.release();
 		  });
 	    });
-	   });
-	 
-       $scope.loadingIndicator = $ionicLoading.show({
+	});
+	
+
+    $scope.loadingIndicator = $ionicLoading.show({
 	         content: 'Loading Data',
 	         animation: 'fade-in',
 	         showBackdrop: true,
 	         maxWidth: 200,
 	         showDelay: 500
-	     });
+	});
 
-       $ionicPopover.fromTemplateUrl('popover-template.html', {
-          scope: $scope,
-        }).then(function(popover) {
-          $scope.popover = popover;
-        });
+    $ionicPopover.fromTemplateUrl('popover-template.html', {
+        scope: $scope,
+    }).then(function(popover) {
+        $scope.popover = popover;
+    });
 
        KlasifikimiService.getAllKlasifikimi($stateParams.pId,function(data) {
             $scope.items = data;
@@ -1088,7 +1113,6 @@ angular.module('albania.controllers', [])
 
       $scope.changeSezoni = function(item, index) {
 		$scope.start_val_id = index;
-		//console.log(index);
         $scope.sezoni_text = item.text;
         $scope.sezoni_id = item.value;
         $scope.popover.hide();
@@ -1168,4 +1192,327 @@ angular.module('albania.controllers', [])
         $timeout(function(){
           $ionicLoading.hide();
         },10000);
+    })
+	
+	
+	.controller('NdeshjetCtrl1', function($scope, $sce, $timeout, $stateParams, $ionicLoading, $ionicBackdrop, $ionicPopover, $ionicScrollDelegate, $location, NdeshjetService, ProjectService) {
+      ga_storage._trackPageview('#/app/ndeshjet', 'As App Ndeshjet');
+
+      $scope.clubId = $stateParams.clubId;
+      $scope.start_val_id = 0;
+
+	   
+	if($stateParams.catId == 4)
+     $scope.SezoneList = [
+	   { text: "Kualifikimi Boterori Rusi 2018", value: 112 },
+       { text: "Euro France 2016", value: 109 },
+       { text: "Kualifikimi France 2016", value: 102 },
+       { text: "Kualifikimi Boterori Brazil 2014", value: 94 },
+       { text: "Kualifikimi Euro 2012", value: 70 },
+       { text: "Kualifikimi Boterori 2010", value: 2 },
+      ];
+	else if($stateParams.catId == 1)
+	{
+	 $scope.SezoneList = [
+	   { text: "Superliga 2016-17", value: 111 },
+       { text: "Superliga 2015-16", value: 105 },
+       { text: "Superliga 2014-15", value: 100 },
+       { text: "Superliga 2013-14", value: 97 },
+       { text: "Superliga 2012-13", value: 86 },
+       { text: "Superliga 2011-12", value: 79 },
+       { text: "Superliga 2010-11", value: 15 },
+       { text: "Superliga 2009-10", value: 10 },
+      ];  
+	}
+	else if($stateParams.catId == 3)
+	{
+	  $scope.SezoneList = [
+	   { text: "Kategoria 1 2016-17", value: 114 },
+       { text: "Kategoria 1 2015-16", value: 107 },
+       { text: "Kategoria 1 2014-15", value: 101 },
+       { text: "Kategoria 1 2013-14", value: 98 },
+       { text: "Kategoria 1 2012-13", value: 92 },
+       { text: "Kategoria 1 2011-12", value: 80 },
+       { text: "Kategoria 1 2010-11", value: 11 },
+       { text: "Kategoria 1 2009-10", value: 6 },
+      ];  
+	}
+	else if($stateParams.catId == 5)
+	{
+	  $scope.SezoneList = [
+	   { text: "Superliga Kosove 2016-17", value: 115 },
+       { text: "Superliga Kosove 2015-16", value: 108 },
+       { text: "Superliga Kosove 2014-15", value: 103 },
+       { text: "Superliga Kosove 2013-14", value: 96 },
+	   { text: "Superliga Kosove 2012-13", value: 93 },
+	   { text: "Superliga Kosove 2011-12", value: 81 },
+	   { text: "Superliga Kosove 2010-11", value: 12 },
+	   { text: "Superliga Kosove 2009-10", value: 7 },
+      ];  
+	}
+	else if($stateParams.catId == 2)
+	{
+	   $scope.SezoneList = [
+	    { text: "Kupa e Shqiperise 2016-17", value: 113 },
+        { text: "Kupa e Shqiperise 2015-16", value: 106 },
+        { text: "Kupa e Shqiperise 2014-15", value: 104 },
+        { text: "Kupa e Shqiperise 2013-14", value: 99 },
+        { text: "Kupa e Shqiperise 2011-12", value: 83 },
+        { text: "Kupa e Shqiperise 2010-11", value: 13 },
+        { text: "Kupa e Shqiperise 2009-10", value: 8 },
+       ];
+	}
+	else
+	{
+	  $scope.SezoneList = [
+	   { text: "Superliga 2016-17", value: 111 },
+      ];  
+	}
+	   
+	  $scope.sezoni_id = $scope.SezoneList[$scope.start_val_id].value;
+      $scope.sezoni_text = $scope.SezoneList[$scope.start_val_id].text;
+	  
+
+	  $scope.$on('$ionicView.Enter', function(){
+	    console.log("enter view");
+		$ionicBackdrop.retain();
+		$ionicLoading.show();
+		ProjectService.getProjects($stateParams.catId, function(data) {
+		  $scope.SezoneList = data;
+		  $scope.sezoni_id = $scope.SezoneList[0].value;
+          $scope.sezoni_text = $scope.SezoneList[0].text;
+		  NdeshjetService.getAllNdeshjet($scope.sezoni_id, $scope.clubId, function(data) {
+            $scope.items = data;
+			var current = data[0].current_round - 1;
+			//var scrollto = current *130;
+            $ionicLoading.hide();
+			$ionicBackdrop.release();
+			
+			//location = $location.hash(location);
+			//$ionicScrollDelegate.$getByHandle('mainScroll').anchorScroll("#"+location);
+			//console.log($location.hash(location));
+			//$ionicScrollDelegate.scrollBy(0,(current *130), true);
+			$scope.ScrollTo("ndeshja-"+current);
+		  });
+	    });
+	   });
+
+        $scope.ScrollTo = function(location) {
+              location = $location.hash(location);
+              //console.log('scrolling to: '+location);
+              $ionicScrollDelegate.$getByHandle('mainScroll').anchorScroll("#"+location);
+        };
+
+      $scope.loadingIndicator = $ionicLoading.show({
+	    content: 'Loading Data',
+	    animation: 'fade-in',
+	    showBackdrop: true,
+	    maxWidth: 200,
+	    showDelay: 500
+	   });
+
+     $ionicPopover.fromTemplateUrl('popover-template.html', {
+        scope: $scope,
+      }).then(function(popover) {
+        $scope.popover = popover;
       });
+
+      $scope.changeSezoni = function(item, index) {
+		$scope.start_val_id = index;
+        $scope.sezoni_text = item.text;
+        $scope.sezoni_id = item.value;
+        $scope.popover.hide();
+		$ionicLoading.show();
+        console.log($scope.sezoni_id);
+		console.log($scope.clubId);
+        $ionicBackdrop.retain();
+        NdeshjetService.getAllNdeshjet($scope.sezoni_id, $scope.clubId, function(data) {
+            $scope.items = data;
+			var current = data[0].current_round - 1;
+			//console.log(data.length);
+            //selectPopup.close();
+			$ionicLoading.hide();
+            $scope.popover.hide();
+            $ionicBackdrop.release();
+			//$ionicScrollDelegate.scrollBy(0,(current *130), true);
+			$scope.ScrollTo("ndeshja-"+current);
+        });
+      };
+
+        NdeshjetService.getAllNdeshjet($scope.sezoni_id, $scope.clubId, function(data) {
+            $scope.items = data;
+	    //var current = data[0].current_round - 1;
+	    //$scope.ScrollTo("ndeshja-"+current);
+            $ionicLoading.hide();
+        });
+     $timeout(function(){
+          $ionicLoading.hide();
+        },15000);
+    })
+	
+	.controller('KalendariCtrl', function($scope, $sce, $timeout, $stateParams, $ionicLoading, $ionicBackdrop, $ionicPopover, $ionicScrollDelegate, $ionicSlideBoxDelegate, $location, NdeshjetService, ProjectService) {
+      ga_storage._trackPageview('#/app/ndeshjet', 'As App Ndeshjet');
+
+      $scope.pId = $stateParams.pId;
+	  var initslide = 6;
+      $scope.start_val_id = 0;
+	  $scope.updateLabel = 0;
+      $scope.options = {
+                initialSlide: initslide
+            };
+	   
+	if($stateParams.catId == 4)
+     $scope.SezoneList = [
+	   { text: "Kualifikimi Boterori Rusi 2018", value: 112 },
+       { text: "Euro France 2016", value: 109 },
+       { text: "Kualifikimi France 2016", value: 102 },
+       { text: "Kualifikimi Boterori Brazil 2014", value: 94 },
+       { text: "Kualifikimi Euro 2012", value: 70 },
+       { text: "Kualifikimi Boterori 2010", value: 2 },
+      ];
+	else if($stateParams.catId == 1)
+	{
+	 $scope.SezoneList = [
+	   { text: "Superliga 2016-17", value: 111 },
+       { text: "Superliga 2015-16", value: 105 },
+       { text: "Superliga 2014-15", value: 100 },
+       { text: "Superliga 2013-14", value: 97 },
+       { text: "Superliga 2012-13", value: 86 },
+       { text: "Superliga 2011-12", value: 79 },
+       { text: "Superliga 2010-11", value: 15 },
+       { text: "Superliga 2009-10", value: 10 },
+      ];  
+	}
+	else if($stateParams.catId == 3)
+	{
+	  $scope.SezoneList = [
+	   { text: "Kategoria 1 2016-17", value: 114 },
+       { text: "Kategoria 1 2015-16", value: 107 },
+       { text: "Kategoria 1 2014-15", value: 101 },
+       { text: "Kategoria 1 2013-14", value: 98 },
+       { text: "Kategoria 1 2012-13", value: 92 },
+       { text: "Kategoria 1 2011-12", value: 80 },
+       { text: "Kategoria 1 2010-11", value: 11 },
+       { text: "Kategoria 1 2009-10", value: 6 },
+      ];  
+	}
+	else if($stateParams.catId == 5)
+	{
+	  $scope.SezoneList = [
+	   { text: "Superliga Kosove 2016-17", value: 115 },
+       { text: "Superliga Kosove 2015-16", value: 108 },
+       { text: "Superliga Kosove 2014-15", value: 103 },
+       { text: "Superliga Kosove 2013-14", value: 96 },
+	   { text: "Superliga Kosove 2012-13", value: 93 },
+	   { text: "Superliga Kosove 2011-12", value: 81 },
+	   { text: "Superliga Kosove 2010-11", value: 12 },
+	   { text: "Superliga Kosove 2009-10", value: 7 },
+      ];  
+	}
+	else if($stateParams.catId == 2)
+	{
+	   $scope.SezoneList = [
+	    { text: "Kupa e Shqiperise 2016-17", value: 113 },
+        { text: "Kupa e Shqiperise 2015-16", value: 106 },
+        { text: "Kupa e Shqiperise 2014-15", value: 104 },
+        { text: "Kupa e Shqiperise 2013-14", value: 99 },
+        { text: "Kupa e Shqiperise 2011-12", value: 83 },
+        { text: "Kupa e Shqiperise 2010-11", value: 13 },
+        { text: "Kupa e Shqiperise 2009-10", value: 8 },
+       ];
+	}
+	else
+	{
+	  $scope.SezoneList = [
+	   { text: "Superliga 2016-17", value: 111 },
+      ];  
+	}
+	   
+	  $scope.sezoni_id = $scope.SezoneList[$scope.start_val_id].value;
+      $scope.sezoni_text = $scope.SezoneList[$scope.start_val_id].text;
+	  
+
+	  $scope.$on('$ionicView.afterEnter', function(){
+	    console.log("enter view");
+		$ionicBackdrop.retain();
+		$ionicLoading.show();
+		ProjectService.getProjects($stateParams.catId, function(data) {
+		  $scope.SezoneList = data;
+		  $scope.sezoni_id = $scope.SezoneList[0].value;
+          $scope.sezoni_text = $scope.SezoneList[0].text;
+		  NdeshjetService.getAllRoundsNdeshjet($scope.sezoni_id, function(data) {
+            $scope.itemsT = data;
+			//console.log(data[1]);
+			//var current = data.ndeshjet.[0].current_round - 1;
+			//var scrollto = current *130;
+			$scope.options = {
+                //initialSlide: data.ndeshje[0].current
+            };
+            $ionicLoading.hide();
+			$ionicBackdrop.release();
+			//$ionicSlideBoxDelegate.update();
+			//location = $location.hash(location);
+			//$ionicScrollDelegate.$getByHandle('mainScroll').anchorScroll("#"+location);
+			//console.log($location.hash(location));
+			//$ionicScrollDelegate.scrollBy(0,(current *130), true);
+			//$scope.ScrollTo("ndeshja-"+current);
+		  });
+	    });
+	   });
+
+  /**      $scope.ScrollTo = function(location) {
+              location = $location.hash(location);
+              //console.log('scrolling to: '+location);
+              $ionicScrollDelegate.$getByHandle('mainScroll').anchorScroll("#"+location);
+        };
+**/
+      $scope.loadingIndicator = $ionicLoading.show({
+	    content: 'Loading Data',
+	    animation: 'fade-in',
+	    showBackdrop: true,
+	    maxWidth: 200,
+	    showDelay: 500
+	   });
+
+     $ionicPopover.fromTemplateUrl('popover-template.html', {
+        scope: $scope,
+      }).then(function(popover) {
+        $scope.popover = popover;
+      });
+
+      $scope.changeSezoni = function(item, index) {
+		$scope.start_val_id = index;
+        $scope.sezoni_text = item.text;
+        $scope.sezoni_id = item.value;
+        $scope.popover.hide();
+		$ionicLoading.show();
+        console.log($scope.sezoni_id);
+		console.log($scope.clubId);
+        $ionicBackdrop.retain();
+        NdeshjetService.getAllRoundsNdeshjet($scope.sezoni_id, function(data) {
+            $scope.itemsT = data;
+			$scope.updateLabel = $scope.updateLabel == 1 ? 2 : 1;
+			console.log($scope.updateLabel);
+			//var current = data.ndeshjet[0].current_round - 1;
+			//console.log(data.length);
+            //selectPopup.close();
+			$ionicLoading.hide();
+            $scope.popover.hide();
+            $ionicBackdrop.release();
+			//$ionicSlideBoxDelegate.update();
+			//$ionicScrollDelegate.scrollBy(0,(current *130), true);
+			//$scope.ScrollTo("ndeshja-"+current);
+        });
+      };
+
+        NdeshjetService.getAllRoundsNdeshjet($scope.sezoni_id, function(data) {
+            $scope.itemsT = data;
+	    //var current = data.ndeshjet[0].current_round - 1;
+	    //$scope.ScrollTo("ndeshja-"+current);
+            $ionicLoading.hide();
+        });
+     $timeout(function(){
+          $ionicLoading.hide();
+        },15000);
+    })
+

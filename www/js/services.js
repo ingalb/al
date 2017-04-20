@@ -162,7 +162,7 @@ angular.module('albania.services', [])
                 }
               });
             },
-			     getAlbaniaNdeshje: function(callback) {
+			getAlbaniaNdeshje: function(callback) {
                 $http.get(URL_APP+'ndeshjet.php?id='+P_ID+'&ekipi='+EKIPI_ID).success(
                     function(data) {
                         ndeshjet = data;
@@ -175,6 +175,22 @@ angular.module('albania.services', [])
                 if(window.localStorage["AlbaniaNdeshjet"] !== undefined) {
                     albaniandeshjet = JSON.parse(window.localStorage["AlbaniaNdeshjet"]);
                     callback(albaniadeshjet);
+                }
+              });
+            },
+			getAllRoundsNdeshjet: function(sezoniId, callback) {
+                $http.get(URL_APP+'euro2016-results.php',{params:{id: sezoniId, type: 5}}).success(
+                    function(data) {
+                        allndeshje = data;
+                        window.localStorage["allRoundNdeshje"] = JSON.stringify(data);
+                        callback(data);
+                    }
+                )
+                .error(function(data) {
+                   console.log("ERROR: " + data);
+                if(window.localStorage["allRoundNdeshje"] !== undefined) {
+                    allndeshje = JSON.parse(window.localStorage["allRoundNdeshje"]);
+                    callback(allndeshje);
                 }
               });
             },

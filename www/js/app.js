@@ -123,11 +123,11 @@ var albania = angular.module('albania', ['ionic', 'albania.services', 'albania.c
       }
     })
     .state('app.ndeshjet', {
-      url: "/ndeshjet/:grId",
+      url: "/ndeshjet/:catId/:clubId",
       views: {
         'menuContent' :{
           templateUrl: "templates/ndeshjet.html",
-          controller: 'NdeshjetCtrl'
+          controller: 'NdeshjetCtrl1'
         }
       }
     })
@@ -215,7 +215,15 @@ var albania = angular.module('albania', ['ionic', 'albania.services', 'albania.c
         }
       }
     })
-
+    .state('app.kalendari', {
+      url: "/kalendari/:catId/:pId",
+      views: {
+        'menuContent' :{
+          templateUrl: "templates/kalendari.html",
+          controller: 'KalendariCtrl'
+        }
+      }
+    })
     .state('app.lojtari', {
       url: "/ekipi/:lojtariId",
       views: {

@@ -1,12 +1,15 @@
 <ion-side-menus>
-
-  <ion-pane ion-side-menu-content>
+  <ion-side-menu-content>
     <ion-nav-bar class="bar-assertive nav-title-slide-ios7">
       <ion-nav-back-button class="button-clear"><i class="icon ion-chevron-left"></i> Pas</ion-nav-back-button>
+      <ion-nav-buttons side="left">
+        <button class="button button-icon button-clear ion-navicon" menu-toggle="left">
+        </button>
+      </ion-nav-buttons>
     </ion-nav-bar>
     <ion-nav-view name="menuContent" animation="slide-left-right"></ion-nav-view>
-  </ion-pane>
-
+  </ion-side-menu-content>
+  
   <ion-side-menu side="left" id="menu" class="bg-transparent sfondim">
     <ion-content>
       <ion-list class="sidebar list-no-border">
@@ -25,7 +28,7 @@
         <ion-item nav-clear menu-close href="#/app/ekipi/kombetarja">
           <h2><i class="ion-tshirt"></i> Ekipi</h2>
         </ion-item>
-		<ion-item nav-clear menu-close href="#/app/ndeshjet/kombetarja">
+		<ion-item nav-clear menu-close href="#/app/ndeshjet/4/kombetarja">
           <h2><i class="ion-arrow-graph-up-right"></i> Ndeshjet</h2>
         </ion-item>
 		<ion-item nav-clear menu-close href="#/app/klasifikimi/4/kombetarja">
@@ -37,7 +40,7 @@
 		<ion-item nav-clear menu-close href="#/app/lajmet/superliga">
           <h2><i class="ion-document-text"></i> Lajmet</h2>
         </ion-item>
-		<ion-item nav-clear menu-close href="#/app/ndeshjet/superliga">
+		<ion-item nav-clear menu-close href="#/app/kalendari/1/111">
           <h2><i class="ion-arrow-graph-up-right"></i> Ndeshjet</h2>
         </ion-item>
 		<ion-item nav-clear menu-close href="#/app/klasifikimi/1/superliga">
@@ -49,7 +52,7 @@
 		<ion-item nav-clear menu-close href="#/app/lajmet/kupa">
           <h2><i class="ion-document-text"></i> Lajmet</h2>
         </ion-item>
-		<ion-item nav-clear menu-close href="#/app/ndeshjet/kupa">
+		<ion-item nav-clear menu-close href="#/app/kalendari/2/113">
           <h2><i class="ion-arrow-graph-up-right"></i> Ndeshjet</h2>
         </ion-item>
 		<ion-item nav-clear class="item-divider">
@@ -58,7 +61,7 @@
 		<ion-item nav-clear menu-close href="#/app/lajmet/kategoria1">
           <h2><i class="ion-document-text"></i> Lajmet</h2>
         </ion-item>
-		<ion-item nav-clear menu-close href="#/app/ndeshjet/kategoria1">
+		<ion-item nav-clear menu-close href="#/app/kalendari/3/114">
           <h2><i class="ion-arrow-graph-up-right"></i> Ndeshjet</h2>
         </ion-item>
 		<ion-item nav-clear menu-close href="#/app/klasifikimi/3/kategoria1">
@@ -70,7 +73,7 @@
 		<ion-item nav-clear menu-close href="#/app/lajmet/kosova">
           <h2><i class="ion-document-text"></i> Lajmet</h2>
         </ion-item>
-		<ion-item nav-clear menu-close href="#/app/ndeshjet/kosova">
+		<ion-item nav-clear menu-close href="#/app/kalendari/5/115">
           <h2><i class="ion-arrow-graph-up-right"></i> Ndeshjet</h2>
         </ion-item>
 		<ion-item nav-clear menu-close href="#/app/klasifikimi/5/kosova">

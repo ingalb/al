@@ -1,0 +1,32 @@
+<ion-view view-title="Ndeshjet">
+	<ion-nav-buttons side="left">
+		<button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
+	</ion-nav-buttons>
+	<ion-nav-buttons side="right">
+		<button class="button button-icon ion-more" ng-click="popover.show($event)"></button>
+	</ion-nav-buttons>
+<div class="bar bar-subheader">
+  <h2 class="title" ng-click="popover.show($event)">{{sezoni_text}}</h2>
+</div>
+	<ion-content class="has-subheader" id="kalendari" scroll="true">
+
+    <ion-slide-box show-pager="false" ion-slide-tabs>
+        <ion-slide ng-repeat="match in itemsT track by $index" ion-slide-tab-label="{{match.title}}">
+			<div class="row rnk" ng-repeat="item in match.ndeshje">
+				<div class="col col-center {{item.team1}}"><img class="rank" ng-src="http://www.albaniasoccer.com/{{item.logo1}}">{{item.team1}}</div>
+				<div class="col col-20 col-center1"><a ng-if="item.over>0" class="rez assertive" href="#app/ndeshja/{{item.id}}">{{item.gol1_over}} - {{item.gol2_over}} </a><a ng-if="!item.gol1" class="assertive">{{item.data | matchData}}</a><a ng-if="item.gol1" class="rez over{{item.over}}" href="#app/ndeshja/{{item.id}}">{{item.gol1}} - {{item.gol2}}</a><a ng-if="item.ot_gol1" class="rez over{{item.over}} live{{item.live.live}}" href="#app/ndeshja/{{item.id}}"><br>Shtes&euml;: {{item.ot_gol1}} - {{item.ot_gol2}}</a><a ng-if="item.so_gol1" class="rez over{{item.over}} live{{item.live.live}}" href="#app/ndeshja/{{item.id}}"><br>Pen: {{item.so_gol1}} - {{item.so_gol2}}</a></div>
+				<div class="col col-right col-center {{item.team2}}">{{item.team2}} <img class="rank" ng-src="http://www.albaniasoccer.com/{{item.logo2}}"></div>
+			</div>
+		</ion-slide>
+    </ion-slide-box>
+	
+	</ion-content>
+</ion-view>
+
+<script id="popover-template.html" type="text/ng-template">
+   <ion-popover-view>
+		<ion-content>
+			<ion-radio ng-repeat="item in SezoneList" ng-value="item.value" ng-model="sezoni_id" ng-change="changeSezoni(item)" ng-click="changeSezoni(item)">{{ item.text }}</ion-radio>
+		</ion-content>
+	</ion-popover-view>
+</script>
