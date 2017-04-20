@@ -14,7 +14,7 @@
     <div class="col col-center1"><span>{{item.orari | indexData}}<br>{{item.stadiumi.emri}}</span></div>
   </div>
   <div class="row row-top bg-white">
-    <div class="col col-center1 Vllaznia"><img class="match-logo" ng-src="{{item.logo1}}"><br>{{item.team1}}</div>
+    <div class="col col-center1 Vllaznia"><img class="match-logo" ng-src="http://www.albaniasoccer.com/{{item.logo1}}"><br>{{item.team1}}</div>
     <div class="col col-25 col-center col-center1">
         <div ng-if="item.over==0"><a class="rezultati">{{item.gol1}} - {{item.gol2}}</a><a ng-if="item.ot_gol1" class="rez live{{item.live.live}}"><br>Shtes&euml;: <br>{{item.ot_gol1}} - {{item.ot_gol2}}</a><a ng-if="item.so_gol1" class="rez live{{item.live.live}}"><br>Pen: <br>{{item.so_gol1}} - {{item.so_gol2}}</a></div>
         <div ng-if="item.over>0" class="assertive"><a class="rezultati assertive">{{item.gol1_over}} - {{item.gol2_over}}</a></div>
@@ -25,7 +25,7 @@
             </div>
         </div>
     </div>
-    <div class="col col-center1 Vllaznia"><img class="match-logo" ng-src="{{item.logo2}}"><br>{{item.team2}}</div>
+    <div class="col col-center1 Vllaznia"><img class="match-logo" ng-src="http://www.albaniasoccer.com/{{item.logo2}}"><br>{{item.team2}}</div>
   </div>
   <div ng-if="item.over>0" class="assertive col col-center1 bg-white">{{item.over_text}}</div>
   <div id="match" class="tabs-striped tabs-top tabs-icon-left tabs-background-dark tabs-color-assertive">
