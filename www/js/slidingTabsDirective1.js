@@ -231,8 +231,10 @@ var slidingTabsDirective = angular.module("ionic").directive('ionSlideTabs', ['$
 
             scope.addTabContent = function ($content) {
                 //console.log("push");
+				//scope.tabs = [];
                 scope.tabs.push($content);
                 scope.$apply();
+				//console.log(scope.tabs);
 
                 $timeout(function() {
                     slideTabs = angular.element(tabsBar[0].querySelector("ul").querySelectorAll(".slider-slide-tab"));
@@ -241,6 +243,12 @@ var slidingTabsDirective = angular.module("ionic").directive('ionSlideTabs', ['$
                 })
 
             }
+			
+			scope.removeTabContent = function () {
+				scope.tabs = [];
+                //scope.$apply();
+				//console.log(scope.tabs);
+			}
 
             scope.onSlideChange = function (slideIndex) {
                 slideToCurrentPosition();
@@ -272,15 +280,22 @@ var slidingTabsDirective = angular.module("ionic").directive('ionSlideTabs', ['$
             init();
         },
         controller: ['$scope',function($scope) {
-            this.addTab = function($content) {
+            this.addTab = function($content, $options) {
+				//console.log($options);
+				$scope.removeTabContent();
                 $timeout(function() {
                     if($scope.addTabContent) {
 						//console.log($content);
                         $scope.addTabContent($content);
-						$ionicSlideBoxDelegate.update();
+						//$ionicSlideBoxDelegate.update();
 						//console.log("update");
                     }
                 });
+				$ionicSlideBoxDelegate.update();
+				if($options)
+				{
+					$ionicSlideBoxDelegate.slide($options);
+				}
             }
         }]
     };
@@ -290,16 +305,24 @@ slidingTabsDirective.directive('ionSlideTabLabel', [ function() {
     return {
         require: "^ionSlideTabs",
         link: function ($scope, $element, $attrs, $parent) {
-			if($scope.updateLabel == 0)
-			{
-				$parent.addTab($attrs.ionSlideTabLabel);
-			}
-			$scope.$watch('updateLabel', function(items, test){
-				//console.log($attrs.ionSlideTabLabel);
+			//console.log($attrs.options);
+			$parent.addTab($attrs.ionSlideTabLabel, $attrs.options);
+
+			$scope.$watch('updateLabel', function(items){
 				if($scope.updateLabel)
 				{
-					$parent.addTab($attrs.ionSlideTabLabel);
+					$parent.addTab($attrs.ionSlideTabLabel, $attrs.options);					
 				}
+				
+			}
+			);
+			
+			$scope.$watch('java_index', function(items){
+				if($scope.java_index)
+				{
+					$parent.addTab($attrs.ionSlideTabLabel, $scope.java_index);					
+				}
+				
 			}
 			);
         }

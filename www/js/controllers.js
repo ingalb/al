@@ -744,7 +744,7 @@ angular.module('albania.controllers', [])
 			//$ionicTabsDelegate.select($scope.gr_id-3);
             $ionicSlideBoxDelegate.slide($scope.gr_id-3);
 			$scope.selected_id = $scope.gr_id-3;//$ionicSlideBoxDelegate.currentIndex();
-			console.log($scope.selected_id);
+			//console.log($scope.selected_id);
 		 }
 
 	    $scope.slideNext = function() {
@@ -830,7 +830,7 @@ angular.module('albania.controllers', [])
 	         showDelay: 500
 	      });
         //EkipiService.getAllEkipi($scope.sezoni_id,$scope.ekipiId, function(data) {
-		EkipiService.getAlb($scope.sezoni_id,$scope.ekipiId, function(data) {
+		EkipiService.getAlb($scope.sezoni_id,$stateParams.ekId, function(data) {
             $scope.items = data;
             //console.log(data);
             $ionicLoading.hide();
@@ -1350,17 +1350,14 @@ angular.module('albania.controllers', [])
         },15000);
     })
 	
-	.controller('KalendariCtrl', function($scope, $sce, $timeout, $stateParams, $ionicLoading, $ionicBackdrop, $ionicPopover, $ionicScrollDelegate, $ionicSlideBoxDelegate, $location, NdeshjetService, ProjectService) {
+	.controller('KalendariCtrl', function($scope, $sce, $timeout, $state, $stateParams, $ionicLoading, $ionicBackdrop, $ionicPopover, $ionicScrollDelegate, $ionicSlideBoxDelegate, $location, NdeshjetService, ProjectService) {
       ga_storage._trackPageview('#/app/ndeshjet', 'As App Ndeshjet');
 
       $scope.pId = $stateParams.pId;
-	  var initslide = 6;
+	  $scope.java_index = 0;
       $scope.start_val_id = 0;
 	  $scope.updateLabel = 0;
-      $scope.options = {
-                initialSlide: initslide
-            };
-	   
+  	   
 	if($stateParams.catId == 4)
      $scope.SezoneList = [
 	   { text: "Kualifikimi Boterori Rusi 2018", value: 112 },
@@ -1433,7 +1430,7 @@ angular.module('albania.controllers', [])
 	  
 
 	  $scope.$on('$ionicView.afterEnter', function(){
-	    console.log("enter view");
+	  //  console.log($stateParams.catId);
 		$ionicBackdrop.retain();
 		$ionicLoading.show();
 		ProjectService.getProjects($stateParams.catId, function(data) {
@@ -1442,12 +1439,10 @@ angular.module('albania.controllers', [])
           $scope.sezoni_text = $scope.SezoneList[0].text;
 		  NdeshjetService.getAllRoundsNdeshjet($scope.sezoni_id, function(data) {
             $scope.itemsT = data;
-			//console.log(data[1]);
+			//console.log(data[Object.keys(data)[0]].ndeshje[1].current);
 			//var current = data.ndeshjet.[0].current_round - 1;
 			//var scrollto = current *130;
-			$scope.options = {
-                //initialSlide: data.ndeshje[0].current
-            };
+			$scope.java_index = (data[Object.keys(data)[0]].ndeshje[1].current - 1);
             $ionicLoading.hide();
 			$ionicBackdrop.release();
 			//$ionicSlideBoxDelegate.update();
@@ -1486,13 +1481,16 @@ angular.module('albania.controllers', [])
         $scope.sezoni_id = item.value;
         $scope.popover.hide();
 		$ionicLoading.show();
-        console.log($scope.sezoni_id);
-		console.log($scope.clubId);
-        $ionicBackdrop.retain();
+        //console.log($scope.sezoni_id);
+		//console.log($scope.clubId);
+        $ionicBackdrop.retain(); ///kalendari/:catId/:pId
+		//$state.go('app.kalendari', {catId: $stateParams.catId, pId: $scope.sezoni_id} );
         NdeshjetService.getAllRoundsNdeshjet($scope.sezoni_id, function(data) {
             $scope.itemsT = data;
+			
 			$scope.updateLabel = $scope.updateLabel == 1 ? 2 : 1;
-			console.log($scope.updateLabel);
+			//$scope.updateLabel = 1;
+			$scope.java_index = (data[Object.keys(data)[0]].ndeshje[1].current - 1);
 			//var current = data.ndeshjet[0].current_round - 1;
 			//console.log(data.length);
             //selectPopup.close();

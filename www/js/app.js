@@ -168,7 +168,7 @@ var albania = angular.module('albania', ['ionic', 'albania.services', 'albania.c
       }
     })
     .state('app.ekipi', {
-      url: "/ekipi",
+      url: "/ekipi/:ekId",
       views: {
         'menuContent' :{
           templateUrl: "templates/lojtaret1.html",
@@ -225,7 +225,7 @@ var albania = angular.module('albania', ['ionic', 'albania.services', 'albania.c
       }
     })
     .state('app.lojtari', {
-      url: "/ekipi/:lojtariId",
+      url: "/lojtari/:lojtariId",
       views: {
         'menuContent' :{
           templateUrl: "templates/lojtari.html",

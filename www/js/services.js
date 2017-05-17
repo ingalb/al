@@ -388,7 +388,7 @@ angular.module('albania.services', [])
         var ekipi = [];
         return {
             getAllEkipi: function(sezoniId, ekipiId, callback) {
-                $http.get(URL_APP+'ekipi.php',{params:{id: sezoniId, ekipi: ekipiId}}).success(
+                $http.get(URL_APP+'ekipi.php',{params:{id: sezoniId, ekipi: ekipiId, type: 1}}).success(
                     function(data) {
                         ekipi1 = data;
                         window.localStorage["ekipi"] = JSON.stringify(data);
@@ -403,8 +403,8 @@ angular.module('albania.services', [])
                   }
                 });
             },
-			      getAlb: function(sezoniId, ekipiId, callback) {
-                $http.get(URL_APP+'ekipi.php',{params:{id: sezoniId, ekipi: ekipiId, type: "1"}}).success(
+			getAlb: function(sezoniId, ekipiId, callback) {
+                $http.get(URL_APP+'ekipi.php',{params:{id: sezoniId, ekipi: ekipiId, type: 1}}).success(
                     function(data) {
                         ekipi = data;
                         window.localStorage["ekipi"] = JSON.stringify(data);
